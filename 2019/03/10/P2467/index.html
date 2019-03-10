@@ -96,25 +96,25 @@
 
 
 
-  <meta name="description" content="没啥好看的，就是篇日记。">
-<meta name="keywords" content="成长">
+  <meta name="description" content="题目链接P2467 [SDOI2010]地精部落">
+<meta name="keywords" content="DP">
 <meta property="og:type" content="article">
-<meta property="og:title" content="记录一枚蒟蒻的成长">
-<meta property="og:url" content="http://yoursite.com/2019/03/10/记录一枚蒟蒻的成长/index.html">
+<meta property="og:title" content="P2467 [SDOI2010]地精部落 题解（DP）">
+<meta property="og:url" content="http://yoursite.com/2019/03/10/P2467/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="没啥好看的，就是篇日记。">
+<meta property="og:description" content="题目链接P2467 [SDOI2010]地精部落">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-10T05:30:34.657Z">
+<meta property="og:updated_time" content="2019-03-10T07:34:45.809Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="记录一枚蒟蒻的成长">
-<meta name="twitter:description" content="没啥好看的，就是篇日记。">
+<meta name="twitter:title" content="P2467 [SDOI2010]地精部落 题解（DP）">
+<meta name="twitter:description" content="题目链接P2467 [SDOI2010]地精部落">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/10/记录一枚蒟蒻的成长/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/10/P2467/">
 
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>记录一枚蒟蒻的成长 | Potassium's blog</title>
+  <title>P2467 [SDOI2010]地精部落 题解（DP） | Potassium's blog</title>
   
 
 
@@ -323,7 +323,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/记录一枚蒟蒻的成长/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/P2467/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Potassium">
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">记录一枚蒟蒻的成长
+          <h1 class="post-title" itemprop="name headline">P2467 [SDOI2010]地精部落 题解（DP）
 
               
             
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-03-10 12:24:46 / 修改时间：13:30:34" itemprop="dateCreated datePublished" datetime="2019-03-10T12:24:46+08:00">2019-03-10</time>
+              <time title="创建时间：2019-03-10 15:15:35 / 修改时间：15:34:45" itemprop="dateCreated datePublished" datetime="2019-03-10T15:15:35+08:00">2019-03-10</time>
             
 
             
@@ -405,7 +405,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">1.4k</span>
+                <span title="本文字数">1.2k</span>
               
 
               
@@ -439,50 +439,16 @@
       
 
       
-        <p>没啥好看的，就是篇日记。</p>
+        <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://www.luogu.org/problemnew/show/P2467" target="_blank" rel="noopener">P2467 [SDOI2010]地精部落</a></p>
 <a id="more"></a>
-<p>2018.06.30 怀着一颗好奇的心从MOOC学习C</p>
-<p>2018.07.09 加入敲键盘行列，自此迈进了一个无底深渊（</p>
-<p>2018.07.10午 第一道橙题<a href="https://www.luogu.org/problemnew/show/P1002" target="_blank" rel="noopener">过河卒</a></p>
-<p>2018.07.10晚 第一道黄题<a href="https://www.luogu.org/problemnew/show/P1219" target="_blank" rel="noopener">八皇后</a></p>
-<p>2018.08.03 第一道绿题<a href="https://www.luogu.org/problemnew/show/P4771" target="_blank" rel="noopener">八百标兵奔北坡</a></p>
-<p>2018.08.05 第一道蓝题<a href="https://www.luogu.org/problemnew/show/P2261" target="_blank" rel="noopener">余数求和</a></p>
-<p>2018.08.07 第二道蓝题<a href="https://www.luogu.org/problemnew/show/P1128" target="_blank" rel="noopener">求正整数</a></p>
-<p>2018.08.08 受<a href="https://www.luogu.org/problemnew/show/P2670" target="_blank" rel="noopener">扫雷游戏</a>启发，自制第一个游戏–扫雷</p>
-<p>2018.08.09-08.10 自制简陋实数四则运算计算器</p>
-<p>2018.08.23 第三道蓝题<a href="https://www.luogu.org/problemnew/show/P2158" target="_blank" rel="noopener">仪仗队</a></p>
-<p>2018.09.12第四道蓝题<a href="https://www.luogu.org/problemnew/show/P1080" target="_blank" rel="noopener">国王游戏</a></p>
-<p>2018.09.26第五道蓝题<a href="https://www.luogu.org/problemnew/show/P1074" target="_blank" rel="noopener">靶型数独</a></p>
-<p>2018.09.28第六道蓝题<a href="https://www.luogu.org/problemnew/show/P1363" target="_blank" rel="noopener">幻想迷宫</a></p>
-<p>2018.09.30第七道蓝题<a href="https://www.luogu.org/problemnew/show/P1736#sub" target="_blank" rel="noopener">创意吃鱼法</a>， 第八道蓝题<a href="https://www.luogu.org/problemnew/show/P1457" target="_blank" rel="noopener">城堡</a></p>
-<p>2018.10.03第一道紫题<a href="https://www.luogu.org/problemnew/show/P2123" target="_blank" rel="noopener">皇后游戏</a></p>
-<p>2018.10.11第二道紫题<a href="https://www.luogu.org/problemnew/show/P1354" target="_blank" rel="noopener">房间最短路问题</a></p>
-<p>2018.11.7第三道紫题<a href="https://www.luogu.org/problemnew/show/P2774" target="_blank" rel="noopener">方格取数问题</a></p>
-<p>2018.11.12第四道紫题<a href="https://www.luogu.org/problemnew/show/P2188" target="_blank" rel="noopener">小Z的 k 紧凑数</a></p>
-<p>2018.11.13第五道紫题<a href="https://www.luogu.org/problemnew/show/CF409F" target="_blank" rel="noopener">000001</a></p>
-<p>2018.11.20第六道紫题<a href="https://www.luogu.org/problemnew/show/P2516" target="_blank" rel="noopener">最长公共子序列</a></p>
-<p>2018.11.21第七道紫题<a href="https://www.luogu.org/problemnew/show/P1337" target="_blank" rel="noopener">平衡点</a></p>
-<p>2018.11.24第八道紫题<a href="https://www.luogu.org/problemnew/show/P2766" target="_blank" rel="noopener">最长不下降子序列问题</a></p>
-<p>2018.12.9第九道紫题<a href="https://www.luogu.org/problemnew/show/P1641" target="_blank" rel="noopener">生成字符串</a></p>
-<p>2018.12.10第十道紫题<a href="https://www.luogu.org/problemnew/show/P4555" target="_blank" rel="noopener">最长双回文串</a></p>
-<p>2018.12.11第十一道紫题<a href="https://www.luogu.org/problemnew/show/P1872" target="_blank" rel="noopener">P1872 回文串计数</a>，第十二道紫题<a href="https://www.luogu.org/problemnew/show/P4987" target="_blank" rel="noopener">P4987 回文项链</a>，第十三道紫题<a href="https://www.luogu.org/problemnew/show/P4279" target="_blank" rel="noopener">P4279 [SHOI2008]小约翰的游戏</a></p>
-<p>2018.12.12第十四道紫题<a href="https://www.luogu.org/problemnew/show/P2599" target="_blank" rel="noopener">P2599 [ZJOI2009]取石子游戏</a></p>
-<p>2018.12.13第十五道紫题<a href="https://www.luogu.org/problemnew/show/P3803" target="_blank" rel="noopener">P3803 【模板】多项式乘法（FFT）</a></p>
-<p>2018.12.14第十六道紫题<a href="https://www.luogu.org/problemnew/show/P3338" target="_blank" rel="noopener">P3338 [ZJOI2014]力</a></p>
-<p>2018.12.15第十七道紫题<a href="https://www.luogu.org/problemnew/show/P2051" target="_blank" rel="noopener">P2051 [AHOI2009]中国象棋</a>，第十八道紫题<a href="https://www.luogu.org/problemnew/show/P4285" target="_blank" rel="noopener">P4285 [SHOI2008]汉诺塔</a></p>
-<p>2018.12.25第十九道紫题<a href="https://www.luogu.org/problemnew/show/P4525" target="_blank" rel="noopener">P4525 【模板】自适应辛普森法1</a></p>
-<p>2018.12.27第二十道紫题<a href="https://www.luogu.org/problemnew/show/P4526" target="_blank" rel="noopener">P4526 【模板】自适应辛普森法2</a></p>
-<p>2018.12.28第二十一道紫题<a href="https://www.luogu.org/problemnew/show/P5091" target="_blank" rel="noopener">P5091 【模板】欧拉定理</a></p>
-<p>2018.12.30第二十二道紫题<a href="https://www.luogu.org/problemnew/show/P4139" target="_blank" rel="noopener">P4139 上帝与集合的正确用法</a></p>
-<p>2019.1.5第二十三道紫题<a href="https://www.luogu.org/problemnew/show/P2529" target="_blank" rel="noopener">P2529 [SHOI2001]击鼓传花</a>，第二十四道紫题<a href="https://www.luogu.org/problemnew/show/P2508" target="_blank" rel="noopener">P2508 [HAOI2008]圆上的整点</a></p>
-<p>2019.1.6第二十五道紫题<a href="https://www.luogu.org/problemnew/show/CF1091D" target="_blank" rel="noopener">CF1091D New Year and the Permutation Concatenation</a>，第二十六道紫题<a href="https://www.luogu.org/problemnew/show/CF1084B" target="_blank" rel="noopener">CF1084B Kvass and the Fair Nut</a>，第一道黑题<a href="https://www.luogu.org/problemnew/show/CF1091E" target="_blank" rel="noopener">CF1091E New Year and the Acquaintance Estimation</a>，第二道黑题<a href="https://www.luogu.org/problemnew/show/CF1091F" target="_blank" rel="noopener">CF1091F New Year and the Mallard Expedition</a></p>
-<p>2019.1.31第三道黑题<a href="https://www.luogu.org/problemnew/show/P5055" target="_blank" rel="noopener">P5055 【模板】可持久化文艺平衡树</a></p>
-<p>2019.2.27第四道黑题<a href="https://www.luogu.org/problemnew/show/P2783" target="_blank" rel="noopener">P2783 有机化学之神偶尔会做作弊</a></p>
-<p>2019.3.3第五道黑题<a href="https://www.luogu.org/problemnew/show/P1763" target="_blank" rel="noopener">P1763 蓄水池</a></p>
-<p>2019.3.6第六道黑题<a href="https://www.luogu.org/problemnew/show/P4847" target="_blank" rel="noopener">P4847 银河英雄传说V2 </a></p>
-<p>2019.3.8 洛谷$AC500$</p>
-<p><strong>路还在继续……</strong></p>
-<p>青春如酒，成长正酣……</p>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>神仙题（？）</p>
+<p><del>我太渣了一个多小时才想出来这题怎么做</del></p>
+<p>第一感就是排列组合题目。然而怎么也想不出来正确的思路。</p>
+<p><del>然后突然想到这个题好像是在DP练习场里头的</del>，于是就做出来了。</p>
+<p>设$f[i]$表示填到第$i$个数的时候，默认第一个数是山峰的时候（山谷也行，一样的）有多少种方法。显然，$12345$的方法和$14579$的方法种数是相同的，所以说$f[i]$也代表$i$个互不相同的数填成波浪形有多少种方法。</p>
+<p>然后从$1$到$n$递推，枚举$i$这个数塞到第$j$个位置，也就是把前$i-1$个数弄成波浪形，后$i-j$个数弄成波浪形，把$i-1$个数分成$j-1$个和$i-j$个的两组一共有$c[i-1][j-1]$种方法，故有$f[i]= \sum_{j=1}^i f[j-1]·f[i-j]·c[i-1][j-1]$。</p>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,p,f[<span class="number">4210</span>],c[<span class="number">4210</span>][<span class="number">4210</span>]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;p);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)c[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(j%<span class="number">2</span>)&#123;</span><br><span class="line">				f[i]+=f[j<span class="number">-1</span>]*f[i-j]%p*c[i<span class="number">-1</span>][j<span class="number">-1</span>]%p;</span><br><span class="line">				f[i]%=p;</span><br><span class="line">			&#125;</span><br><span class="line">			c[i][j]=(c[i<span class="number">-1</span>][j]+c[i<span class="number">-1</span>][j<span class="number">-1</span>])%p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,(f[n]&lt;&lt;<span class="number">1</span>)%p);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>滚动数组优化一下组合数：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,p,f[<span class="number">4210</span>],c[<span class="number">2</span>][<span class="number">4210</span>]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,q=<span class="number">0</span>;</span><br><span class="line">	f[<span class="number">0</span>]=c[<span class="number">0</span>][<span class="number">0</span>]=c[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;p);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		q^=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(j%<span class="number">2</span>)&#123;</span><br><span class="line">				f[i]+=f[j<span class="number">-1</span>]*f[i-j]%p*c[q^<span class="number">1</span>][j<span class="number">-1</span>]%p;</span><br><span class="line">				f[i]%=p;</span><br><span class="line">			&#125;</span><br><span class="line">			c[q][j]=(c[q^<span class="number">1</span>][j]+c[q^<span class="number">1</span>][j<span class="number">-1</span>])%p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,(f[n]&lt;&lt;<span class="number">1</span>)%p);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
       
     </div>
@@ -506,7 +472,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/成长/" rel="tag"># 成长</a>
+            <a href="/tags/DP/" rel="tag"># DP</a>
           
         </div>
       
@@ -519,8 +485,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/10/2019.2-2019.3 to-do list/" rel="next" title="2019.2-2019.3 TO-DO LIST">
-                <i class="fa fa-chevron-left"></i> 2019.2-2019.3 TO-DO LIST
+              <a href="/2019/03/10/记录一枚蒟蒻的成长/" rel="next" title="记录一枚蒟蒻的成长">
+                <i class="fa fa-chevron-left"></i> 记录一枚蒟蒻的成长
               </a>
             
           </div>
@@ -528,10 +494,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/10/P2467/" rel="prev" title="P2467 [SDOI2010]地精部落 题解（DP）">
-                P2467 [SDOI2010]地精部落 题解（DP） <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -576,8 +538,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -745,6 +716,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-number">3.</span> <span class="nav-text">AC代码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
