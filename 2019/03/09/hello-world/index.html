@@ -11,13 +11,15 @@
 
 
 
+  
 
-<html class="theme-next gemini" lang="ch-CN">
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content>
+<meta name="theme-color" content="#222">
 
 
 
@@ -44,10 +46,12 @@
 
 
 
-<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="//main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
 
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
 
 
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
@@ -55,6 +59,8 @@
 
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
 
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
 
 
 
@@ -68,18 +74,18 @@
     root: '/',
     scheme: 'Gemini',
     version: '6.7.0',
-    sidebar: {"position":"left"},
-    fancybox: ,
-    fastclick: ,
-    lazyload: ,
-    tabs: ,
-    motion: "",
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
-      hits: "",
-      labels: ""
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
@@ -94,10 +100,10 @@
 <meta property="og:type" content="article">
 <meta property="og:title" content="Hello World">
 <meta property="og:url" content="http://yoursite.com/2019/03/09/hello-world/index.html">
-<meta property="og:site_name" content="Potassium&#39;s blog">
+<meta property="og:site_name" content="Potassium&#39;s_blog">
 <meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
-<meta property="og:locale" content="ch-CN">
-<meta property="og:updated_time" content="2019-03-09T11:43:57.371Z">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-09T12:19:13.081Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Hello World">
 <meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
@@ -107,6 +113,8 @@
 
 
 
+  <link rel="canonical" href="http://yoursite.com/2019/03/09/hello-world/">
+
 
 
 <script id="page.configurations">
@@ -115,7 +123,7 @@
   };
 </script>
 
-  <title>Hello World | Potassium's blog</title>
+  <title>Hello World | Potassium's_blog</title>
   
 
 
@@ -156,7 +164,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="ch-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -174,20 +182,16 @@
     <div class="custom-logo-site-title">
       <a href="/" class="brand" rel="start">
         <span class="logo-line-before"><i></i></span>
-        <span class="site-title">Potassium's blog</span>
+        <span class="site-title">Potassium's_blog</span>
         <span class="logo-line-after"><i></i></span>
       </a>
     </div>
-    
-      
-        <p class="site-subtitle">һö�X�m�ĳɳ�֮��</p>
-      
     
     
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -210,10 +214,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/" rel="section">Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -225,10 +231,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/about/" rel="section">Über</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -240,10 +248,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/tags/" rel="section">Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -255,10 +265,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/archives/" rel="section">Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -319,7 +331,7 @@
     </span>
 
     <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Potassium's blog">
+      <meta itemprop="name" content="Potassium's_blog">
     </span>
 
     
@@ -342,7 +354,24 @@
             
 
             
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建时间：2019-03-09 19:43:57 / 修改时间：20:19:13" itemprop="dateCreated datePublished" datetime="2019-03-09T19:43:57+08:00">2019-03-09</time>
+            
+
+            
+              
+
+              
             
           </span>
 
@@ -357,9 +386,9 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon" title="Views">
+            <span class="post-meta-item-icon">
             <i class="fa fa-eye"></i>
-            
+             阅读次数： 
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -367,15 +396,15 @@
           
             <div class="post-symbolscount">
               
-                <span class="post-meta-divider">|</span>
-              
 
               
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                <span title="Symbols count in article">430</span>
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">430</span>
               
 
               
@@ -387,7 +416,9 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                <span title="Reading time">1 mins.</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -431,6 +462,30 @@
     
       
     
+    
+      <div>
+        <div style="padding: 10px 0; margin: 20px auto; width: 90%; text-align: center;">
+  <div>Donate comment here</div>
+  <button id="rewardButton" disable="enable" onclick="var qr = document.getElementById('QR'); if (qr.style.display === 'none') {qr.style.display='block';} else {qr.style.display='none'}">
+    <span>打赏</span>
+  </button>
+  <div id="QR" style="display: none;">
+
+    
+
+    
+
+    
+      <div id="bitcoin" style="display: inline-block">
+        <img id="bitcoin_qr" src="/images/bitcoin.jpg" alt="Potassium 比特币">
+        <p>比特币</p>
+      </div>
+    
+
+  </div>
+</div>
+
+      </div>
     
 
     
@@ -501,10 +556,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            站点概览
           </li>
         </ul>
       
@@ -519,6 +574,23 @@
               <p class="site-description motion-element" itemprop="description"></p>
           </div>
 
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+            </nav>
           
 
           
@@ -544,43 +616,39 @@
                   <a href="mailto:mumuyuyululu@126.com" title="E-Mail &rarr; mailto:mumuyuyululu@126.com" rel="noopener" target="_blank">E-Mail</a>
                 </span>
               
-                <span class="links-of-author-item">
-                  
-                  
-                    
-                  
-                  
-                  <a href="https://www.luogu.org/space/show?uid=108971" title="luogu &rarr; https://www.luogu.org/space/show?uid=108971" rel="noopener" target="_blank">luogu</a>
-                </span>
-              
             </div>
           
 
           
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
-                ��������(�����跭ǽ)
+                友情链接
               </div>
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://dash.cloudflare.com" title="https://dash.cloudflare.com" rel="noopener" target="_blank">cloudflare</a>
+                    <a href="https://cnblogs.com/potassium" title="https://cnblogs.com/potassium" rel="noopener" target="_blank">my_cnblog</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://my.freenom.com/clientarea.php" title="https://my.freenom.com/clientarea.php" rel="noopener" target="_blank">freenom</a>
+                    <a href="https://nikkukun.github.io" title="https://nikkukun.github.io" rel="noopener" target="_blank">nikkukun</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://minecraft-zh.gamepedia.com/Minecraft_Wiki" title="https://minecraft-zh.gamepedia.com/Minecraft_Wiki" rel="noopener" target="_blank">Minecraft Wiki</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.pixiv.net" title="https://www.pixiv.net" rel="noopener" target="_blank">Pixiv</a>
+                    <a href="https://cnblogs.com/hugegun" title="https://cnblogs.com/hugegun" rel="noopener" target="_blank">zyynb</a>
                   </li>
                 
               </ul>
@@ -615,6 +683,13 @@
       
 
       
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
 
     </div>
   </aside>
@@ -628,7 +703,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Potassium</span>
 
@@ -638,7 +713,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">1k</span>
+    <span title="站点总字数">1k</span>
   
 
   
@@ -647,14 +722,20 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1 mins.</span>
+    <span title="站点阅读时长">1 分钟</span>
   
 </div>
 
 
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
 
@@ -664,14 +745,14 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv" title="Total Visitors">
+    <span class="site-uv" title="总访客量">
       <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
 
   
-    <span class="site-pv" title="Total Views">
+    <span class="site-pv" title="总访问量">
       <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
@@ -690,11 +771,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -738,60 +814,48 @@
 
 
   
-  <script src="/jquery/index.js?v=2.1.3"></script>
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script src="/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="//src/utils.js?v=6.7.0"></script>
-
-  <script src="//src/motion.js?v=6.7.0"></script>
-
-
-
-  
-  
-
-
-  <script src="//src/affix.js?v=6.7.0"></script>
-
-  <script src="//src/schemes/pisces.js?v=6.7.0"></script>
-
-
-
-  
-  <script src="//src/scrollspy.js?v=6.7.0"></script>
-<script src="//src/post-details.js?v=6.7.0"></script>
-
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script src="//src/bootstrap.js?v=6.7.0"></script>
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
 
 
 
   
 
 
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
 
   
-
-
-
-
-
-
-
-
 
 
 
@@ -801,7 +865,17 @@
 
 
 
+
+
+
+
+
+
   
+
+
+
+
 
   
 
@@ -810,11 +884,50 @@
   
 
   
-  
 
   
   
 
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
@@ -872,7 +985,7 @@
     $('.highlight').each(function (i, e) {
       var $wrap = $('<div>').addClass('highlight-wrap');
       $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function (e) {
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
         var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
           return $(e).text();
         }).toArray().join('\n');
@@ -894,15 +1007,12 @@
         ta.setSelectionRange(0, code.length);
         var result = document.execCommand('copy');
         
-          if (result) $(this).text('Copied');
-          else $(this).text('Copy failed');
-        
         ta.blur(); //For iOS
         $(this).blur();
       })).on('mouseleave', function (e) {
         var $b = $(this).find('.copy-btn');
         setTimeout(function () {
-          $b.text('Copy');
+          $b.text('复制');
         }, 300);
       }).append(e);
     })

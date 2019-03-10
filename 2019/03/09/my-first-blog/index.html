@@ -11,13 +11,15 @@
 
 
 
+  
 
-<html class="theme-next gemini" lang="ch-CN">
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
 <head><meta name="generator" content="Hexo 3.8.0">
   <meta charset="UTF-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
-<meta name="theme-color" content>
+<meta name="theme-color" content="#222">
 
 
 
@@ -44,10 +46,12 @@
 
 
 
-<link rel="stylesheet" href="/font-awesome/css/font-awesome.min.css?v=4.6.2">
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
 
-<link rel="stylesheet" href="//main.css?v=6.7.0">
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
 
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
 
 
   <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
@@ -55,6 +59,8 @@
 
   <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
 
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
 
 
 
@@ -68,18 +74,18 @@
     root: '/',
     scheme: 'Gemini',
     version: '6.7.0',
-    sidebar: {"position":"left"},
-    fancybox: ,
-    fastclick: ,
-    lazyload: ,
-    tabs: ,
-    motion: "",
+    sidebar: {"position":"left","display":"post","offset":12,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
     algolia: {
       applicationID: '',
       apiKey: '',
       indexName: '',
-      hits: "",
-      labels: ""
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
     }
   };
 </script>
@@ -90,22 +96,25 @@
 
 
 
-  <meta name="description" content="—title: my-first-blogdate: 2019-03-09 21:01:59tags: none description: 第一篇博客，尝试一下新的博客~啦啦啦 标题一标题二标题三标题四标题五标题六 这是一段引用  int mian(){//这是一段代码     retrun 0; }  这是一个链接 $\sum_{k|((1&amp;lt;&amp;lt;k)\&amp;amp;S==0)}^{}">
+  <meta name="description" content="啦啦啦，换到新的blog啦！ 原博客停用2333">
+<meta name="keywords" content="blog">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Potassium&#39;s blog">
+<meta property="og:title" content="My_first_blog">
 <meta property="og:url" content="http://yoursite.com/2019/03/09/my-first-blog/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="—title: my-first-blogdate: 2019-03-09 21:01:59tags: none description: 第一篇博客，尝试一下新的博客~啦啦啦 标题一标题二标题三标题四标题五标题六 这是一段引用  int mian(){//这是一段代码     retrun 0; }  这是一个链接 $\sum_{k|((1&amp;lt;&amp;lt;k)\&amp;amp;S==0)}^{}">
-<meta property="og:locale" content="ch-CN">
-<meta property="og:updated_time" content="2019-03-09T16:44:17.686Z">
+<meta property="og:description" content="啦啦啦，换到新的blog啦！ 原博客停用2333">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-10T04:44:32.932Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Potassium&#39;s blog">
-<meta name="twitter:description" content="—title: my-first-blogdate: 2019-03-09 21:01:59tags: none description: 第一篇博客，尝试一下新的博客~啦啦啦 标题一标题二标题三标题四标题五标题六 这是一段引用  int mian(){//这是一段代码     retrun 0; }  这是一个链接 $\sum_{k|((1&amp;lt;&amp;lt;k)\&amp;amp;S==0)}^{}">
+<meta name="twitter:title" content="My_first_blog">
+<meta name="twitter:description" content="啦啦啦，换到新的blog啦！ 原博客停用2333">
 
 
 
 
 
+
+  <link rel="canonical" href="http://yoursite.com/2019/03/09/my-first-blog/">
 
 
 
@@ -115,7 +124,7 @@
   };
 </script>
 
-  <title> | Potassium's blog</title>
+  <title>My_first_blog | Potassium's blog</title>
   
 
 
@@ -156,7 +165,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="ch-CN">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -179,15 +188,11 @@
       </a>
     </div>
     
-      
-        <p class="site-subtitle">һö�X�m�ĳɳ�֮��</p>
-      
-    
     
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -210,10 +215,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/" rel="section">Startseite</a>
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
 
   </li>
         
@@ -225,10 +232,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/about/" rel="section">Über</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
 
   </li>
         
@@ -240,10 +249,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/tags/" rel="section">Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
 
   </li>
         
@@ -255,10 +266,12 @@
     
     
     
+      
+    
 
     
 
-    <a href="/archives/" rel="section">Archiv</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
 
   </li>
 
@@ -327,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">
+          <h1 class="post-title" itemprop="name headline">My_first_blog
 
               
             
@@ -342,7 +355,36 @@
             
 
             
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
 
+              
+                
+              
+
+              <time title="创建时间：2019-03-09 21:01:59" itemprop="dateCreated datePublished" datetime="2019-03-09T21:01:59+08:00">2019-03-09</time>
+            
+
+            
+              
+
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-03-10 12:44:32" itemprop="dateModified" datetime="2019-03-10T12:44:32+08:00">2019-03-10</time>
+              
             
           </span>
 
@@ -357,9 +399,9 @@
 
           
             <span class="post-meta-divider">|</span>
-            <span class="post-meta-item-icon" title="Views">
+            <span class="post-meta-item-icon">
             <i class="fa fa-eye"></i>
-            
+             阅读次数： 
             <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
             </span>
           
@@ -367,15 +409,15 @@
           
             <div class="post-symbolscount">
               
-                <span class="post-meta-divider">|</span>
-              
 
               
                 <span class="post-meta-item-icon">
                   <i class="fa fa-file-word-o"></i>
                 </span>
                 
-                <span title="Symbols count in article">238</span>
+                  <span class="post-meta-item-text">本文字数：</span>
+                
+                <span title="本文字数">250</span>
               
 
               
@@ -387,7 +429,9 @@
                   <i class="fa fa-clock-o"></i>
                 </span>
                 
-                <span title="Reading time">1 mins.</span>
+                  <span class="post-meta-item-text">阅读时长 &asymp;</span>
+                
+                <span title="阅读时长">1 分钟</span>
               
             </div>
           
@@ -407,19 +451,38 @@
       
 
       
-        <p>﻿﻿—<br>title: my-first-blog<br>date: 2019-03-09 21:01:59<br>tags: none</p>
-<h2 id="description-第一篇博客，尝试一下新的博客"><a href="#description-第一篇博客，尝试一下新的博客" class="headerlink" title="description: 第一篇博客，尝试一下新的博客~"></a>description: 第一篇博客，尝试一下新的博客~</h2><p>啦啦啦</p>
+        <p>啦啦啦，换到新的blog啦！</p>
+<p><a href="cnblogs.com/potassium">原博客停用2333</a></p>
+<a id="more"></a>
 <h1 id="标题一"><a href="#标题一" class="headerlink" title="标题一"></a>标题一</h1><h2 id="标题二"><a href="#标题二" class="headerlink" title="标题二"></a>标题二</h2><h3 id="标题三"><a href="#标题三" class="headerlink" title="标题三"></a>标题三</h3><h4 id="标题四"><a href="#标题四" class="headerlink" title="标题四"></a>标题四</h4><h5 id="标题五"><a href="#标题五" class="headerlink" title="标题五"></a>标题五</h5><h6 id="标题六"><a href="#标题六" class="headerlink" title="标题六"></a>标题六</h6><blockquote>
 <p>这是一段引用</p>
 </blockquote>
-<pre><code class="cpp"><span class="function"><span class="keyword">int</span> <span class="title">mian</span><span class="params">()</span></span>{<span class="comment">//这是一段代码</span>
-    retrun <span class="number">0</span>;
-}
-</code></pre>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">mian</span><span class="params">()</span></span>&#123;<span class="comment">//这是一段代码</span></span><br><span class="line">	retrun <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p><a href="cnblogs.com/potassium">这是一个链接</a></p>
-<p>$\sum_{k|((1&lt;&lt;k)\&amp;S==0)}^{} {f[i-1][S-(1&lt;&lt;k)]}$</p>
-<p>结束啦</p>
+<p>$\sum_{k|((1&lt;&lt;k)\&amp;S==0)}^{} {f[i-1][S-(1&lt;]}$</p>
 <p><del>嗯嗯</del> <del>诶诶诶</del></p>
+<p><strong>黑体</strong></p>
+<p><em>斜体</em></p>
+<ul>
+<li style="list-style: none"><input type="checkbox"> a</li>
+</ul>
+<p>道路千万条 <!--comment--></p>
+<p><strong>你是第一条</strong></p>
+<ol>
+<li>第一条<ol>
+<li>-.-</li>
+<li>-。-</li>
+</ol>
+</li>
+<li>第二条~</li>
+<li>第三条<ol>
+<li>233</li>
+<li>322</li>
+</ol>
+</li>
+</ol>
+<p><code>&lt;addr&gt;</code> <code>233</code></p>
+<p>1^1</p>
 <hr>
 
       
@@ -442,6 +505,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/blog/" rel="tag"># blog</a>
+          
+        </div>
+      
 
       
       
@@ -451,15 +520,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/09/hello-world/" rel="next" title="Hello World">
-                <i class="fa fa-chevron-left"></i> Hello World
-              </a>
-            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/03/10/2019.2-2019.3 to-do list/" rel="prev" title="2019.2-2019.3 TO-DO LIST">
+                2019.2-2019.3 TO-DO LIST <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -506,10 +575,10 @@
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Inhaltsverzeichnis
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Übersicht
+            站点概览
           </li>
         </ul>
       
@@ -525,6 +594,38 @@
           </div>
 
           
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">2</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
 
           
 
@@ -537,7 +638,9 @@
                     
                   
                   
-                  <a href="https://github.com/potassiumwings" title="GitHub &rarr; https://github.com/potassiumwings" rel="noopener" target="_blank">GitHub</a>
+                    
+                  
+                  <a href="https://github.com/potassiumwings" title="GitHub &rarr; https://github.com/potassiumwings" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -546,7 +649,9 @@
                     
                   
                   
-                  <a href="mailto:mumuyuyululu@126.com" title="E-Mail &rarr; mailto:mumuyuyululu@126.com" rel="noopener" target="_blank">E-Mail</a>
+                    
+                  
+                  <a href="mailto:mumuyuyululu@126.com" title="E-Mail &rarr; mailto:mumuyuyululu@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
                 </span>
               
                 <span class="links-of-author-item">
@@ -555,37 +660,77 @@
                     
                   
                   
-                  <a href="https://www.luogu.org/space/show?uid=108971" title="luogu &rarr; https://www.luogu.org/space/show?uid=108971" rel="noopener" target="_blank">luogu</a>
+                    
+                  
+                  <a href="http://m.mugzone.net/accounts/user/57439" title="Malody &rarr; http://m.mugzone.net/accounts/user/57439" rel="noopener" target="_blank"><i class="fa fa-fw fa-gamepad"></i>Malody</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://space.bilibili.com/11227808?from=search&seid=1471932430476256344" title="Bilibili &rarr; https://space.bilibili.com/11227808?from=search&seid=1471932430476256344" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>Bilibili</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/potassium-31" title="Zhihu &rarr; http://www.zhihu.com/people/potassium-31" rel="noopener" target="_blank"><i class="fa fa-fw fa-bitbucket"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/#/user/home?id=266891778" title="Music163 &rarr; https://music.163.com/#/user/home?id=266891778" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Music163</a>
                 </span>
               
             </div>
           
 
           
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
 
           
           
-            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll motion-element links-of-blogroll-block">
               <div class="links-of-blogroll-title">
                 <i class="fa  fa-fw fa-link"></i>
-                ��������(�����跭ǽ)
+                友情链接
               </div>
               <ul class="links-of-blogroll-list">
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://dash.cloudflare.com" title="https://dash.cloudflare.com" rel="noopener" target="_blank">cloudflare</a>
+                    <a href="https://cnblogs.com/potassium" title="https://cnblogs.com/potassium" rel="noopener" target="_blank">my cnblog</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://my.freenom.com/clientarea.php" title="https://my.freenom.com/clientarea.php" rel="noopener" target="_blank">freenom</a>
+                    <a href="https://nikkukun.github.io" title="https://nikkukun.github.io" rel="noopener" target="_blank">nikkukun</a>
                   </li>
                 
                   <li class="links-of-blogroll-item">
-                    <a href="https://minecraft-zh.gamepedia.com/Minecraft_Wiki" title="https://minecraft-zh.gamepedia.com/Minecraft_Wiki" rel="noopener" target="_blank">Minecraft Wiki</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://www.pixiv.net" title="https://www.pixiv.net" rel="noopener" target="_blank">Pixiv</a>
+                    <a href="https://cnblogs.com/hugegun" title="https://cnblogs.com/hugegun" rel="noopener" target="_blank">zyynb</a>
                   </li>
                 
               </ul>
@@ -611,7 +756,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#description-第一篇博客，尝试一下新的博客"><span class="nav-number">1.</span> <span class="nav-text">description: 第一篇博客，尝试一下新的博客~</span></a></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#标题一"><span class="nav-number"></span> <span class="nav-text">标题一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题二"><span class="nav-number">1.</span> <span class="nav-text">标题二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题三"><span class="nav-number">1.1.</span> <span class="nav-text">标题三</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标题四"><span class="nav-number">1.1.1.</span> <span class="nav-text">标题四</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#标题五"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">标题五</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#标题六"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">标题六</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#标题一"><span class="nav-number">1.</span> <span class="nav-text">标题一</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#标题二"><span class="nav-number">1.1.</span> <span class="nav-text">标题二</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#标题三"><span class="nav-number">1.1.1.</span> <span class="nav-text">标题三</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#标题四"><span class="nav-number">1.1.1.1.</span> <span class="nav-text">标题四</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#标题五"><span class="nav-number">1.1.1.1.1.</span> <span class="nav-text">标题五</span></a><ol class="nav-child"><li class="nav-item nav-level-6"><a class="nav-link" href="#标题六"><span class="nav-number">1.1.1.1.1.1.</span> <span class="nav-text">标题六</span></a></li></ol></li></ol></li></ol></li></ol></li></ol></li></ol></div>
             
 
           </div>
@@ -619,6 +764,13 @@
       <!--/noindex-->
       
 
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
       
 
     </div>
@@ -633,7 +785,7 @@
       <div class="footer-inner">
         <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
   <span class="with-love" id="animate">
-    <i class="fa fa-"></i>
+    <i class="fa fa-user"></i>
   </span>
   <span class="author" itemprop="copyrightHolder">Potassium</span>
 
@@ -643,7 +795,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="Symbols count total">1k</span>
+    <span title="站点总字数">3k</span>
   
 
   
@@ -652,14 +804,20 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="Reading time total">1 mins.</span>
+    <span title="站点阅读时长">3 分钟</span>
   
 </div>
 
 
+  <div class="powered-by">由 <a href="https://hexo.io" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v3.8.0</div>
 
 
 
+  <span class="post-meta-divider">|</span>
+
+
+
+  <div class="theme-info">主题 – <a href="https://theme-next.org" class="theme-link" rel="noopener" target="_blank">NexT.Gemini</a> v6.7.0</div>
 
 
 
@@ -669,14 +827,14 @@
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv" title="Total Visitors">
+    <span class="site-uv" title="总访客量">
       <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
 
   
-    <span class="site-pv" title="Total Views">
+    <span class="site-pv" title="总访问量">
       <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>
@@ -695,11 +853,6 @@
       </div>
     </footer>
 
-    
-      <div class="back-to-top">
-        <i class="fa fa-arrow-up"></i>
-        
-      </div>
     
 
     
@@ -743,60 +896,48 @@
 
 
   
-  <script src="/jquery/index.js?v=2.1.3"></script>
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
 
   
-  <script src="/velocity/velocity.min.js?v=1.2.1"></script>
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
 
   
-  <script src="/velocity/velocity.ui.min.js?v=1.2.1"></script>
-
-
-  
-
-
-  <script src="//src/utils.js?v=6.7.0"></script>
-
-  <script src="//src/motion.js?v=6.7.0"></script>
-
-
-
-  
-  
-
-
-  <script src="//src/affix.js?v=6.7.0"></script>
-
-  <script src="//src/schemes/pisces.js?v=6.7.0"></script>
-
-
-
-  
-  <script src="//src/scrollspy.js?v=6.7.0"></script>
-<script src="//src/post-details.js?v=6.7.0"></script>
-
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
 
 
   
 
 
-  <script src="//src/bootstrap.js?v=6.7.0"></script>
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
 
 
 
   
 
 
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
 
   
-
-
-
-
-
-
-
-
 
 
 
@@ -806,7 +947,17 @@
 
 
 
+
+
+
+
+
+
   
+
+
+
+
 
   
 
@@ -815,11 +966,50 @@
   
 
   
-  
 
   
   
 
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
   
 
 
@@ -877,7 +1067,7 @@
     $('.highlight').each(function (i, e) {
       var $wrap = $('<div>').addClass('highlight-wrap');
       $(e).after($wrap);
-      $wrap.append($('<button>').addClass('copy-btn').append('Copy').on('click', function (e) {
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
         var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
           return $(e).text();
         }).toArray().join('\n');
@@ -899,15 +1089,15 @@
         ta.setSelectionRange(0, code.length);
         var result = document.execCommand('copy');
         
-          if (result) $(this).text('Copied');
-          else $(this).text('Copy failed');
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
         
         ta.blur(); //For iOS
         $(this).blur();
       })).on('mouseleave', function (e) {
         var $b = $(this).find('.copy-btn');
         setTimeout(function () {
-          $b.text('Copy');
+          $b.text('复制');
         }, 300);
       }).append(e);
     })
