@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="因为这只Potassium太摸了，需要写一点题解，以防做了的题白做。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-11T12:19:06.291Z">
+<meta property="og:updated_time" content="2019-03-11T13:03:57.647Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018.12-2019.1 TO-DO LIST 题解集">
 <meta name="twitter:description" content="因为这只Potassium太摸了，需要写一点题解，以防做了的题白做。">
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-03-11 16:18:11 / 修改时间：20:19:06" itemprop="dateCreated datePublished" datetime="2019-03-11T16:18:11+08:00">2019-03-11</time>
+              <time title="创建时间：2019-03-11 16:18:11 / 修改时间：21:03:57" itemprop="dateCreated datePublished" datetime="2019-03-11T16:18:11+08:00">2019-03-11</time>
             
 
             
@@ -415,7 +415,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">4k</span>
+                <span title="本文字数">4.8k</span>
               
 
               
@@ -453,13 +453,72 @@
 <a id="more"></a>
 <h2 id="AC自动机"><a href="#AC自动机" class="headerlink" title="AC自动机"></a>AC自动机</h2><h3 id="P3808-【模板】AC自动机（简单版）（完成时间：2018-12-06）"><a href="#P3808-【模板】AC自动机（简单版）（完成时间：2018-12-06）" class="headerlink" title="P3808 【模板】AC自动机（简单版）（完成时间：2018.12.06）"></a><a href="https://www.luogu.org/problemnew/show/P3808" target="_blank" rel="noopener">P3808 【模板】AC自动机（简单版）</a>（完成时间：2018.12.06）</h3><blockquote>
 <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定n个模式串和1个文本串，求有多少个模式串在文本串里出现过。</p>
-<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>AC自动机模板题。<br><del>首先我们考虑跑n次kmp</del></p>
+<h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>AC自动机模板题。<br><del>那么我们首先考虑跑n次kmp</del></p>
+<p>由于前n-1个字符串可以建一颗字典树，所以确实可以在树上跑kmp。但显然仅仅这样做时间复杂度会非常之高，如何解决这个问题呢？</p>
+<p>回想一下，在进行kmp字符串匹配的时候，我们通过一个p指向模式串，枚举文本串的第i个数。next（或者fail）数组存储的是，在当前节点后一位失配之后应当比较的位置的前一位，也就是next[i]表示了<strong>1~next[i]和i-next[i]-1~i</strong>这<strong>两段字符串</strong>完全匹配，在下一位失配的时候应当从继续。</p>
+<p>举个例子，aababaababb。先给出其对应的next[i]值。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">i</th>
+<th style="text-align:center">1</th>
+<th style="text-align:center">2</th>
+<th style="text-align:center">3</th>
+<th style="text-align:center">4</th>
+<th style="text-align:center">5</th>
+<th style="text-align:center">6</th>
+<th style="text-align:center">7</th>
+<th style="text-align:center">8</th>
+<th style="text-align:center">9</th>
+<th style="text-align:center">10</th>
+<th style="text-align:center">11</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">a[i]</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">a</td>
+<td style="text-align:center">b</td>
+<td style="text-align:center">b</td>
+</tr>
+<tr>
+<td style="text-align:center">next[i]</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">0</td>
+<td style="text-align:center">1</td>
+<td style="text-align:center">2</td>
+<td style="text-align:center">3</td>
+<td style="text-align:center">4</td>
+<td style="text-align:center">5</td>
+<td style="text-align:center">0</td>
+</tr>
+</tbody>
+</table>
+<p>举个例子，i=8的时候，<strong>aab</strong>ab<strong>aab</strong>黑线标出的两段完全相等，用模式串比对到第九个如果失配可以直接跳回到3（即next[8]），这里用的是p作为已经比对过全部匹配的指向模式串的指针，而如果直接无法匹配，则直接跳回到原点（即0）。</p>
+<p>那么在AC自动机里，这个原点便是trie的根节点，用fail边起到和kmp中next数组一样的效果，从一棵枝条跳到另一棵枝条上，保证了从根节点到fail[p]这段路和刚刚走过来这段路是完全匹配的。这样就大大减少了时间。</p>
 <h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1000010</span></span><br><span class="line"><span class="keyword">int</span> trie[N][<span class="number">27</span>],tot;</span><br><span class="line"><span class="keyword">int</span> fail[N],end[N];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;Q;</span><br><span class="line"><span class="keyword">char</span> a[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,p,now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;a[i]!=<span class="string">'\0'</span>;i++)&#123;</span><br><span class="line">		p=a[i]-<span class="string">'a'</span>;</span><br><span class="line">		<span class="keyword">if</span>(!trie[now][p])trie[now][p]=++tot;</span><br><span class="line">		now=trie[now][p];</span><br><span class="line">	&#125;</span><br><span class="line">	end[now]++;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,v;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)<span class="keyword">if</span>(trie[<span class="number">0</span>][i])Q.push(trie[<span class="number">0</span>][i]);</span><br><span class="line">	<span class="keyword">while</span>(!Q.empty())&#123;</span><br><span class="line">		v=Q.front();Q.pop();</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(trie[v][i])fail[trie[v][i]]=trie[fail[v]][i],Q.push(trie[v][i]);</span><br><span class="line">			<span class="keyword">else</span> trie[v][i]=trie[fail[v]][i];</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,ans=<span class="number">0</span>,now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;a[i]!=<span class="string">'\0'</span>;i++)&#123;</span><br><span class="line">		now=trie[now][a[i]-<span class="string">'a'</span>];</span><br><span class="line">		<span class="keyword">for</span>(j=now;j&amp;&amp;~end[j];j=fail[j])&#123;</span><br><span class="line">			ans+=end[j];</span><br><span class="line">			end[j]=<span class="number">-1</span>;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="built_in">scanf</span>(<span class="string">"%s"</span>,a),push();</span><br><span class="line">	build();</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,query());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1000010</span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> trie[N][<span class="number">27</span>],tot;</span><br><span class="line"><span class="keyword">int</span> fail[N],end[N];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;Q;</span><br><span class="line"><span class="keyword">char</span> a[N];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">push</span><span class="params">()</span></span>&#123;<span class="comment">//把每个模式串加入字典树中</span></span><br><span class="line">	<span class="keyword">int</span> i,p,now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;a[i]!=<span class="string">'\0'</span>;i++)&#123;</span><br><span class="line">		p=a[i]-<span class="string">'a'</span>;</span><br><span class="line">		<span class="keyword">if</span>(!trie[now][p])trie[now][p]=++tot;</span><br><span class="line">		now=trie[now][p];</span><br><span class="line">	&#125;</span><br><span class="line">	end[now]++;<span class="comment">//以now为结尾的单词数</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">build</span><span class="params">()</span></span>&#123;<span class="comment">//建立fail边和辅助边</span></span><br><span class="line">	<span class="keyword">int</span> i,v;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)<span class="keyword">if</span>(trie[<span class="number">0</span>][i])Q.push(trie[<span class="number">0</span>][i]);</span><br><span class="line">	<span class="keyword">while</span>(!Q.empty())&#123;</span><br><span class="line">		v=Q.front();Q.pop();</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;<span class="number">26</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(trie[v][i])fail[trie[v][i]]=trie[fail[v]][i],Q.push(trie[v][i]);</span><br><span class="line">			<span class="comment">//这个节点的失配节点指向上个节点失配节点的对应trie节点</span></span><br><span class="line">			<span class="comment">//也就是在kmp算法中用的next[p]和p+1，把它看成一个链好理解一些</span></span><br><span class="line">			<span class="keyword">else</span> trie[v][i]=trie[fail[v]][i];</span><br><span class="line">			<span class="comment">//建立辅助边，防止遗漏（实质上建立了trie图）</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,ans=<span class="number">0</span>,now=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;a[i]!=<span class="string">'\0'</span>;i++)&#123;</span><br><span class="line">		now=trie[now][a[i]-<span class="string">'a'</span>];</span><br><span class="line">		<span class="keyword">for</span>(j=now;j&amp;&amp;~end[j];j=fail[j])&#123;</span><br><span class="line">			<span class="comment">//顺着fail边走，防止遗漏与当前匹配串后缀相同的模式串</span></span><br><span class="line">			ans+=end[j];</span><br><span class="line">			end[j]=<span class="number">-1</span>;<span class="comment">//标记走过了，香港新闻产业剪枝</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="built_in">scanf</span>(<span class="string">"%s"</span>,a),push();</span><br><span class="line">	build();</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%s"</span>,a);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,query());</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
-<h3 id="P3796-【模板】AC自动机（加强版）（完成时间：2018-12-06）"><a href="#P3796-【模板】AC自动机（加强版）（完成时间：2018-12-06）" class="headerlink" title="P3796 【模板】AC自动机（加强版）（完成时间：2018.12.06）"></a><a href="https://www.luogu.org/problemnew/show/P3796" target="_blank" rel="noopener">P3796 【模板】AC自动机（加强版）</a>（完成时间：2018.12.06）</h3><h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h4><hr>
+<h3 id="P3796-【模板】AC自动机（加强版）（完成时间：2018-12-06）"><a href="#P3796-【模板】AC自动机（加强版）（完成时间：2018-12-06）" class="headerlink" title="P3796 【模板】AC自动机（加强版）（完成时间：2018.12.06）"></a><a href="https://www.luogu.org/problemnew/show/P3796" target="_blank" rel="noopener">P3796 【模板】AC自动机（加强版）</a>（完成时间：2018.12.06）</h3><blockquote>
+<h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><p>有N个由小写字母组成的模式串以及一个文本串T。每个模式串可能会在文本串中出现多次。你需要找出哪些模式串在文本串T中出现的次数最多。</p>
+<h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
 <h3 id="P2444-POI2000-病毒（完成时间：2018-12-06）"><a href="#P2444-POI2000-病毒（完成时间：2018-12-06）" class="headerlink" title="P2444 [POI2000]病毒（完成时间：2018.12.06）"></a><a href="https://www.luogu.org/problemnew/show/P2444" target="_blank" rel="noopener">P2444 [POI2000]病毒</a>（完成时间：2018.12.06）</h3><h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-2"><a href="#AC代码-2" class="headerlink" title="AC代码"></a>AC代码</h4><hr>
 <h2 id="回文串"><a href="#回文串" class="headerlink" title="回文串"></a>回文串</h2><h3 id="P3805-【模板】manacher算法-（完成时间：2018-12-10）"><a href="#P3805-【模板】manacher算法-（完成时间：2018-12-10）" class="headerlink" title="P3805 【模板】manacher算法 （完成时间：2018.12.10）"></a><a href="https://www.luogu.org/problemnew/show/P3805" target="_blank" rel="noopener">P3805 【模板】manacher算法 </a>（完成时间：2018.12.10）</h3><h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-3"><a href="#AC代码-3" class="headerlink" title="AC代码"></a>AC代码</h4><hr>
 <h3 id="P1872-回文串计数（完成时间：2018-12-11）"><a href="#P1872-回文串计数（完成时间：2018-12-11）" class="headerlink" title="P1872 回文串计数（完成时间：2018.12.11）"></a><a href="https://www.luogu.org/problemnew/show/P1872" target="_blank" rel="noopener">P1872 回文串计数</a>（完成时间：2018.12.11）</h3><h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-4"><a href="#AC代码-4" class="headerlink" title="AC代码"></a>AC代码</h4><hr>
@@ -843,7 +902,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">11k</span>
+    <span title="站点总字数">12k</span>
   
 
   
