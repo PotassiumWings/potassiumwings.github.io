@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="因为这只Potassium太摸了，需要写一点题解，以防做了的题白做。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-16T08:25:50.868Z">
+<meta property="og:updated_time" content="2019-03-16T11:16:12.267Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018.12-2019.1 TO-DO LIST 题解集">
 <meta name="twitter:description" content="因为这只Potassium太摸了，需要写一点题解，以防做了的题白做。">
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-16 16:25:50" itemprop="dateModified" datetime="2019-03-16T16:25:50+08:00">2019-03-16</time>
+                <time title="修改时间：2019-03-16 19:16:12" itemprop="dateModified" datetime="2019-03-16T19:16:12+08:00">2019-03-16</time>
               
             
           </span>
@@ -427,7 +427,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">13k</span>
+                <span title="本文字数">16k</span>
               
 
               
@@ -441,7 +441,7 @@
                 
                   <span class="post-meta-item-text">阅读时长 &asymp;</span>
                 
-                <span title="阅读时长">12 分钟</span>
+                <span title="阅读时长">14 分钟</span>
               
             </div>
           
@@ -563,7 +563,7 @@
 <h3 id="P4555-国家集训队-最长双回文串-（完成时间：2018-12-10）"><a href="#P4555-国家集训队-最长双回文串-（完成时间：2018-12-10）" class="headerlink" title="P4555 [国家集训队]最长双回文串 （完成时间：2018.12.10）"></a><a href="https://www.luogu.org/problemnew/show/P4555" target="_blank" rel="noopener">P4555 [国家集训队]最长双回文串 </a>（完成时间：2018.12.10）</h3><blockquote>
 <h4 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h4><p>输入长度为$n$的串$S$，求$S$的最长双回文子串$T$即可将$T$分为两部分$X$，$Y$，（$|X|,| Y| \geq 1$）且$X$和$Y$都是回文串。</p>
 <h4 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h4><p>又是一道魔改$manacher$的水题。</p>
-<p>两个回文串之间必然是$’#’$，$l[i]$记录$i$左边最长回文串长度，$r[i]$记录右边最长回文串长度，再递推一下求和即可。注意最后枚举井号要从第二个到倒数第二个，因为每个回文串都不能是空串，否则比如$qwq$就过不了。</p>
+<p>两个回文串之间必然是马拉车算法中的特殊字符，可以用$l[i]$记录$i$左边最长回文串长度，$r[i]$记录右边最长回文串长度，再递推一下求和即可。注意最后枚举井号要从第二个到倒数第二个，因为每个回文串都不能是空串，否则比如$qwq$就过不了。</p>
 <h4 id="AC代码-5"><a href="#AC代码-5" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 200010</span></span><br><span class="line"><span class="keyword">int</span> len[N],mr,mid,cnt=<span class="number">1</span>,l[N],r[N],ans;</span><br><span class="line"><span class="keyword">char</span> a[N]=&#123;<span class="string">'#'</span>&#125;,c;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> a&gt;b?a:b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">min</span><span class="params">(<span class="keyword">int</span> a,<span class="keyword">int</span> b)</span></span>&#123;<span class="keyword">return</span> a&lt;b?a:b;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i;</span><br><span class="line">	<span class="keyword">while</span>((c=getchar())&gt;=<span class="string">'a'</span>&amp;&amp;c&lt;=<span class="string">'z'</span>)</span><br><span class="line">		a[cnt++]=c,a[cnt++]=<span class="string">'#'</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;cnt;i++)&#123;</span><br><span class="line">		<span class="keyword">if</span>(mr&gt;i)len[i]=min(len[<span class="number">2</span>*mid-i],mr-i);</span><br><span class="line">		<span class="keyword">else</span> len[i]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">while</span>(a[i+len[i]]&amp;&amp;a[i+len[i]]==a[i-len[i]])len[i]++;</span><br><span class="line">		<span class="keyword">if</span>(i+len[i]&gt;mr)mr=i+len[i],mid=i;</span><br><span class="line">		r[i-len[i]+<span class="number">1</span>]=max(r[i-len[i]+<span class="number">1</span>],len[i]<span class="number">-1</span>);</span><br><span class="line">		l[i+len[i]<span class="number">-1</span>]=max(l[i+len[i]<span class="number">-1</span>],len[i]<span class="number">-1</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">for</span>(i--;i;i--)l[i]=max(l[i],l[i+<span class="number">2</span>]<span class="number">-2</span>);</span><br><span class="line">	<span class="keyword">for</span>(i++;i&lt;cnt;i++)r[i]=max(r[i],r[i<span class="number">-2</span>]<span class="number">-2</span>);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;cnt<span class="number">-2</span>;i+=<span class="number">2</span>)ans=max(ans,l[i]+r[i]);</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -579,85 +579,112 @@
 </div></div>
 </blockquote>
 <h2 id="博弈论"><a href="#博弈论" class="headerlink" title="博弈论"></a>博弈论</h2><h3 id="P2197-【模板】nim游戏（完成时间：2018-12-07）"><a href="#P2197-【模板】nim游戏（完成时间：2018-12-07）" class="headerlink" title="P2197 【模板】nim游戏（完成时间：2018.12.07）"></a><a href="https://www.luogu.org/problemnew/show/P2197" target="_blank" rel="noopener">P2197 【模板】nim游戏</a>（完成时间：2018.12.07）</h3><blockquote>
-<h4 id="题目描述-7"><a href="#题目描述-7" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-7"><a href="#AC代码-7" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="题目描述-7"><a href="#题目描述-7" class="headerlink" title="题目描述"></a>题目描述</h4><p>地上有$n$堆石子（每堆石子数量小于$10000$），每人每次可从任意一堆石子里取出任意多枚石子扔掉，可以取完，不能不取。每次只能从一堆里取。最后没石子可取的人就输了。假如甲是先手，且告诉你这n堆石子的数量，他想知道是否存在先手必胜的策略。</p>
+<h4 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h4><p>呃，这…</p>
+<p>设$a=\prod {i=1}^{n}x_i$（$x_i$为第$i$堆石子的个数），由于异或的特殊性，一个正数异或$0$不可能为$0$，而在石堆里总能找到一个堆，让这个堆减小一定数量，使得新形成的$a=0$。（通过二进制易证）（求解方法见下题）</p>
+<p>所以这就转换成了一个$a=0$为$N$局面，$a\neq 0$为$P$局面的问题。</p>
+<h4 id="AC代码-7"><a href="#AC代码-7" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> t,a,n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);m=<span class="number">0</span>;</span><br><span class="line">		<span class="keyword">while</span>(n--)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a),m^=a;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%s\n"</span>,m?<span class="string">"Yes"</span>:<span class="string">"No"</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P1247-取火柴游戏（完成时间：2018-12-11）"><a href="#P1247-取火柴游戏（完成时间：2018-12-11）" class="headerlink" title="P1247 取火柴游戏（完成时间：2018.12.11）"></a><a href="https://www.luogu.org/problemnew/show/P1247" target="_blank" rel="noopener">P1247 取火柴游戏</a>（完成时间：2018.12.11）</h3><blockquote>
-<h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-8"><a href="#AC代码-8" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><p>输入$k$及$k$个整数$n_1$，$n_2$，…，$n_k$，表示有$k$堆火柴棒，第i堆火柴棒的根数为$n_i$；接着便是你和计算机取火柴棒的对弈游戏。取的规则如下：每次可以从一堆中取走若干根火柴，也可以一堆全部取走，但不允许跨堆取，也不允许不取。谁取走最后一根火柴为胜利者。</p>
+<p>编一个程序，在给出初始状态之后，判断是先取必胜还是先取必败，如果是先取必胜，请输出第一次该如何取。如果是先取必败，则输出$“lose”$。</p>
+<h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><p>找到减少某一堆数量后异或值到零的并输出即可。</p>
+<h4 id="AC代码-8"><a href="#AC代码-8" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> a[<span class="number">500010</span>],i,n,m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;a[i]),m^=a[i];</span><br><span class="line">	<span class="keyword">if</span>(!m)<span class="built_in">printf</span>(<span class="string">"lose"</span>);</span><br><span class="line">	<span class="keyword">else</span>&#123;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(a[i]&gt;=(m^a[i]))&#123;</span><br><span class="line">			<span class="built_in">printf</span>(<span class="string">"%d %d\n"</span>,a[i]-(m^a[i]),i+<span class="number">1</span>);</span><br><span class="line">			a[i]^=m;</span><br><span class="line">			<span class="keyword">break</span>;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="built_in">printf</span>(<span class="string">"%d "</span>,a[i]);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P4018-Roy-amp-October之取石子-（完成时间：2018-12-11）"><a href="#P4018-Roy-amp-October之取石子-（完成时间：2018-12-11）" class="headerlink" title="P4018 Roy&amp;October之取石子 （完成时间：2018.12.11）"></a><a href="https://www.luogu.org/problemnew/show/P4018" target="_blank" rel="noopener">P4018 Roy&amp;October之取石子 </a>（完成时间：2018.12.11）</h3><blockquote>
-<h4 id="题目描述-9"><a href="#题目描述-9" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-9"><a href="#AC代码-9" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-9"><a href="#题目描述-9" class="headerlink" title="题目描述"></a>题目描述</h4><p>共有$n$个石子，两人每次都只能取$p^k$个（$p$为质数，$k$为自然数，且$p^k$小于等于当前剩余石子数），谁取走最后一个石子，谁就赢了。 </p>
+<p>现在October先取，问她有没有必胜策略。</p>
+<h4 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-9"><a href="#AC代码-9" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P4279-SHOI2008-小约翰的游戏（完成时间：2018-12-11）"><a href="#P4279-SHOI2008-小约翰的游戏（完成时间：2018-12-11）" class="headerlink" title="P4279 [SHOI2008]小约翰的游戏（完成时间：2018.12.11）"></a><a href="https://www.luogu.org/problemnew/show/P4279" target="_blank" rel="noopener">P4279 [SHOI2008]小约翰的游戏</a>（完成时间：2018.12.11）</h3><blockquote>
-<h4 id="题目描述-10"><a href="#题目描述-10" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-10"><a href="#解题思路-10" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-10"><a href="#AC代码-10" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-10"><a href="#题目描述-10" class="headerlink" title="题目描述"></a>题目描述</h4><p>小约翰经常和他的哥哥玩一个非常有趣的游戏：桌子上有$n$堆石子，小约翰和他的哥哥轮流取石子，每个人取的时候，可以随意选择一堆石子，在这堆石子中取走任意多的石子，但不能一粒石子也不取，我们规定取到最后一粒石子的人算输。</p>
+<p>小约翰相当固执，他坚持认为先取的人有很大的优势，所以他总是先取石子，而他的哥哥就聪明多了，他从来没有在游戏中犯过错误。小约翰一怒之前请你来做他的参谋。自然，你应该先写一个程序，预测一下谁将获得游戏的胜利。</p>
+<h4 id="解题思路-10"><a href="#解题思路-10" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-10"><a href="#AC代码-10" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P2599-ZJOI2009-取石子游戏（完成时间：2018-12-12）"><a href="#P2599-ZJOI2009-取石子游戏（完成时间：2018-12-12）" class="headerlink" title="P2599 [ZJOI2009]取石子游戏（完成时间：2018.12.12）"></a><a href="https://www.luogu.org/problemnew/show/P2599" target="_blank" rel="noopener">P2599 [ZJOI2009]取石子游戏</a>（完成时间：2018.12.12）</h3><blockquote>
-<h4 id="题目描述-11"><a href="#题目描述-11" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-11"><a href="#解题思路-11" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-11"><a href="#AC代码-11" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-11"><a href="#题目描述-11" class="headerlink" title="题目描述"></a>题目描述</h4><p>在研究过$Nim$游戏及各种变种之后，$Orez$又发现了一种全新的取石子游戏，这个游戏是这样的： 有$n$堆石子，将这$n$堆石子摆成一排。游戏由两个人进行，两人轮流操作，每次操作者都可以从最左或最右的一堆中取出若干颗石子，可以将那一堆全部取掉，但不能不取，不能操作的人就输了。 $Orez$问：对于任意给出一个初始一个局面，是否存在先手必胜策略。</p>
+<h4 id="解题思路-11"><a href="#解题思路-11" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-11"><a href="#AC代码-11" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P2575-高手过招（完成时间：2018-12-12）"><a href="#P2575-高手过招（完成时间：2018-12-12）" class="headerlink" title="P2575 高手过招（完成时间：2018.12.12）"></a><a href="https://www.luogu.org/problemnew/show/P2575" target="_blank" rel="noopener">P2575 高手过招</a>（完成时间：2018.12.12）</h3><blockquote>
-<h4 id="题目描述-12"><a href="#题目描述-12" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-12"><a href="#解题思路-12" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-12"><a href="#AC代码-12" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-12"><a href="#题目描述-12" class="headerlink" title="题目描述"></a>题目描述</h4><p>$AKN$玩游戏玩累了，于是他开始和同伴下棋了，玩的是跳棋！对手是$wwx$！这两位上古神遇在一起下棋，使得棋局变得玄幻莫测，高手过招，必有一赢，他们都将用最佳策略下棋，现在给你一个$n*20$的棋盘，以及棋盘上有若干个棋子，问谁赢？$akn$先手！</p>
+<p>游戏规则是这样的：对于一个棋子，能将它向右移动一格，如果右边有棋子，则向右跳到第一个空格，如果右边没有空格，则不能移动这个棋子，如果所有棋子都不能移动，那么将输掉这场比赛。</p>
+<h4 id="解题思路-12"><a href="#解题思路-12" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-12"><a href="#AC代码-12" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h2 id="FFT"><a href="#FFT" class="headerlink" title="FFT"></a>FFT</h2><h3 id="P1919-【模板】A-B-Problem升级版（FFT快速傅里叶）（完成时间：2018-12-13）"><a href="#P1919-【模板】A-B-Problem升级版（FFT快速傅里叶）（完成时间：2018-12-13）" class="headerlink" title="P1919 【模板】A*B Problem升级版（FFT快速傅里叶）（完成时间：2018.12.13）"></a><a href="https://www.luogu.org/problemnew/show/P1919" target="_blank" rel="noopener">P1919 【模板】A*B Problem升级版（FFT快速傅里叶）</a>（完成时间：2018.12.13）</h3><blockquote>
-<h4 id="题目描述-13"><a href="#题目描述-13" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-13"><a href="#解题思路-13" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-13"><a href="#AC代码-13" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-13"><a href="#题目描述-13" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出两个$n$位$10$进制整数$x$和$y$，你需要计算$x*y$。</p>
+<h4 id="解题思路-13"><a href="#解题思路-13" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-13"><a href="#AC代码-13" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P3803-【模板】多项式乘法（FFT）（完成时间：2018-12-13）"><a href="#P3803-【模板】多项式乘法（FFT）（完成时间：2018-12-13）" class="headerlink" title="P3803 【模板】多项式乘法（FFT）（完成时间：2018.12.13）"></a><a href="https://www.luogu.org/problemnew/show/P3803" target="_blank" rel="noopener">P3803 【模板】多项式乘法（FFT）</a>（完成时间：2018.12.13）</h3><blockquote>
-<h4 id="题目描述-14"><a href="#题目描述-14" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-14"><a href="#解题思路-14" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-14"><a href="#AC代码-14" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-14"><a href="#题目描述-14" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定一个$n$次多项式$F(x)$，和一个$m$次多项式$G(x)$。请求出$F(x)$和$G(x)$的卷积。</p>
+<h4 id="解题思路-14"><a href="#解题思路-14" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-14"><a href="#AC代码-14" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P3338-ZJOI2014-力-（完成时间：2018-12-14）"><a href="#P3338-ZJOI2014-力-（完成时间：2018-12-14）" class="headerlink" title="P3338 [ZJOI2014]力 （完成时间：2018.12.14）"></a><a href="https://www.luogu.org/problemnew/show/P3338" target="_blank" rel="noopener">P3338 [ZJOI2014]力 </a>（完成时间：2018.12.14）</h3><blockquote>
-<h4 id="题目描述-15"><a href="#题目描述-15" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-15"><a href="#解题思路-15" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-15"><a href="#AC代码-15" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-15"><a href="#题目描述-15" class="headerlink" title="题目描述"></a>题目描述</h4><p>给出n个数qi，给出Fj的定义如下：</p>
+<p> $F_j = \sum_{i&lt;j}\frac{q_i q_j}{(i-j)^2 }-\sum_{i&gt;j}\frac{q_i q_j}{(i-j)^2 }$</p>
+<p>令$E_i=F_i/q_i$，求$E_i$。</p>
+<h4 id="解题思路-15"><a href="#解题思路-15" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-15"><a href="#AC代码-15" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h2 id="扫描线"><a href="#扫描线" class="headerlink" title="扫描线"></a>扫描线</h2><h3 id="P1169-ZJOI2007-棋盘制作-（完成时间：2018-12-14）"><a href="#P1169-ZJOI2007-棋盘制作-（完成时间：2018-12-14）" class="headerlink" title="P1169 [ZJOI2007]棋盘制作 （完成时间：2018.12.14）"></a><a href="https://www.luogu.org/problemnew/show/P1169" target="_blank" rel="noopener">P1169 [ZJOI2007]棋盘制作 </a>（完成时间：2018.12.14）</h3><blockquote>
-<h4 id="题目描述-16"><a href="#题目描述-16" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-16"><a href="#解题思路-16" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-16"><a href="#AC代码-16" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-16"><a href="#题目描述-16" class="headerlink" title="题目描述"></a>题目描述</h4><p>小$Q$找到了一张由$N×M$个正方形的格子组成的矩形纸片，每个格子被涂有黑白两种颜色之一。小$Q$想在这种纸中裁减一部分作为新棋盘，当然，他希望这个棋盘尽可能的大。</p>
+<p>不过小$Q$还没有决定是找一个正方形的棋盘还是一个矩形的棋盘（当然，不管哪种，棋盘必须都黑白相间，即相邻的格子不同色），所以他希望可以找到最大的正方形棋盘面积和最大的矩形棋盘面积。</p>
+<h4 id="解题思路-16"><a href="#解题思路-16" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-16"><a href="#AC代码-16" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P2701-USACO5-3-巨大的牛棚Big-Barn-（完成时间：2018-12-14）"><a href="#P2701-USACO5-3-巨大的牛棚Big-Barn-（完成时间：2018-12-14）" class="headerlink" title="P2701 [USACO5.3]巨大的牛棚Big Barn （完成时间：2018.12.14）"></a><a href="https://www.luogu.org/problemnew/show/P2701" target="_blank" rel="noopener">P2701 [USACO5.3]巨大的牛棚Big Barn </a>（完成时间：2018.12.14）</h3><blockquote>
-<h4 id="题目描述-17"><a href="#题目描述-17" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-17"><a href="#解题思路-17" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-17"><a href="#AC代码-17" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-17"><a href="#题目描述-17" class="headerlink" title="题目描述"></a>题目描述</h4><p>农夫约翰想要在他的正方形农场上建造一座正方形大牛棚。他讨厌在他的农场中砍树，想找一个能够让他在空旷无树的地方修建牛棚的地方。我们假定，他的农场划分成 $N x N$ 的方格。输入数据中包括有树的方格的列表。你的任务是计算并输出，在他的农场中，不需要砍树却能够修建的最大正方形牛棚。牛棚的边必须和水平轴或者垂直轴平行。</p>
+<h4 id="解题思路-17"><a href="#解题思路-17" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-17"><a href="#AC代码-17" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P4147-玉蟾宫-（完成时间：2018-12-14）"><a href="#P4147-玉蟾宫-（完成时间：2018-12-14）" class="headerlink" title="P4147 玉蟾宫 （完成时间：2018.12.14）"></a><a href="https://www.luogu.org/problemnew/show/P4147" target="_blank" rel="noopener">P4147 玉蟾宫 </a>（完成时间：2018.12.14）</h3><blockquote>
-<h4 id="题目描述-18"><a href="#题目描述-18" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-18"><a href="#解题思路-18" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-18"><a href="#AC代码-18" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-18"><a href="#题目描述-18" class="headerlink" title="题目描述"></a>题目描述</h4><p>这片土地被分成$N*M$个格子，每个格子里写着$R$或者$F$，$R$代表这块土地被赐予了$rainbow$，$F$代表这块土地被赐予了$freda$。现在$freda$要找一块矩形土地，要求这片土地都标着$F$并且面积最大。</p>
+<h4 id="解题思路-18"><a href="#解题思路-18" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-18"><a href="#AC代码-18" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h2 id="汉诺塔相关"><a href="#汉诺塔相关" class="headerlink" title="汉诺塔相关"></a>汉诺塔相关</h2><h3 id="P1242-新汉诺塔-（完成时间：2018-12-14）"><a href="#P1242-新汉诺塔-（完成时间：2018-12-14）" class="headerlink" title="P1242 新汉诺塔 （完成时间：2018.12.14）"></a><a href="https://www.luogu.org/problemnew/show/P1242" target="_blank" rel="noopener">P1242 新汉诺塔 </a>（完成时间：2018.12.14）</h3><blockquote>
-<h4 id="题目描述-19"><a href="#题目描述-19" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-19"><a href="#解题思路-19" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-19"><a href="#AC代码-19" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-19"><a href="#题目描述-19" class="headerlink" title="题目描述"></a>题目描述</h4><p>设有$n$个大小不等的中空圆盘，按从小到大的顺序从$1$到$n$编号。将这$n$个圆盘任意的迭套在三根立柱上，立柱的编号分别为$A$、$B$、$C$，这个状态称为初始状态。</p>
+<p> 现在要求找到一种步数最少的移动方案，使得从初始状态转变为目标状态。 </p>
+<p>移动时有如下要求：一次只能移一个盘；不允许把大盘移到小盘上面。</p>
+<h4 id="解题思路-19"><a href="#解题思路-19" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-19"><a href="#AC代码-19" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
 <h3 id="P4285-SHOI2008-汉诺塔（完成时间：2018-12-15）"><a href="#P4285-SHOI2008-汉诺塔（完成时间：2018-12-15）" class="headerlink" title="P4285 [SHOI2008]汉诺塔（完成时间：2018.12.15）"></a><a href="https://www.luogu.org/problemnew/show/P4285" target="_blank" rel="noopener">P4285 [SHOI2008]汉诺塔</a>（完成时间：2018.12.15）</h3><blockquote>
-<h4 id="题目描述-20"><a href="#题目描述-20" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-20"><a href="#解题思路-20" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-20"><a href="#AC代码-20" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<h4 id="题目描述-20"><a href="#题目描述-20" class="headerlink" title="题目描述"></a>题目描述</h4><p>假设给定了每种操作的优先级，计算按照上述策略操作汉诺塔移动所需要的步骤数。</p>
+<h4 id="解题思路-20"><a href="#解题思路-20" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-20"><a href="#AC代码-20" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
 </div></div>
@@ -1220,7 +1247,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">20k</span>
+    <span title="站点总字数">22k</span>
   
 
   
@@ -1229,7 +1256,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">18 分钟</span>
+    <span title="站点阅读时长">20 分钟</span>
   
 </div>
 
