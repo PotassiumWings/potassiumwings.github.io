@@ -99,14 +99,14 @@
   <meta name="description" content="链接 整整花费了一个周的时间来做，不是依托自身实力而是依托大佬的帮助才完成了这次比赛。题目都很有意思，可惜能想出来的并不多。那集训队的事情就等明年了。">
 <meta name="keywords" content="Contests">
 <meta property="og:type" content="article">
-<meta property="og:title" content="第十四届北航程序设计竞赛预赛">
+<meta property="og:title" content="第十四届北航程序设计竞赛预赛题解">
 <meta property="og:url" content="http://yoursite.com/2019/03/21/14thbcpc/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="链接 整整花费了一个周的时间来做，不是依托自身实力而是依托大佬的帮助才完成了这次比赛。题目都很有意思，可惜能想出来的并不多。那集训队的事情就等明年了。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-22T04:06:26.569Z">
+<meta property="og:updated_time" content="2019-03-23T17:40:52.240Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="第十四届北航程序设计竞赛预赛">
+<meta name="twitter:title" content="第十四届北航程序设计竞赛预赛题解">
 <meta name="twitter:description" content="链接 整整花费了一个周的时间来做，不是依托自身实力而是依托大佬的帮助才完成了这次比赛。题目都很有意思，可惜能想出来的并不多。那集训队的事情就等明年了。">
 
 
@@ -124,7 +124,7 @@
   };
 </script>
 
-  <title>第十四届北航程序设计竞赛预赛 | Potassium's blog</title>
+  <title>第十四届北航程序设计竞赛预赛题解 | Potassium's blog</title>
   
 
 
@@ -340,7 +340,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">第十四届北航程序设计竞赛预赛
+          <h1 class="post-title" itemprop="name headline">第十四届北航程序设计竞赛预赛题解
 
               
             
@@ -383,7 +383,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-22 12:06:26" itemprop="dateModified" datetime="2019-03-22T12:06:26+08:00">2019-03-22</time>
+                <time title="修改时间：2019-03-24 01:40:52" itemprop="dateModified" datetime="2019-03-24T01:40:52+08:00">2019-03-24</time>
               
             
           </span>
@@ -469,7 +469,7 @@
 <p>$1≤T≤50$，$1≤n≤50$，$0≤a,b≤10^9$，$0≤b−a≤50$</p>
 <h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>根据$a$的个数和$b-a$的总和进行$DP$，滚动数组优化。</p>
 <h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> ans,x[<span class="number">55</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">2</span>][<span class="number">110</span>][<span class="number">5015</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> q)</span></span>&#123;<span class="keyword">return</span> p&gt;q?p:q;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,k,t,n,a,b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">		f[<span class="number">0</span>][<span class="number">50</span>][<span class="number">2500</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;a,&amp;b);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x[i]),x[i]-=a;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">			p^=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(j=<span class="number">50</span>-i;j&lt;=<span class="number">50</span>+i;j++)&#123;<span class="comment">//50+ a的个数 </span></span><br><span class="line">				<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;=<span class="number">5000</span>;k++)&#123;<span class="comment">//2500+ b-a累加 </span></span><br><span class="line">					f[p][j][k]=f[p^<span class="number">1</span>][j][k];</span><br><span class="line">					<span class="keyword">if</span>(k-x[i]&gt;=<span class="number">0</span>&amp;&amp;j<span class="number">-1</span>&gt;=<span class="number">0</span>&amp;&amp;f[p^<span class="number">1</span>][j<span class="number">-1</span>][k-x[i]])f[p][j][k]=max(f[p][j][k],f[p^<span class="number">1</span>][j<span class="number">-1</span>][k-x[i]]+<span class="number">1</span>);</span><br><span class="line">					<span class="keyword">if</span>(k+x[i]&lt;=<span class="number">5000</span>&amp;&amp;j<span class="number">-1</span>&gt;=<span class="number">0</span>&amp;&amp;f[p^<span class="number">1</span>][j+<span class="number">1</span>][k+x[i]])f[p][j][k]=max(f[p][j][k],f[p^<span class="number">1</span>][j+<span class="number">1</span>][k+x[i]]+<span class="number">1</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ans=f[p][<span class="number">50</span>][<span class="number">2500</span>];</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="number">100</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a*(i<span class="number">-50</span>)+<span class="number">2500</span>&lt;<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span>(a*(i<span class="number">-50</span>)+<span class="number">2500</span>&gt;<span class="number">5000</span>)<span class="keyword">break</span>;</span><br><span class="line">			ans=max(ans,f[p][i][a*(i<span class="number">-50</span>)+<span class="number">2500</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-(ans<span class="number">-1</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="keyword">int</span> ans,x[<span class="number">55</span>];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">2</span>][<span class="number">110</span>][<span class="number">5015</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">max</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> q)</span></span>&#123;<span class="keyword">return</span> p&gt;q?p:q;&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,k,t,n,a,b;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">memset</span>(f,<span class="number">0</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">		f[<span class="number">0</span>][<span class="number">50</span>][<span class="number">2500</span>]=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;n,&amp;a,&amp;b);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;x[i]),x[i]-=a;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">			p^=<span class="number">1</span>;</span><br><span class="line">			<span class="keyword">for</span>(j=<span class="number">50</span>-i;j&lt;=<span class="number">50</span>+i;j++)&#123;<span class="comment">//50+ a的个数 </span></span><br><span class="line">				<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;=<span class="number">5000</span>;k++)&#123;<span class="comment">//2500+ b-a累加 </span></span><br><span class="line">					f[p][j][k]=f[p^<span class="number">1</span>][j][k];</span><br><span class="line">					<span class="keyword">if</span>(k-x[i]&gt;=<span class="number">0</span>&amp;&amp;j<span class="number">-1</span>&gt;=<span class="number">0</span>&amp;&amp;f[p^<span class="number">1</span>][j<span class="number">-1</span>][k-x[i]])f[p][j][k]=max(f[p][j][k],f[p^<span class="number">1</span>][j<span class="number">-1</span>][k-x[i]]+<span class="number">1</span>);</span><br><span class="line">					<span class="keyword">if</span>(k+x[i]&lt;=<span class="number">5000</span>&amp;&amp;j<span class="number">-1</span>&gt;=<span class="number">0</span>&amp;&amp;f[p^<span class="number">1</span>][j+<span class="number">1</span>][k+x[i]])f[p][j][k]=max(f[p][j][k],f[p^<span class="number">1</span>][j+<span class="number">1</span>][k+x[i]]+<span class="number">1</span>);</span><br><span class="line">				&#125;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">int</span> ans=f[p][<span class="number">50</span>][<span class="number">2500</span>];</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=<span class="number">100</span>;i++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(a*(i<span class="number">-50</span>)+<span class="number">2500</span>&lt;<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">			<span class="keyword">if</span>(a*(i<span class="number">-50</span>)+<span class="number">2500</span>&gt;<span class="number">5000</span>)<span class="keyword">break</span>;</span><br><span class="line">			ans=max(ans,f[p][i][-a*(i<span class="number">-50</span>)+<span class="number">2500</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-(ans<span class="number">-1</span>));</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
@@ -616,8 +616,8 @@
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2019/03/30/2019.4-2019.5 to-do list/" rel="prev" title="2019.4-2019.5 TO-DO LIST">
-                2019.4-2019.5 TO-DO LIST <i class="fa fa-chevron-right"></i>
+              <a href="/2019/03/25/pause/" rel="prev" title="杂思">
+                杂思 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -901,7 +901,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">40k</span>
+    <span title="站点总字数">39k</span>
   
 
   
@@ -910,7 +910,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">36 分钟</span>
+    <span title="站点阅读时长">35 分钟</span>
   
 </div>
 
