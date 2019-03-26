@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="链接 持续更（gu）新（gu）中">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-26T04:45:06.982Z">
+<meta property="og:updated_time" content="2019-03-26T06:52:19.387Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="第十三届北航程序设计竞赛预赛题解">
 <meta name="twitter:description" content="链接 持续更（gu）新（gu）中">
@@ -366,7 +366,7 @@
                 
               
 
-              <time title="创建时间：2019-03-26 11:00:00 / 修改时间：12:45:06" itemprop="dateCreated datePublished" datetime="2019-03-26T11:00:00+08:00">2019-03-26</time>
+              <time title="创建时间：2019-03-26 11:00:00 / 修改时间：14:52:19" itemprop="dateCreated datePublished" datetime="2019-03-26T11:00:00+08:00">2019-03-26</time>
             
 
             
@@ -415,7 +415,7 @@
                 
                   <span class="post-meta-item-text">本文字数：</span>
                 
-                <span title="本文字数">3.9k</span>
+                <span title="本文字数">4.9k</span>
               
 
               
@@ -508,8 +508,12 @@
 </div></div>
 </blockquote>
 <h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><blockquote>
-<h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-3"><a href="#AC代码-3" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"> </span><br></pre></td></tr></table></figure>
+<h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><p>从几堆牌中随机等概率取牌，一堆中取一张牌则所有的牌被取走。除了第一堆，每一堆牌的个数都是从一个闭区间中等概率选取的。当第一堆被取走时，游戏结束。问游戏结束时，取走的牌数期望值。</p>
+<h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><p>设$P(i,j)$表示第$i$堆牌有$j$个，这堆牌其中某一张牌在第一堆牌某一张牌之前被取走的概率。于是有$P(i,j)=\frac{j}{a_1+j}$。</p>
+<p>$ans=\sum_{i=2}^{n}\frac1{up[i]-low[i]+1}\sum_{j=low[i]}^{up[i]}\frac{j^2}{a_1+j}$。</p>
+<p>每组数据预处理出后一个求和号里的东西，逆元记忆化搜索即可。</p>
+<h4 id="AC代码-3"><a href="#AC代码-3" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"> <span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 100010</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> u[N],l[N],w=<span class="number">998244353</span>;</span><br><span class="line">ll a[N*<span class="number">10</span>];</span><br><span class="line"><span class="function">ll <span class="title">pw</span><span class="params">(ll a,ll p)</span></span>&#123;</span><br><span class="line">	ll x=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(;p;p&gt;&gt;=<span class="number">1</span>,a=a*a%w)<span class="keyword">if</span>(p&amp;<span class="number">1</span>)x=x*a%w;</span><br><span class="line">	<span class="keyword">return</span> x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> inv[N*<span class="number">20</span>];</span><br><span class="line"><span class="function">ll <span class="title">invf</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">	<span class="keyword">if</span>(inv[x])<span class="keyword">return</span> inv[x];</span><br><span class="line">	<span class="keyword">return</span> inv[x]=pw(x,w<span class="number">-2</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,t,n,a1;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;a1);</span><br><span class="line">		<span class="keyword">int</span> max=<span class="number">0</span>;</span><br><span class="line">		ll ans=a1;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)&#123;</span><br><span class="line">			<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;l[i],&amp;u[i]);</span><br><span class="line">			<span class="keyword">if</span>(u[i]&gt;max)max=u[i];</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=max;i++)a[i]=<span class="number">1L</span>L*i*i%w*invf(a1+i)%w;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=max;i++)a[i]=(a[i]+a[i<span class="number">-1</span>])%w;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)ans=(ans+(invf(u[i]-l[i]+<span class="number">1</span>)*(a[u[i]]-a[l[i]<span class="number">-1</span>]+w)%w)%w)%w;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,(ans+w)%w);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
@@ -894,7 +898,7 @@
       <i class="fa fa-area-chart"></i>
     </span>
     
-    <span title="站点总字数">43k</span>
+    <span title="站点总字数">44k</span>
   
 
   
@@ -903,7 +907,7 @@
       <i class="fa fa-coffee"></i>
     </span>
     
-    <span title="站点阅读时长">39 分钟</span>
+    <span title="站点阅读时长">40 分钟</span>
   
 </div>
 
