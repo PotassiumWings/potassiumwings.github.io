@@ -107,25 +107,25 @@
     })();
   </script>
 
-  <meta name="description" content="算法模板复习  P3384 【模板】树链剖分  P3379 【模板】最近公共祖先（LCA）  P3375 【模板】KMP字符串匹配  P3366 【模板】最小生成树  P5091 【模板】欧拉定理  P3835 【模板】可持久化平衡树  P3865 【模板】ST表  P3805 【模板】manacher算法  P3808 【模板】AC自动机（简单版）  P2742 【模板】二维凸包 / [USA">
-<meta name="keywords" content="Recorder">
+  <meta name="description" content="题目链接Garbage Heap">
+<meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
-<meta property="og:title" content="2019.2-2019.3 TO-DO LIST">
-<meta property="og:url" content="http://yoursite.com/2019/03/10/2019.2-2019.3 to-do list/index.html">
+<meta property="og:title" content="UVA-10755 Garbage Heap（三维前缀和）">
+<meta property="og:url" content="http://yoursite.com/2019/03/28/uva10755/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="算法模板复习  P3384 【模板】树链剖分  P3379 【模板】最近公共祖先（LCA）  P3375 【模板】KMP字符串匹配  P3366 【模板】最小生成树  P5091 【模板】欧拉定理  P3835 【模板】可持久化平衡树  P3865 【模板】ST表  P3805 【模板】manacher算法  P3808 【模板】AC自动机（简单版）  P2742 【模板】二维凸包 / [USA">
+<meta property="og:description" content="题目链接Garbage Heap">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-27T06:21:48.115Z">
+<meta property="og:updated_time" content="2019-03-28T16:01:00.880Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="2019.2-2019.3 TO-DO LIST">
-<meta name="twitter:description" content="算法模板复习  P3384 【模板】树链剖分  P3379 【模板】最近公共祖先（LCA）  P3375 【模板】KMP字符串匹配  P3366 【模板】最小生成树  P5091 【模板】欧拉定理  P3835 【模板】可持久化平衡树  P3865 【模板】ST表  P3805 【模板】manacher算法  P3808 【模板】AC自动机（简单版）  P2742 【模板】二维凸包 / [USA">
+<meta name="twitter:title" content="UVA-10755 Garbage Heap（三维前缀和）">
+<meta name="twitter:description" content="题目链接Garbage Heap">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/03/10/2019.2-2019.3 to-do list/">
+  <link rel="canonical" href="http://yoursite.com/2019/03/28/uva10755/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>2019.2-2019.3 TO-DO LIST | Potassium's blog</title>
+  <title>UVA-10755 Garbage Heap（三维前缀和） | Potassium's blog</title>
   
 
 
@@ -377,7 +377,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/10/2019.2-2019.3 to-do list/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/03/28/uva10755/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Potassium">
@@ -394,7 +394,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">2019.2-2019.3 TO-DO LIST
+          <h1 class="post-title" itemprop="name headline">UVA-10755 Garbage Heap（三维前缀和）
 
               
             
@@ -420,7 +420,7 @@
                 
               
 
-              <time title="创建时间：2019-03-10 12:18:48" itemprop="dateCreated datePublished" datetime="2019-03-10T12:18:48+08:00">2019-03-10</time>
+              <time title="创建时间：2019-03-28 23:57:35" itemprop="dateCreated datePublished" datetime="2019-03-28T23:57:35+08:00">2019-03-28</time>
             
 
             
@@ -437,7 +437,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-03-27 14:21:48" itemprop="dateModified" datetime="2019-03-27T14:21:48+08:00">2019-03-27</time>
+                <time title="修改时间：2019-03-29 00:01:00" itemprop="dateModified" datetime="2019-03-29T00:01:00+08:00">2019-03-29</time>
               
             
           </span>
@@ -451,8 +451,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/03/10/2019.2-2019.3 to-do list/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/10/2019.2-2019.3 to-do list/" itemprop="commentCount"></span>
+                <a href="/2019/03/28/uva10755/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/03/28/uva10755/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -487,35 +487,11 @@
       
 
       
-        <a id="more"></a>
-<h2 id="算法模板复习"><a href="#算法模板复习" class="headerlink" title="算法模板复习"></a>算法模板复习</h2><ul>
-<li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P3384" target="_blank" rel="noopener">P3384 【模板】树链剖分</a></li>
-<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P3379" target="_blank" rel="noopener">P3379 【模板】最近公共祖先（LCA）</a></li>
-<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P3375" target="_blank" rel="noopener">P3375 【模板】KMP字符串匹配</a></li>
-<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P3366" target="_blank" rel="noopener">P3366 【模板】最小生成树</a></li>
-<li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P5091" target="_blank" rel="noopener">P5091 【模板】欧拉定理</a></li>
-<li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P3835" target="_blank" rel="noopener">P3835 【模板】可持久化平衡树</a></li>
-<li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P3865" target="_blank" rel="noopener">P3865 【模板】ST表</a></li>
-<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P3805" target="_blank" rel="noopener">P3805 【模板】manacher算法</a></li>
-<li style="list-style: none"><input type="checkbox" checked> <a href="https://www.luogu.org/problemnew/show/P3808" target="_blank" rel="noopener">P3808 【模板】AC自动机（简单版）</a></li>
-<li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P2742" target="_blank" rel="noopener">P2742 【模板】二维凸包 / [USACO5.1]圈奶牛Fencing the Cows</a></li>
-<li style="list-style: none"><input type="checkbox"> <a href="https://www.luogu.org/problemnew/show/P1919" target="_blank" rel="noopener">P1919 【模板】A*B Problem升级版（FFT快速傅里叶）</a></li>
-</ul>
-<h2 id="2018-12-2019-1-TO-DO-LIST-题解集"><a href="#2018-12-2019-1-TO-DO-LIST-题解集" class="headerlink" title="2018.12-2019.1 TO-DO LIST 题解集"></a>2018.12-2019.1 TO-DO LIST 题解集</h2><p>锐意咕咕中.jpg</p>
-<h2 id="DP"><a href="#DP" class="headerlink" title="DP"></a>DP</h2><p><a href="https://www.luogu.org/problemnew/show/P2713" target="_blank" rel="noopener">P2723 丑数 Humble Numbers </a>（完成时间：2019.3.1）<br><a href="https://www.luogu.org/problemnew/show/P2725" target="_blank" rel="noopener">P2725 邮票 Stamps  </a>（完成时间：2019.3.1）<br><a href="https://www.luogu.org/problemnew/show/P1021" target="_blank" rel="noopener">P1021 邮票面值设计 </a>（完成时间：2019.3.1）<br><a href="https://www.luogu.org/problemnew/show/P1070" target="_blank" rel="noopener">P1070 道路游戏</a>（完成时间：2019.3.2）<br><a href="https://www.luogu.org/problemnew/show/P2558" target="_blank" rel="noopener">P2558 [AHOI2002]网络传输</a>（完成时间：2019.3.2）<br><a href="https://blog.csdn.net/wzw1376124061/article/details/72763941" target="_blank" rel="noopener">blog2</a>（完成时间：2019.3.2）<br><a href="https://www.luogu.org/problemnew/show/P2831" target="_blank" rel="noopener">P2831 愤怒的小鸟</a>（完成时间：2019.3.2）<br><a href="https://www.luogu.org/problemnew/show/P3160" target="_blank" rel="noopener">P3160 [CQOI2012]局部极小值 </a>（完成时间：2019.3.3）<br><a href="https://www.luogu.org/problemnew/show/P1763" target="_blank" rel="noopener">P1763 蓄水池 </a>（完成时间：2019.3.3）<br><a href="https://www.luogu.org/problemnew/show/P1122" target="_blank" rel="noopener">P1122 最大子树和</a>（完成时间：2019.3.10）<br><a href="https://www.luogu.org/problemnew/show/UVA1292" target="_blank" rel="noopener">UVA1292 Strategic game</a>（完成时间：2019.3.10）<br><a href="https://www.luogu.org/problemnew/show/P2607" target="_blank" rel="noopener">P2607 [ZJOI2008]骑士</a>（完成时间：2019.3.10）<br><a href="https://www.luogu.org/problemnew/show/P2467" target="_blank" rel="noopener">P2467 [SDOI2010]地精部落</a>（完成时间：2019.3.10）<br><a href="https://www.luogu.org/problemnew/show/P2059" target="_blank" rel="noopener">P2059 [JLOI2013]卡牌游戏</a>（完成时间：2019.3.10）</p>
-<h2 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h2><h3 id="SPFA"><a href="#SPFA" class="headerlink" title="SPFA"></a>SPFA</h3><p><a href="https://www.luogu.org/problemnew/show/P3371" target="_blank" rel="noopener">SPFA</a>（完成时间：2019.2.17）<br><a href="https://www.luogu.org/problemnew/show/P1841" target="_blank" rel="noopener">P1841 [JSOI2007]重要的城市</a>（完成时间：2019.2.17）<br><a href="https://www.luogu.org/problemnew/show/P3385" target="_blank" rel="noopener">P3385 【模板】负环</a>（完成时间：2019.2.17）</p>
-<h3 id="差分约束"><a href="#差分约束" class="headerlink" title="差分约束"></a>差分约束</h3><p><a href="https://www.luogu.org/problemnew/show/P1993" target="_blank" rel="noopener">P1993 小K的农场</a>（完成时间：2019.2.25）<br><a href="https://www.luogu.org/problemnew/show/P1250" target="_blank" rel="noopener">P1250 种树</a>)（完成时间：2019.2.25）<br><a href="https://www.luogu.org/problemnew/show/P3084" target="_blank" rel="noopener">P3084 [USACO13OPEN]照片Photo</a>)（完成时间：2019.2.26）</p>
-<h3 id="Tarjan，强连通分量"><a href="#Tarjan，强连通分量" class="headerlink" title="Tarjan，强连通分量"></a>Tarjan，强连通分量</h3><p><a href="https://www.luogu.org/problemnew/show/P2194" target="_blank" rel="noopener">P2194 HXY烧情侣</a>（完成时间：2019.2.27）<br><a href="https://www.luogu.org/problemnew/show/P3388" target="_blank" rel="noopener">P3388 【模板】割点（割顶）</a>（完成时间：2019.2.26）<br><a href="https://www.luogu.org/problemnew/show/P2169" target="_blank" rel="noopener">P2169 正则表达式</a>（完成时间：2019.2.27）<br><a href="https://www.luogu.org/problemnew/show/P3387" target="_blank" rel="noopener">P3387 【模板】缩点</a>（完成时间：2019.2.27）<br><a href="https://www.luogu.org/problemnew/show/P2783" target="_blank" rel="noopener">P2783 有机化学之神偶尔会做作弊</a>（完成时间：2019.2.27）<br><a href="https://www.luogu.org/problemnew/show/P1726" target="_blank" rel="noopener">P1726 上白泽慧音</a>（完成时间：2019.2.27）<br><a href="https://www.luogu.org/problemnew/show/P2149" target="_blank" rel="noopener">P2149 [SDOI2009]Elaxia的路线</a><br><a href="https://www.luogu.org/problemnew/show/P1345" target="_blank" rel="noopener">P1345 [USACO5.4]奶牛的电信Telecowmunication</a>（完成时间：2019.2.28）<br><a href="https://www.luogu.org/problemnew/show/P2341" target="_blank" rel="noopener">P2341 [HAOI2006]受欢迎的牛</a>（完成时间：2019.2.28）<br><a href="https://www.luogu.org/problemnew/show/P3469" target="_blank" rel="noopener">P3469 [POI2008]BLO-Blockade</a>（完成时间：2019.2.28）<br><a href="https://www.luogu.org/problemnew/show/P3119" target="_blank" rel="noopener">P3119 [USACO15JAN]草鉴定Grass Cownoisseur </a>（完成时间：2019.3.1）<br><a href="https://www.luogu.org/problemnew/show/P2746" target="_blank" rel="noopener">P2746 [USACO5.3]校园网Network of Schools</a>（完成时间：2019.3.1）</p>
-<h3 id="并查集"><a href="#并查集" class="headerlink" title="并查集"></a>并查集</h3><p><a href="https://www.luogu.org/problemnew/show/P1197" target="_blank" rel="noopener">P1197 [JSOI2008]星球大战</a>（完成时间：2019.2.6）<br><a href="https://www.luogu.org/problemnew/show/P1196" target="_blank" rel="noopener">P1196 [NOI2002]银河英雄传说</a>（完成时间：2019.2.23）</p>
-<h3 id="堆"><a href="#堆" class="headerlink" title="堆"></a>堆</h3><p><a href="https://www.luogu.org/problemnew/show/P1801" target="_blank" rel="noopener">P1801 黑匣子_NOI导刊2010提高（06）</a>（完成时间：2019.2.28）<br><a href="https://www.luogu.org/problemnew/show/P2278" target="_blank" rel="noopener">P2278 [HNOI2003]操作系统</a>（完成时间：2019.2.28）<br><a href="https://www.luogu.org/problemnew/show/P1484" target="_blank" rel="noopener">P1484 种树</a>（完成时间：2019.3.1）</p>
-<h3 id="线段树，树状数组"><a href="#线段树，树状数组" class="headerlink" title="线段树，树状数组"></a>线段树，树状数组</h3><p><a href="https://www.luogu.org/problemnew/show/P1198" target="_blank" rel="noopener">P1198 [JSOI2008]最大数</a>（完成时间：2019.2.6）<br><a href="https://www.luogu.org/problemnew/show/P2161" target="_blank" rel="noopener">P2161 [SHOI2009]会场预约</a>（完成时间：2019.2.6）</p>
-<h3 id="左偏树"><a href="#左偏树" class="headerlink" title="左偏树"></a>左偏树</h3><p><a href="https://www.luogu.org/problemnew/show/P3377" target="_blank" rel="noopener">P3377 【模板】左偏树（可并堆）</a>（完成时间：2019.3.5）<br><a href="https://www.luogu.org/problemnew/show/P2713" target="_blank" rel="noopener">P2713 罗马游戏 </a>（完成时间：2019.3.5）<br><a href="https://www.luogu.org/problemnew/show/P1456" target="_blank" rel="noopener">P1456 Monkey King</a>（完成时间：2019.3.5）</p>
-<h3 id="平衡树"><a href="#平衡树" class="headerlink" title="平衡树"></a>平衡树</h3><p><a href="https://www.luogu.org/problemnew/show/P4847" target="_blank" rel="noopener">P4847 银河英雄传说V2</a>（完成时间：2019.3.6）</p>
-<h2 id="网络流，二分图"><a href="#网络流，二分图" class="headerlink" title="网络流，二分图"></a>网络流，二分图</h2><p><a href="https://www.luogu.org/problemnew/show/P3386" target="_blank" rel="noopener">匈牙利算法</a>（完成时间：2019.2.18）<br><a href="https://www.luogu.org/problemnew/show/P1640" target="_blank" rel="noopener">P1640 [SCOI2010]连续攻击游戏</a>（完成时间：2019.2.18）<br><a href="https://www.luogu.org/problemnew/show/P2764" target="_blank" rel="noopener">P2764 最小路径覆盖问题</a>（完成时间：2019.2.21）<br><a href="https://www.luogu.org/problemnew/show/P1963" target="_blank" rel="noopener">P1963 [NOI2009]变换序列</a>（完成时间：2019.2.21）<br><a href="https://www.luogu.org/problemnew/show/P2765" target="_blank" rel="noopener">P2765 魔术球问题</a>（完成时间：2019.2.21）<br><a href="https://www.luogu.org/problemnew/show/P2763" target="_blank" rel="noopener">P2763 试题库问题</a>（完成时间：2019.2.22）<br><a href="https://www.luogu.org/problemnew/show/P2526" target="_blank" rel="noopener">P2526 [SHOI2001]小狗散步</a>（完成时间：2019.2.22）<br><a href="https://www.luogu.org/problemnew/show/P2756" target="_blank" rel="noopener">P2756 飞行员配对方案问题 </a>（完成时间：2019.2.23）<br><a href="https://www.luogu.org/problemnew/show/P3381" target="_blank" rel="noopener">P3381 【模板】最小费用最大流 </a>（完成时间：2019.2.24）<br><a href="https://www.luogu.org/problemnew/show/P2055" target="_blank" rel="noopener">P2055 [ZJOI2009]假期的宿舍</a>)（完成时间：2019.2.26）</p>
-<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p><a href="https://www.luogu.org/problemnew/show/P1268" target="_blank" rel="noopener">P1268 树的重量</a>（完成时间：2019.2.1）<br><a href="https://www.luogu.org/problemnew/show/P1525" target="_blank" rel="noopener">P1525 关押罪犯</a>（完成时间：2019.2.1）<br><a href="https://www.luogu.org/problemnew/show/P1983" target="_blank" rel="noopener">P1983 车站分级</a>（完成时间：2019.2.1）<br><a href="https://www.luogu.org/problemnew/show/P2724" target="_blank" rel="noopener">P2724 联系 Contact </a>（完成时间：2019.3.1）<br><a href="https://www.luogu.org/problemnew/show/P1092" target="_blank" rel="noopener">P1092 虫食算</a>（完成时间：2019.3.2）</p>
-<h2 id="怨念"><a href="#怨念" class="headerlink" title="怨念"></a>怨念</h2><p><a href="https://www.luogu.org/problemnew/show/P3171" target="_blank" rel="noopener">P3171 [CQOI2015]网络吞吐量 </a>（完成时间：2019.3.7）<br><a href="https://www.luogu.org/problemnew/show/P4847" target="_blank" rel="noopener">P4847 银河英雄传说V2 </a>（完成时间：2019.3.7）<br><a href="https://www.luogu.org/problemnew/show/CF923B" target="_blank" rel="noopener">CF923B Producing Snow</a>（完成时间：2019.3.6）</p>
-<h2 id="某些神奇的TODO名单"><a href="#某些神奇的TODO名单" class="headerlink" title="某些神奇的TODO名单"></a>某些神奇的TODO名单</h2><p><a href="https://www.luogu.org/problemnew/show/P4777" target="_blank" rel="noopener">P4777 【模板】扩展中国剩余定理（EXCRT）</a>（完成时间：2019.2.22）<br><a href="https://www.luogu.org/problemnew/show/P3807" target="_blank" rel="noopener">P3807 【模板】卢卡斯定理</a>（完成时间：2019.3.21）<br><a href="https://www.luogu.org/problemnew/show/P3806" target="_blank" rel="noopener">P3806 【模板】点分治1</a>（完成时间：2019.3.20）</p>
-<h2 id="某些神奇的地方"><a href="#某些神奇的地方" class="headerlink" title="某些神奇的地方"></a>某些神奇的地方</h2><p><a href="https://blog.csdn.net/whereisherofrom/article/details/78922648" target="_blank" rel="noopener">最短路+差分约束好博</a><br><a href="https://www.luogu.org/blog/29354/Templet" target="_blank" rel="noopener">题解库</a><br><a href="https://www.luogu.org/discuss/show/48491" target="_blank" rel="noopener">洛谷日报</a><br><a href="http://www.mohu.org/info/symbols/symbols.htm" target="_blank" rel="noopener">LaTeX</a><br><a href="https://csacademy.com/app/graph_editor/" target="_blank" rel="noopener">图论题画图处</a><br><a href="https://www.luogu.org/blog/ShadowassIIXVIIIIV/#" target="_blank" rel="noopener">大佬</a></p>
+        <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://vjudge.net/problem/UVA-10755" target="_blank" rel="noopener">Garbage Heap</a></p>
+<a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>裸的三维前缀和。</p>
+<p>这道题教会了我，$UVA$上一定要用$\%lld$！！！只有$CF$才需要$I64d$！！！</p>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> For(i,a,b) for(i=a;i&lt;=b;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FFF For(i,1,a)For(j,1,b)For(k,1,c)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll m[<span class="number">25</span>][<span class="number">25</span>][<span class="number">25</span>];</span><br><span class="line"><span class="keyword">int</span> a,b,c,t;</span><br><span class="line"><span class="function">ll <span class="title">sumf</span><span class="params">(<span class="keyword">int</span> x1,<span class="keyword">int</span> x2,<span class="keyword">int</span> y1,<span class="keyword">int</span> y2,<span class="keyword">int</span> z1,<span class="keyword">int</span> z2)</span></span>&#123;</span><br><span class="line">	ll num=m[x2][y2][z2];</span><br><span class="line">	num-=m[x1<span class="number">-1</span>][y2][z2];</span><br><span class="line">	num-=m[x2][y1<span class="number">-1</span>][z2];</span><br><span class="line">	num-=m[x2][y2][z1<span class="number">-1</span>];</span><br><span class="line">	num+=m[x1<span class="number">-1</span>][y1<span class="number">-1</span>][z2];</span><br><span class="line">	num+=m[x1<span class="number">-1</span>][y2][z1<span class="number">-1</span>];</span><br><span class="line">	num+=m[x2][y1<span class="number">-1</span>][z1<span class="number">-1</span>];</span><br><span class="line">	num-=m[x1<span class="number">-1</span>][y1<span class="number">-1</span>][z1<span class="number">-1</span>];</span><br><span class="line">	<span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,k,l,p;</span><br><span class="line">	ll ans,minpre,sum;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		ans=<span class="number">-1e18</span>;</span><br><span class="line">		<span class="built_in">memset</span>(m,<span class="number">0</span>,<span class="keyword">sizeof</span>(m));</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">		<span class="function">FFF <span class="title">scanf</span><span class="params">(<span class="string">"%lld"</span>,&amp;m[i][j][k])</span></span>;</span><br><span class="line">		FFF m[i][j][k]+=m[i<span class="number">-1</span>][j][k];</span><br><span class="line">		FFF m[i][j][k]+=m[i][j<span class="number">-1</span>][k];</span><br><span class="line">		FFF m[i][j][k]+=m[i][j][k<span class="number">-1</span>];</span><br><span class="line">		For(i,<span class="number">1</span>,a)For(j,i,a)For(k,<span class="number">1</span>,b)For(l,k,b)&#123;</span><br><span class="line">			minpre=<span class="number">0</span>;</span><br><span class="line">			For(p,<span class="number">1</span>,c)&#123;</span><br><span class="line">				sum=sumf(i,j,k,l,<span class="number">1</span>,p);</span><br><span class="line">				<span class="keyword">if</span>(sum-minpre&gt;ans)ans=sum-minpre;</span><br><span class="line">				<span class="keyword">if</span>(sum&lt;minpre)minpre=sum;</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">		<span class="keyword">if</span>(t)<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -539,7 +515,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/Recorder/" rel="tag"># Recorder</a>
+            <a href="/tags/Solutions/" rel="tag"># Solutions</a>
           
         </div>
       
@@ -552,8 +528,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/03/09/my-first-blog/" rel="next" title="My first blog">
-                <i class="fa fa-chevron-left"></i> My first blog
+              <a href="/2019/03/26/13thbcpc-pretest/" rel="next" title="第十三届北航程序设计竞赛预赛题解">
+                <i class="fa fa-chevron-left"></i> 第十三届北航程序设计竞赛预赛题解
               </a>
             
           </div>
@@ -561,10 +537,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/03/10/记录一枚蒟蒻的成长/" rel="prev" title="记录一枚蒟蒻的成长">
-                记录一枚蒟蒻的成长 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -849,7 +821,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#算法模板复习"><span class="nav-number">1.</span> <span class="nav-text">算法模板复习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2018-12-2019-1-TO-DO-LIST-题解集"><span class="nav-number">2.</span> <span class="nav-text">2018.12-2019.1 TO-DO LIST 题解集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DP"><span class="nav-number">3.</span> <span class="nav-text">DP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#数据结构"><span class="nav-number">4.</span> <span class="nav-text">数据结构</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#SPFA"><span class="nav-number">4.1.</span> <span class="nav-text">SPFA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#差分约束"><span class="nav-number">4.2.</span> <span class="nav-text">差分约束</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Tarjan，强连通分量"><span class="nav-number">4.3.</span> <span class="nav-text">Tarjan，强连通分量</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#并查集"><span class="nav-number">4.4.</span> <span class="nav-text">并查集</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#堆"><span class="nav-number">4.5.</span> <span class="nav-text">堆</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#线段树，树状数组"><span class="nav-number">4.6.</span> <span class="nav-text">线段树，树状数组</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#左偏树"><span class="nav-number">4.7.</span> <span class="nav-text">左偏树</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#平衡树"><span class="nav-number">4.8.</span> <span class="nav-text">平衡树</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#网络流，二分图"><span class="nav-number">5.</span> <span class="nav-text">网络流，二分图</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基础"><span class="nav-number">6.</span> <span class="nav-text">基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#怨念"><span class="nav-number">7.</span> <span class="nav-text">怨念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#某些神奇的TODO名单"><span class="nav-number">8.</span> <span class="nav-text">某些神奇的TODO名单</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#某些神奇的地方"><span class="nav-number">9.</span> <span class="nav-text">某些神奇的地方</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-number">3.</span> <span class="nav-text">AC代码</span></a></li></ol></div>
             
 
           </div>
