@@ -1,12 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
-    <title><![CDATA[UVA-10755 Garbage Heap（三维前缀和）]]></title>
-    <url>%2F2019%2F03%2F28%2Fuva10755%2F</url>
-    <content type="text"><![CDATA[题目链接Garbage Heap 解题思路裸的三维前缀和。 这道题教会了我，$UVA$上一定要用$\%lld$！！！只有$CF$才需要$I64d$！！！ AC代码12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;stdio.h&gt;#include&lt;string.h&gt;#define For(i,a,b) for(i=a;i&lt;=b;i++)#define FFF For(i,1,a)For(j,1,b)For(k,1,c)typedef long long ll;ll m[25][25][25];int a,b,c,t;ll sumf(int x1,int x2,int y1,int y2,int z1,int z2)&#123; ll num=m[x2][y2][z2]; num-=m[x1-1][y2][z2]; num-=m[x2][y1-1][z2]; num-=m[x2][y2][z1-1]; num+=m[x1-1][y1-1][z2]; num+=m[x1-1][y2][z1-1]; num+=m[x2][y1-1][z1-1]; num-=m[x1-1][y1-1][z1-1]; return num;&#125;int main()&#123; int i,j,k,l,p; ll ans,minpre,sum; scanf("%d",&amp;t); while(t--)&#123; ans=-1e18; memset(m,0,sizeof(m)); scanf("%d%d%d",&amp;a,&amp;b,&amp;c); FFF scanf("%lld",&amp;m[i][j][k]); FFF m[i][j][k]+=m[i-1][j][k]; FFF m[i][j][k]+=m[i][j-1][k]; FFF m[i][j][k]+=m[i][j][k-1]; For(i,1,a)For(j,i,a)For(k,1,b)For(l,k,b)&#123; minpre=0; For(p,1,c)&#123; sum=sumf(i,j,k,l,1,p); if(sum-minpre&gt;ans)ans=sum-minpre; if(sum&lt;minpre)minpre=sum; &#125; &#125; printf("%lld\n",ans); if(t)putchar('\n'); &#125; return 0;&#125;]]></content>
+    <title><![CDATA[UVA-1326 Jurassic Remains（中途相遇法）]]></title>
+    <url>%2F2019%2F03%2F29%2Fuva1326%2F</url>
+    <content type="text"><![CDATA[题目链接Jurassic Remains 解题思路由于直接状态压缩的消耗太大，分成两部分状态压缩解决，通过保存第一部分的状态，枚举第二部分的状态时$O(lgn)$寻找（$STL$的$map$），时间复杂度从$O(2^n)$降到$O(2^{\frac n2}logn)$。 AC代码12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;cstdio&gt;#include&lt;map&gt;using namespace std;int n,state[50];char s[100010];map&lt;int,int&gt;m;int count(int x)&#123; int p=0; while(x)p+=(x&amp;1),x&gt;&gt;=1; return p;&#125;int main()&#123; int i,j; while(~scanf("%d",&amp;n)&amp;&amp;n)&#123; m.clear(); for(i=0;i&lt;n;i++)&#123; scanf("%s",s); state[i]=0; for(j=0;s[j];j++)state[i]^=(1&lt;&lt;(s[j]-'A')); &#125; int n1=n/2,n2=n-n1,ans=0; for(i=0;i&lt;(1&lt;&lt;n1);i++)&#123; int x=0,cnt=0; for(j=0;j&lt;n1;j++)if(i&amp;(1&lt;&lt;j))x^=state[j],cnt++; if(!m.count(x)||cnt&gt;count(m[x]))m[x]=i; &#125; for(i=0;i&lt;(1&lt;&lt;n2);i++)&#123; int x=0; for(j=0;j&lt;n2;j++)if(i&amp;(1&lt;&lt;j))x^=state[j+n1]; if(m.count(x)&amp;&amp;count(m[x])+count(i)&gt;count(ans)) ans=(i&lt;&lt;n1)^m[x]; &#125; printf("%d\n",count(ans)); int flag=0; for(i=0;i&lt;n;i++)if(ans&amp;(1&lt;&lt;i))&#123; if(!flag)printf("%d",i+1); else printf(" %d",i+1); flag=1; &#125; printf("\n"); &#125; return 0;&#125;]]></content>
       <categories>
         <category>Solutions</category>
-        <category>DP</category>
+        <category>高效算法</category>
+      </categories>
+      <tags>
+        <tag>Solutions</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title><![CDATA[UVA-10755 Garbage Heap（三维前缀和）]]></title>
+    <url>%2F2019%2F03%2F28%2Fuva10755%2F</url>
+    <content type="text"><![CDATA[题目链接Garbage Heap 解题思路裸的三维前缀和。 $UVA$上一定要用$\%lld$！！！只有$CF$才需要$I64d$！！！空格换行要求也很严格！ 大致思路是，把三维用前缀和表示，每次枚举两维，第三维再用前缀和的思想用类似求最大子序列的求法$O(n)$解决，总复杂度$O(n^5)$。 AC代码12345678910111213141516171819202122232425262728293031323334353637383940414243#include&lt;stdio.h&gt;#include&lt;string.h&gt;#define For(i,a,b) for(i=a;i&lt;=b;i++)#define FFF For(i,1,a)For(j,1,b)For(k,1,c)typedef long long ll;ll m[25][25][25];int a,b,c,t;ll sumf(int x1,int x2,int y1,int y2,int z1,int z2)&#123; ll num=m[x2][y2][z2]; num-=m[x1-1][y2][z2]; num-=m[x2][y1-1][z2]; num-=m[x2][y2][z1-1]; num+=m[x1-1][y1-1][z2]; num+=m[x1-1][y2][z1-1]; num+=m[x2][y1-1][z1-1]; num-=m[x1-1][y1-1][z1-1]; return num;&#125;int main()&#123; int i,j,k,l,p; ll ans,minpre,sum; scanf("%d",&amp;t); while(t--)&#123; ans=-1e18; memset(m,0,sizeof(m)); scanf("%d%d%d",&amp;a,&amp;b,&amp;c); FFF scanf("%lld",&amp;m[i][j][k]); FFF m[i][j][k]+=m[i-1][j][k]; FFF m[i][j][k]+=m[i][j-1][k]; FFF m[i][j][k]+=m[i][j][k-1]; For(i,1,a)For(j,i,a)For(k,1,b)For(l,k,b)&#123; minpre=0; For(p,1,c)&#123; sum=sumf(i,j,k,l,1,p); if(sum-minpre&gt;ans)ans=sum-minpre; if(sum&lt;minpre)minpre=sum; &#125; &#125; printf("%lld\n",ans); if(t)putchar('\n'); &#125; return 0;&#125;]]></content>
+      <categories>
+        <category>Solutions</category>
+        <category>高效算法</category>
       </categories>
       <tags>
         <tag>Solutions</tag>
@@ -28,18 +40,6 @@
     <title><![CDATA[乱起的标题]]></title>
     <url>%2F2019%2F03%2F25%2Fpause%2F</url>
     <content type="text"><![CDATA[$0^∞=0$。 颓是颓，但题解该写的还得写，比赛该打的还得打，学习该学的都得学。 那最近就淡化一下算法，多打点有意思的比赛吧。 TO-DO LIST： 13th bcpc pre CF #547 div 3 CF #544 div 3 CF #547 div 3 CF #540 div 3 CF #535 div 3 CF #531 div 3 CF Good Bye 2018 CF Edu 56 div 2 CF #526 div 2 CF #523 div 2 12th bcpc pre 12th bcpc 16集训队选拔 11th bcpc pre]]]></content>
-      <categories>
-        <category>Recorder</category>
-        <category>others</category>
-      </categories>
-      <tags>
-        <tag>Recorder</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title><![CDATA[乱起的标题]]></title>
-    <url>%2F2019%2F03%2F25%2Fpause%20-%20%E5%89%AF%E6%9C%AC%2F</url>
-    <content type="text"><![CDATA[]]></content>
       <categories>
         <category>Recorder</category>
         <category>others</category>
