@@ -107,20 +107,25 @@
     })();
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Potassium&#39;s blog">
-<meta property="og:url" content="http://yoursite.com/categories/Solutions/Single-Problem/index.html">
+  <meta name="description" content="题目链接P2467 [SDOI2010]地精部落">
+<meta name="keywords" content="DP">
+<meta property="og:type" content="website">
+<meta property="og:title" content="P2467 [SDOI2010]地精部落 题解（DP）">
+<meta property="og:url" content="http://yoursite.com/bin/P2467.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
+<meta property="og:description" content="题目链接P2467 [SDOI2010]地精部落">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-03-27T06:33:13.032Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Potassium&#39;s blog">
+<meta name="twitter:title" content="P2467 [SDOI2010]地精部落 题解（DP）">
+<meta name="twitter:description" content="题目链接P2467 [SDOI2010]地精部落">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/Solutions/Single-Problem/">
+  <link rel="canonical" href="http://yoursite.com/bin/P2467.html">
 
 
 
@@ -130,7 +135,7 @@
   };
 </script>
 
-  <title>分类: Single Problem | Potassium's blog</title>
+  <title>P2467 [SDOI2010]地精部落 题解（DP） | Potassium's blog</title>
   
 
 
@@ -178,7 +183,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -267,7 +272,7 @@
         
         
           
-          <li class="menu-item menu-item-categories menu-item-active">
+          <li class="menu-item menu-item-categories">
 
     
     
@@ -295,23 +300,6 @@
     
 
     <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
-
-  </li>
-        
-        
-        
-          
-          <li class="menu-item menu-item-schedule">
-
-    
-    
-    
-      
-    
-
-    
-
-    <a href="/schedule/" rel="section"><i class="menu-item-icon fa fa-fw fa-calendar"></i> <br>日程表</a>
 
   </li>
 
@@ -369,9 +357,6 @@
       
       
     
-      
-      
-    
     
 
   
@@ -381,109 +366,70 @@
           <div id="content" class="content">
             
 
+  <div id="posts" class="posts-expand">
+    
+    
+    
+    <div class="post-block page">
+      <header class="post-header">
+
+<h1 class="post-title" itemprop="name headline">P2467 [SDOI2010]地精部落 题解（DP）
+
+</h1>
+
+<div class="post-meta">
   
   
-  
-  <div class="post-block category">
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>Single Problem<small>分类</small>
-        </h1>
-      </div>
+
+
+</div>
+
+</header>
 
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/29/uva1326/" itemprop="url">
-            
-              <span itemprop="name">UVA-1326 Jurassic Remains（中途相遇法）</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-29T12:20:35+08:00" content="2019-03-29">
-          03-29
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
       
-        
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
-        
-          <a class="post-title-link" href="/2019/03/28/uva10755/" itemprop="url">
-            
-              <span itemprop="name">UVA-10755 Garbage Heap（三维前缀和）</span>
-            
-          </a>
-        
-      </h2>
-
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-28T23:57:35+08:00" content="2019-03-28">
-          03-28
-        </time>
-      </div>
-
-    </header>
-  </article>
-
-
       
+      <div class="post-body">
         
-
-  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <h2 class="post-title">
         
-          <a class="post-title-link" href="/2019/03/10/P2467/" itemprop="url">
-            
-              <span itemprop="name">P2467 [SDOI2010]地精部落 题解（DP）</span>
-            
-          </a>
-        
-      </h2>
+          <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://www.luogu.org/problemnew/show/P2467" target="_blank" rel="noopener">P2467 [SDOI2010]地精部落</a></p>
+<a id="more"></a>
+<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>神仙题（？）</p>
+<p><del>我太渣了一个多小时才想出来这题怎么做</del></p>
+<p>第一感就是排列组合题目。然而怎么也想不出来正确的思路。</p>
+<p><del>然后突然想到这个题好像是在DP练习场里头的</del>，于是就做出来了。</p>
+<p>设$f[i]$表示填到第$i$个数的时候，默认第一个数是山峰的时候（山谷也行，一样的）有多少种方法。显然，$12345$的方法和$14579$的方法种数是相同的，所以说$f[i]$也代表$i$个互不相同的数填成波浪形有多少种方法。</p>
+<p>然后从$1$到$n$递推，枚举$i$这个数塞到第$j$个位置，也就是把前$i-1$个数弄成波浪形，后$i-j$个数弄成波浪形，把$i-1$个数分成$j-1$个和$i-j$个的两组一共有$c[i-1][j-1]$种方法，故有$f[i]= \sum_{j=1}^i f[j-1]·f[i-j]·c[i-1][j-1]$。</p>
+<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,p,f[<span class="number">4210</span>],c[<span class="number">4210</span>][<span class="number">4210</span>]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j;</span><br><span class="line">	f[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;p);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)c[i][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(j%<span class="number">2</span>)&#123;</span><br><span class="line">				f[i]+=f[j<span class="number">-1</span>]*f[i-j]%p*c[i<span class="number">-1</span>][j<span class="number">-1</span>]%p;</span><br><span class="line">				f[i]%=p;</span><br><span class="line">			&#125;</span><br><span class="line">			c[i][j]=(c[i<span class="number">-1</span>][j]+c[i<span class="number">-1</span>][j<span class="number">-1</span>])%p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,(f[n]&lt;&lt;<span class="number">1</span>)%p);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>滚动数组优化一下组合数：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="keyword">long</span> <span class="keyword">long</span> n,p,f[<span class="number">4210</span>],c[<span class="number">2</span>][<span class="number">4210</span>]; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,j,q=<span class="number">0</span>;</span><br><span class="line">	f[<span class="number">0</span>]=c[<span class="number">0</span>][<span class="number">0</span>]=c[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%lld%lld"</span>,&amp;n,&amp;p);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">		q^=<span class="number">1</span>;</span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=i;j++)&#123;</span><br><span class="line">			<span class="keyword">if</span>(j%<span class="number">2</span>)&#123;</span><br><span class="line">				f[i]+=f[j<span class="number">-1</span>]*f[i-j]%p*c[q^<span class="number">1</span>][j<span class="number">-1</span>]%p;</span><br><span class="line">				f[i]%=p;</span><br><span class="line">			&#125;</span><br><span class="line">			c[q][j]=(c[q^<span class="number">1</span>][j]+c[q^<span class="number">1</span>][j<span class="number">-1</span>])%p;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="built_in">printf</span>(<span class="string">"%lld"</span>,(f[n]&lt;&lt;<span class="number">1</span>)%p);</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated" datetime="2019-03-10T15:15:35+08:00" content="2019-03-10">
-          03-10
-        </time>
+        
       </div>
-
-    </header>
-  </article>
-
-
+      
+      
       
     </div>
+    
 
+
+
+    
+    
+    
   </div>
-  
-  
-  
-
-  
-
 
 
           </div>
           
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
 
         </div>
         
@@ -504,8 +450,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
 
-      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <div class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -522,7 +477,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">11</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
@@ -547,19 +502,7 @@
                     
                       
                     
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                      
-                    
-                    <span class="site-state-item-count">12</span>
+                    <span class="site-state-item-count">6</span>
                     <span class="site-state-item-name">分类</span>
                   </a>
                 </div>
@@ -580,9 +523,7 @@
                     
                       
                     
-                      
-                    
-                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-count">4</span>
                     <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
@@ -700,14 +641,6 @@
                     <a href="http://member.bitcron.com/" title="http://member.bitcron.com/" rel="noopener" target="_blank">Member</a>
                   </li>
                 
-                  <li class="links-of-blogroll-item">
-                    <a href="https://ausar.xyz" title="https://ausar.xyz" rel="noopener" target="_blank">Ausar</a>
-                  </li>
-                
-                  <li class="links-of-blogroll-item">
-                    <a href="https://rougit.github.io" title="https://rougit.github.io" rel="noopener" target="_blank">RyougiT</a>
-                  </li>
-                
               </ul>
             </div>
           
@@ -720,6 +653,23 @@
         </div>
       </div>
 
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-number">3.</span> <span class="nav-text">AC代码</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
       
 
       
@@ -863,6 +813,10 @@
 
 
   
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
 
   
 
