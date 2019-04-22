@@ -107,18 +107,18 @@
     })();
   </script>
 
-  <meta name="description" content="补题！补题！补题！">
+  <meta name="description" content="Solved A B C D E F G H I J K L     12/12 O O O Ø O O Ø O Ø O O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="北理校赛2019.04.14 题解">
 <meta property="og:url" content="http://yoursite.com/2019/04/16/bitcontest2019/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="补题！补题！补题！">
+<meta property="og:description" content="Solved A B C D E F G H I J K L     12/12 O O O Ø O O Ø O Ø O O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-19T17:31:55.418Z">
+<meta property="og:updated_time" content="2019-04-22T02:03:43.228Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="北理校赛2019.04.14 题解">
-<meta name="twitter:description" content="补题！补题！补题！">
+<meta name="twitter:description" content="Solved A B C D E F G H I J K L     12/12 O O O Ø O O Ø O Ø O O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 
 
 
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-04-20 01:31:55" itemprop="dateModified" datetime="2019-04-20T01:31:55+08:00">2019-04-20</time>
+                <time title="修改时间：2019-04-22 10:03:43" itemprop="dateModified" datetime="2019-04-22T10:03:43+08:00">2019-04-22</time>
               
             
           </span>
@@ -470,7 +470,48 @@
       
 
       
-        <p>补题！补题！补题！</p>
+        <table>
+<thead>
+<tr>
+<th style="text-align:left">Solved</th>
+<th style="text-align:left">A</th>
+<th style="text-align:left">B</th>
+<th style="text-align:left">C</th>
+<th style="text-align:left">D</th>
+<th style="text-align:left">E</th>
+<th style="text-align:left">F</th>
+<th style="text-align:left">G</th>
+<th style="text-align:left">H</th>
+<th style="text-align:left">I</th>
+<th style="text-align:left">J</th>
+<th style="text-align:left">K</th>
+<th style="text-align:left">L</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">12/12</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">Ø</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">Ø</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">Ø</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">O</td>
+<td style="text-align:left">O</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>O for passing during the contest</li>
+<li>Ø for passing after the contest</li>
+<li>! for attempted but failed</li>
+<li>· for having not attempted yet</li>
+</ul>
 <a id="more"></a>
 <p><a href="https://vjudge.net/contest/294125#overview" target="_blank" rel="noopener">比赛链接</a></p>
 <h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><blockquote>
@@ -515,7 +556,7 @@
 </div></div>
 </blockquote>
 <h3 id="F"><a href="#F" class="headerlink" title="F"></a>F</h3><blockquote>
-<h4 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一个$n\times m​$的网格图，求本质不同的四个顶点都在格点上构成的正方形个数。</p>
+<h4 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一个$n\times m$的网格图，求本质不同的四个顶点都在格点上构成的正方形个数。</p>
 <h4 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h4><p>先考虑边长为$i\times i$的正方形，以它的四个边上的点为顶点的正方形个数为$i$。</p>
 <p>故答案即为$\sum_{i=1}^{m}(n-i+1)\times (m-i+1)\times i$。</p>
 <h4 id="AC代码-5"><a href="#AC代码-5" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
@@ -527,7 +568,7 @@
 <h4 id="题目描述-6"><a href="#题目描述-6" class="headerlink" title="题目描述"></a>题目描述</h4><p>有两个区域，$A$区域的人全都要去$B$区域。$A$区域的人分别位于$c[i]$上，$B$区域只能到达$d[i]$。现在给定$n$条特殊道路，$A$区域$[a,b]$范围和$B$区域$[c,d]$范围连通，需要的耗时为$w$，问$A$区的人同时出发，最后到达的人所需时间是多少。</p>
 <h4 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h4><p>新建$s,t$，连$t-&gt;B,B-&gt;A,A-&gt;s$的边，跑最短路，找到$t$到$c[i]$路径最长的即为答案。</p>
 <p>三种边分别如何连呢？</p>
-<p>$t-&gt;B:​$$t​$到所有$d[i]​$<br>$A-&gt;s:​$所有$c[i]​$到$s​$（其实完全可以不连）<br>$B-&gt;A:​$线段树维护，添加特殊点保证连边数量线性。</p>
+<p>$t-&gt;B:$$t$到所有$d[i]$<br>$A-&gt;s:$所有$c[i]$到$s$（其实完全可以不连）<br>$B-&gt;A:$线段树维护，添加特殊点保证连边数量线性。</p>
 <p>其中令左线段树($B$)上的点为其编号本身，令右线段树($A$)上的点为其编号本身$+2n$，叶节点序号用$lnum,rnum$表示。</p>
 <p>线段树维护过程：将线段树上每一个节点视为点，则该点代表所有以它为根的子树，故初始化的时候左线段树连接从儿子到爸爸权值为$0$的边，右线段树连接从爸爸到儿子权值为$0$的边。添加特殊道路时，添加一个中间特殊点，分别同向连接两棵线段树。</p>
 <h4 id="AC代码-6"><a href="#AC代码-6" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
@@ -544,12 +585,12 @@
 </div></div>
 </blockquote>
 <h3 id="I"><a href="#I" class="headerlink" title="I"></a>I</h3><blockquote>
-<h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一个$n\times n​$的棋盘，每个格子可以填$[1,k]​$的正整数，定义棋盘中某个点为$bi​$点当且仅当其为该行该列严格最大值，设$B[i]​$为棋盘中恰好存在$i​$个$bi​$点的方案数，求$\sum_{i=0}^{n^2}i^2B[i]​$。</p>
-<h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><p>由于任意交换两行两列不影响$bi$点状况，故可以先讨论$bi$点在对角线且$bi​$点非严格单调递增的情况。</p>
-<p>设$dp[i][j]​$表示已经确定了前$i​$个$bi​$点，且其中最大的$bi​$点对应数值不超过$j​$的方案总数。</p>
+<h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一个$n\times n$的棋盘，每个格子可以填$[1,k]$的正整数，定义棋盘中某个点为$bi$点当且仅当其为该行该列严格最大值，设$B[i]$为棋盘中恰好存在$i$个$bi$点的方案数，求$\sum_{i=0}^{n^2}i^2B[i]$。</p>
+<h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><p>由于任意交换两行两列不影响$bi$点状况，故可以先讨论$bi$点在对角线且$bi$点非严格单调递增的情况。</p>
+<p>设$dp[i][j]$表示已经确定了前$i$个$bi$点，且其中最大的$bi$点对应数值不超过$j$的方案总数。</p>
 <p>那么有：$dp[i][j]=\sum_{k=0}^{j-1}dp[k][j-1]\times \frac{(j-1)^{(i-k)(2n-i-k-1)}}{(i-k)!}$。</p>
 <p>递推的过程即为填$bi$点值为$j$的状态。其中$dp[k][j-1]$表示前$k$行列不超过$j-1$，$j-1$的次方表示非前$k$行控制的、$k+1$到$i$行列的，由新增加进来的值为$bi$点控制的节点。最后除以$(i-k)!$为了除重。</p>
-<p>设至少有$i​$个$bi​$点的方案数位$b[i]​$，则有$b[i]={A_{n}^{i}}^2dp[i][k]\times k^{(n-i)^2}​$，即从$n​$行$n​$列分别选出$i​$行$i​$列，且最大不超过$k​$，剩下未支配的部分从$[1,k]​$任取的方案个数，这段可能有重复，不过无关紧要，请看下一步。</p>
+<p>设至少有$i$个$bi$点的方案数位$b[i]$，则有$b[i]={A_{n}^{i}}^2dp[i][k]\times k^{(n-i)^2}$，即从$n$行$n$列分别选出$i$行$i$列，且最大不超过$k$，剩下未支配的部分从$[1,k]$任取的方案个数，这段可能有重复，不过无关紧要，请看下一步。</p>
 <p>再设$f[i]$为恰好有$i$个$bi$点的方案总数，则可以进行容斥：$f[i]=b[i]+\sum_{i&lt;j}(-1)^{(j-i)}b[j]\times C_{j}^{i}$。</p>
 <p>最后即可得出结果。</p>
 <h4 id="AC代码-8"><a href="#AC代码-8" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
@@ -562,12 +603,12 @@
 <p>求所有合法算式计算结果的和，答案对$998244353$取模。</p>
 <h4 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h4><p>由于$+$和$-$都可以出现，所以能出现加号的地方必能出现减号，只需要考虑算式最左端的数对应的结果即可。</p>
 <p>可设：</p>
-<p>$p[j]=10^i​$<br>$f[i]=\frac{10^i}{2}(10^i+1)​$，此即只含有$i​$位数字的算式计算结果。<br>$g[i]​$为长度为$i​$、第一个字符为$+​$或$-​$的不同串总种数。<br>$ans​$为长度为$n​$的合法算式计算结果的和。</p>
-<p>则有<br>$g[2]=20,g[i]=2p[i-1]+\sum_{j=2}^{i-2}2p[i-j-1]g[j]​$</p>
+<p>$p[j]=10^i$<br>$f[i]=\frac{10^i}{2}(10^i+1)$，此即只含有$i$位数字的算式计算结果。<br>$g[i]$为长度为$i$、第一个字符为$+$或$-$的不同串总种数。<br>$ans$为长度为$n$的合法算式计算结果的和。</p>
+<p>则有<br>$g[2]=20,g[i]=2p[i-1]+\sum_{j=2}^{i-2}2p[i-j-1]g[j]$</p>
 <p>处理成前缀和：</p>
-<p>$g[i]=2f[i-1]+10^{i-1}\sum_{j=2}^{i-2}2*10^{-j}g[j]​$<br>    $=2f[i-1]+p[i-1]h[i-2]​$</p>
+<p>$g[i]=2f[i-1]+10^{i-1}\sum_{j=2}^{i-2}2*10^{-j}g[j]$<br>    $=2f[i-1]+p[i-1]h[i-2]$</p>
 <p>其中$h[i]=\sum_{j=2}^{i}2\times 10^{-j}g[j]$，同时处理即可。</p>
-<p>$ans=f[n]+\sum_{j=2}^{n-1}f[n-j]g[j]​$</p>
+<p>$ans=f[n]+\sum_{j=2}^{n-1}f[n-j]g[j]$</p>
 <h4 id="AC代码-9"><a href="#AC代码-9" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;math.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 500002</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">int</span> t,a,b;</span><br><span class="line">ll inv=<span class="number">299473306</span>;</span><br><span class="line">ll w=<span class="number">998244353</span>;</span><br><span class="line">ll p[N]=&#123;<span class="number">1</span>&#125;;</span><br><span class="line">ll f[N]=&#123;<span class="number">1</span>&#125;,g[N],h[N];</span><br><span class="line">ll invf[N]=&#123;<span class="number">1</span>&#125;;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i,n;</span><br><span class="line">	<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;N;i++)p[i]=p[i<span class="number">-1</span>]*<span class="number">10</span>%w;</span><br><span class="line">	<span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;N;i++)</span><br><span class="line">		f[i]=(p[i]<span class="number">-1</span>)*p[i<span class="number">-1</span>]*<span class="number">5</span>%w,invf[i]=invf[i<span class="number">-1</span>]*inv%w;</span><br><span class="line">	g[<span class="number">2</span>]=<span class="number">20</span>;</span><br><span class="line">	<span class="keyword">while</span>(t--)&#123;</span><br><span class="line">		ll ans=<span class="number">0</span>;</span><br><span class="line">		<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">			g[i]=(<span class="number">2</span>*p[i<span class="number">-1</span>]+p[i<span class="number">-1</span>]*h[i<span class="number">-2</span>])%w;</span><br><span class="line">			h[i]=(h[i<span class="number">-1</span>]+<span class="number">2</span>*invf[i]*g[i])%w;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=n<span class="number">-1</span>;i++)ans=(ans+f[n-i]*g[i])%w;</span><br><span class="line">		ans=(ans+f[n])%w;</span><br><span class="line">		<span class="comment">//for(i=1;i&lt;n;i++)printf("h:%I64d g:%I64d f:%I64d\n",h[i],g[i],f[i]);</span></span><br><span class="line">		<span class="built_in">printf</span>(<span class="string">"%I64d\n"</span>,ans);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
