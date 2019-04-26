@@ -107,27 +107,25 @@
     })();
   </script>
 
-  <meta name="description" content="今天干了两件事情，学会了后缀数组，搞定了洛谷$AC$数量的问题，以后可以不用洛谷咯！ 继续学习、复习算法，下一步是后缀自动机。">
-<meta name="keywords" content="成长">
+  <meta name="description" content="Solved A B C D E F G H I J K L M     0/13 . . . . . . . . . . . . .     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
-<meta property="og:title" content="后缀数组&amp;后缀自动机学习笔记">
-<meta property="og:url" content="http://yoursite.com/2019/04/10/suffixarray/index.html">
+<meta property="og:title" content="vjudge297843-BUAA Summer Practice 2017 1 字符串专场 题解">
+<meta property="og:url" content="http://yoursite.com/2019/04/26/buaa2017string/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="今天干了两件事情，学会了后缀数组，搞定了洛谷$AC$数量的问题，以后可以不用洛谷咯！ 继续学习、复习算法，下一步是后缀自动机。">
+<meta property="og:description" content="Solved A B C D E F G H I J K L M     0/13 . . . . . . . . . . . . .     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/images/520.jpg">
-<meta property="og:updated_time" content="2019-04-26T08:37:11.316Z">
+<meta property="og:updated_time" content="2019-04-26T09:37:20.298Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="后缀数组&amp;后缀自动机学习笔记">
-<meta name="twitter:description" content="今天干了两件事情，学会了后缀数组，搞定了洛谷$AC$数量的问题，以后可以不用洛谷咯！ 继续学习、复习算法，下一步是后缀自动机。">
-<meta name="twitter:image" content="http://yoursite.com/images/520.jpg">
+<meta name="twitter:title" content="vjudge297843-BUAA Summer Practice 2017 1 字符串专场 题解">
+<meta name="twitter:description" content="Solved A B C D E F G H I J K L M     0/13 . . . . . . . . . . . . .     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2019/04/10/suffixarray/">
+  <link rel="canonical" href="http://yoursite.com/2019/04/26/buaa2017string/">
 
 
 
@@ -137,7 +135,7 @@
   };
 </script>
 
-  <title>后缀数组&后缀自动机学习笔记 | Potassium's blog</title>
+  <title>vjudge297843-BUAA Summer Practice 2017 1 字符串专场 题解 | Potassium's blog</title>
   
 
 
@@ -362,7 +360,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/10/suffixarray/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/04/26/buaa2017string/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Potassium">
@@ -379,7 +377,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">后缀数组&后缀自动机学习笔记
+          <h1 class="post-title" itemprop="name headline">vjudge297843-BUAA Summer Practice 2017 1 字符串专场 题解
 
               
             
@@ -405,24 +403,12 @@
                 
               
 
-              <time title="创建时间：2019-04-10 23:54:35" itemprop="dateCreated datePublished" datetime="2019-04-10T23:54:35+08:00">2019-04-10</time>
+              <time title="创建时间：2019-04-26 17:30:00 / 修改时间：17:37:20" itemprop="dateCreated datePublished" datetime="2019-04-26T17:30:00+08:00">2019-04-26</time>
             
 
             
               
 
-              
-                
-                <span class="post-meta-divider">|</span>
-                
-
-                <span class="post-meta-item-icon">
-                  <i class="fa fa-calendar-check-o"></i>
-                </span>
-                
-                  <span class="post-meta-item-text">更新于</span>
-                
-                <time title="修改时间：2019-04-26 16:37:11" itemprop="dateModified" datetime="2019-04-26T16:37:11+08:00">2019-04-26</time>
               
             
           </span>
@@ -436,8 +422,8 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2019/04/10/suffixarray/#comments" itemprop="discussionUrl">
-                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/10/suffixarray/" itemprop="commentCount"></span>
+                <a href="/2019/04/26/buaa2017string/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/04/26/buaa2017string/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -472,159 +458,129 @@
       
 
       
-        <p>今天干了两件事情，学会了后缀数组，搞定了洛谷$AC$数量的问题，以后可以不用洛谷咯！</p>
-<p>继续学习、复习算法，下一步是后缀自动机。</p>
+        <table>
+<thead>
+<tr>
+<th style="text-align:left">Solved</th>
+<th style="text-align:left">A</th>
+<th style="text-align:left">B</th>
+<th style="text-align:left">C</th>
+<th style="text-align:left">D</th>
+<th style="text-align:left">E</th>
+<th style="text-align:left">F</th>
+<th style="text-align:left">G</th>
+<th style="text-align:left">H</th>
+<th style="text-align:left">I</th>
+<th style="text-align:left">J</th>
+<th style="text-align:left">K</th>
+<th style="text-align:left">L</th>
+<th style="text-align:left">M</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">0/13</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+<td style="text-align:left">.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>O for passing during the contest</li>
+<li>Ø for passing after the contest</li>
+<li>! for attempted but failed</li>
+<li>· for having not attempted yet</li>
+</ul>
 <a id="more"></a>
-<p><img src="/images/520.jpg" alt></p>
-<h2 id="后缀数组"><a href="#后缀数组" class="headerlink" title="后缀数组"></a>后缀数组</h2><p><a href="https://www.luogu.org/problemnew/show/P3809" target="_blank" rel="noopener">这儿有道纯模板题</a></p>
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>只学了倍增法，但也折腾了半天。贴一下自己的想法。</p>
-<p>既然要对后缀排序，那首先当然要找出所有后缀从<strong>第一位</strong>开始比较了。</p>
-<p>于是一上来就有了下面这段代码：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]=s[i]]++;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line"><span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[i]]]=i;</span><br></pre></td></tr></table></figure>
-<p><del>妈耶，这一堆数组都是啥</del></p>
-<blockquote>
-<p>$c[i]: $一个辅助数组，用处见下面注释<br>$x[i]: $呃，这一步的作用仅仅是记录一下$s[i]$的$ASCII$码值。<br>$s[i]: $就是给定的字符串啦。<br>$sa[i]: $当前排名为$i$的后缀，起始位置的下标。</p>
+<p><a href="https://vjudge.net/contest/297843" target="_blank" rel="noopener">比赛链接</a></p>
+<h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><blockquote>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
 </blockquote>
-<p>一句话一句话解释。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line"><span class="comment">//数组清零</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]=s[i]]++;</span><br><span class="line"><span class="comment">//表示这个地方有个东西（比如字符串"abbcc"），最终结果是c['a']=1,c['b']=2,c['c']=3。</span></span><br><span class="line"><span class="comment">//那其实这里的c数组就是一个桶。</span></span><br><span class="line"><span class="comment">//这里先把第一位排好序。</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line"><span class="comment">//统计前缀和，方便后续统计排名。</span></span><br><span class="line"><span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[i]]]=i;</span><br><span class="line"><span class="comment">//统计排名的时候要求排名互不相同，于是强制在字符相同的情况下，第一个字母靠前的排名靠前。</span></span><br><span class="line"><span class="comment">//这里倒着循环以满足上述条件。</span></span><br></pre></td></tr></table></figure>
-<p>好了，这步结束之后，第一位比较完了。</p>
-<p>先看一个例子：$ababbaba$</p>
-<p>第一次排序后：（$97$为$‘a’$的$ASCII$码值)</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$i$</th>
-<th style="text-align:center">$0$</th>
-<th style="text-align:center">$1$</th>
-<th style="text-align:center">$2$</th>
-<th style="text-align:center">$3$</th>
-<th style="text-align:center">$4$</th>
-<th style="text-align:center">$5$</th>
-<th style="text-align:center">$6$</th>
-<th style="text-align:center">$7$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$x [i]$</td>
-<td style="text-align:center">$97$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$97$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$97$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$97$</td>
-</tr>
-<tr>
-<td style="text-align:center">$sa [i]$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$5$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
-</tr>
-<tr>
-<td style="text-align:center">$sa[i+1]$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$5$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
-<td style="text-align:center">$0$</td>
-</tr>
-</tbody>
-</table>
-<p>根据字典序的思想，在第一位字符相同的情况下应该接着比较下一个位置。也就是<strong>基数排序</strong>，在第一个字符相等的基础上，更细的分离出第二个字符上的区别。</p>
-<p>那么我假设前两个字符都比完了，那么接下来该比较的是前三个字符，前四个字符……<br>但实际上，在比完前两个字符的情况下，可以直接添加两个字符（<strong>第二关键词</strong>）到前四个字符，在下一轮添加四个字符（<strong>第二关键词</strong>）到前八个字符……<br>这里就可以应用<strong>倍增</strong>的思想进行比较了。</p>
-<p>接下来的代码比较长，分几部分，逐步理解。</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=n-k;i&lt;n;i++)y[num++]=i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(sa[i]&gt;=k)y[num++]=sa[i]-k;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<blockquote>
-<p>$y[i]:$ 第二关键词（即第2个，第3,4个，第5,6,7,8个……）的排序，$y[i]=j$表示排名$i$的第二关键词，第一关键词的起始位置为$j$。</p>
+<h3 id="B"><a href="#B" class="headerlink" title="B"></a>B</h3><blockquote>
+<h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
 </blockquote>
-<p>$[0,i]$中，后$k$个位置的第二关键词是$0$，所以这是最小的，先加入$y$数组。</p>
-<p>然后其他的相应排名为$sa[i]$，前面已经排了$k$个，故排名为$sa[i]-k$。</p>
-<p>执行完这段代码后：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$i$</th>
-<th style="text-align:center">$0$</th>
-<th style="text-align:center">$1$</th>
-<th style="text-align:center">$2$</th>
-<th style="text-align:center">$3$</th>
-<th style="text-align:center">$4$</th>
-<th style="text-align:center">$5$</th>
-<th style="text-align:center">$6$</th>
-<th style="text-align:center">$7$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$y [i]$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$5$</td>
-</tr>
-</tbody>
-</table>
-<p>接着和第一次几乎一样的排序：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;<span class="comment">//清空桶</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]]++;<span class="comment">//扔进桶</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];<span class="comment">//前缀和</span></span><br><span class="line"><span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[y[i]]]]=y[i];</span><br><span class="line"><span class="comment">//这里是唯一不一样的地方，起到的作用就是在第一次的基础上对第二关键词排序</span></span><br></pre></td></tr></table></figure>
-<p>执行完这段代码后：</p>
-<table>
-<thead>
-<tr>
-<th style="text-align:center">$i$</th>
-<th style="text-align:center">$0$</th>
-<th style="text-align:center">$1$</th>
-<th style="text-align:center">$2$</th>
-<th style="text-align:center">$3$</th>
-<th style="text-align:center">$4$</th>
-<th style="text-align:center">$5$</th>
-<th style="text-align:center">$6$</th>
-<th style="text-align:center">$7$</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:center">$sa[i]$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$5$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
-<td style="text-align:center">$3$</td>
-</tr>
-<tr>
-<td style="text-align:center">对应字符串</td>
-<td style="text-align:center">$a0$</td>
-<td style="text-align:center">$ab$</td>
-<td style="text-align:center">$ab$</td>
-<td style="text-align:center">$ab$</td>
-<td style="text-align:center">$ba$</td>
-<td style="text-align:center">$ba$</td>
-<td style="text-align:center">$ba$</td>
-<td style="text-align:center">$bb$</td>
-</tr>
-</tbody>
-</table>
-<p>然后$y$数组已经光荣完成使命，下一轮的$x$数组由这一轮的$x$数组决定。怎么决定呢？显然，如果两个后缀的第一、二关键字在上一轮排名相同，那么本轮排名也相同；否则不同。于是就有：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::swap(x,y);<span class="comment">//其实是扔掉了y数组</span></span><br><span class="line">num=<span class="number">1</span>;</span><br><span class="line">x[sa[<span class="number">0</span>]]=<span class="number">0</span>;<span class="comment">//排名为0</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)x[sa[i]]=y[sa[i<span class="number">-1</span>]]==y[sa[i]]&amp;&amp;y[sa[i<span class="number">-1</span>]+k]==y[sa[i]+k]?num<span class="number">-1</span>:num++;</span><br><span class="line"><span class="keyword">if</span>(num&gt;=n)<span class="keyword">break</span>;<span class="comment">//排序完成的字符数到了n，也就是没有不同排名的后缀了，那么退出</span></span><br><span class="line">m=num;<span class="comment">//优化一下循环</span></span><br></pre></td></tr></table></figure>
-<p>多次类似倍增后，即可得到结果。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1000010</span></span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="keyword">int</span> x[N],y[N],sa[N],c[<span class="number">10</span>*N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,k,n,m=<span class="number">10000</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">    n=<span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]=s[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[i]]]=i;</span><br><span class="line">    <span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=n-k;i&lt;n;i++)y[num++]=i;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(sa[i]&gt;=k)y[num++]=sa[i]-k;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[y[i]]]++;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[y[i]]]]=y[i];</span><br><span class="line">        <span class="built_in">std</span>::swap(x,y);</span><br><span class="line">        num=<span class="number">1</span>;</span><br><span class="line">        x[sa[<span class="number">0</span>]]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">            x[sa[i]]=y[sa[i<span class="number">-1</span>]]==y[sa[i]]&amp;&amp;y[sa[i<span class="number">-1</span>]+k]==y[sa[i]+k]?num<span class="number">-1</span>:num++;</span><br><span class="line">        <span class="keyword">if</span>(num&gt;=n)<span class="keyword">break</span>;</span><br><span class="line">        m=num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="built_in">printf</span>(<span class="string">"%d "</span>,sa[i]+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="后缀自动机"><a href="#后缀自动机" class="headerlink" title="后缀自动机"></a>后缀自动机</h2><p>此坑待填。</p>
+<h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><blockquote>
+<h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-2"><a href="#AC代码-2" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><blockquote>
+<h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-3"><a href="#AC代码-3" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><blockquote>
+<h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-4"><a href="#AC代码-4" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="F"><a href="#F" class="headerlink" title="F"></a>F</h3><blockquote>
+<h4 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-5"><a href="#AC代码-5" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="G"><a href="#G" class="headerlink" title="G"></a>G</h3><blockquote>
+<h4 id="题目描述-6"><a href="#题目描述-6" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-6"><a href="#AC代码-6" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="H"><a href="#H" class="headerlink" title="H"></a>H</h3><blockquote>
+<h4 id="题目描述-7"><a href="#题目描述-7" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-7"><a href="#AC代码-7" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="I"><a href="#I" class="headerlink" title="I"></a>I</h3><blockquote>
+<h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-8"><a href="#AC代码-8" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="J"><a href="#J" class="headerlink" title="J"></a>J</h3><blockquote>
+<h4 id="题目描述-9"><a href="#题目描述-9" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-9"><a href="#AC代码-9" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="K"><a href="#K" class="headerlink" title="K"></a>K</h3><blockquote>
+<h4 id="题目描述-10"><a href="#题目描述-10" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-10"><a href="#解题思路-10" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-10"><a href="#AC代码-10" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="L"><a href="#L" class="headerlink" title="L"></a>L</h3><blockquote>
+<h4 id="题目描述-11"><a href="#题目描述-11" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-11"><a href="#解题思路-11" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-11"><a href="#AC代码-11" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="M"><a href="#M" class="headerlink" title="M"></a>M</h3><blockquote>
+<h4 id="题目描述-12"><a href="#题目描述-12" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-12"><a href="#解题思路-12" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-12"><a href="#AC代码-12" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div></blockquote>
 
       
     </div>
@@ -648,7 +604,7 @@
       
         <div class="post-tags">
           
-            <a href="/tags/成长/" rel="tag"># 成长</a>
+            <a href="/tags/Solutions/" rel="tag"># Solutions</a>
           
         </div>
       
@@ -661,8 +617,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2019/04/09/vjudge294125dp4-9/" rel="next" title="vjudge294125-动态规划训练 题解">
-                <i class="fa fa-chevron-left"></i> vjudge294125-动态规划训练 题解
+              <a href="/2019/04/25/vjudge296318regional2018/" rel="next" title="vjudge296318-ICPC2018亚洲区域赛组题 题解">
+                <i class="fa fa-chevron-left"></i> vjudge296318-ICPC2018亚洲区域赛组题 题解
               </a>
             
           </div>
@@ -670,10 +626,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2019/04/15/2050contest/" rel="prev" title="2050 Programming Competition 部分题解">
-                2050 Programming Competition 部分题解 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -936,7 +888,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#后缀数组"><span class="nav-number">1.</span> <span class="nav-text">后缀数组</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#思路"><span class="nav-number">1.1.</span> <span class="nav-text">思路</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#代码"><span class="nav-number">1.2.</span> <span class="nav-text">代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后缀自动机"><span class="nav-number">2.</span> <span class="nav-text">后缀自动机</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A"><span class="nav-number">1.</span> <span class="nav-text">A</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">1.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码"><span class="nav-number">1.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B"><span class="nav-number">2.</span> <span class="nav-text">B</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-1"><span class="nav-number">2.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-number">3.</span> <span class="nav-text">C</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-2"><span class="nav-number">3.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-2"><span class="nav-number">3.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D"><span class="nav-number">4.</span> <span class="nav-text">D</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-3"><span class="nav-number">4.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-3"><span class="nav-number">4.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E"><span class="nav-number">5.</span> <span class="nav-text">E</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-4"><span class="nav-number">5.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-4"><span class="nav-number">5.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-4"><span class="nav-number">5.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F"><span class="nav-number">6.</span> <span class="nav-text">F</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-5"><span class="nav-number">6.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-5"><span class="nav-number">6.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-5"><span class="nav-number">6.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#G"><span class="nav-number">7.</span> <span class="nav-text">G</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-6"><span class="nav-number">7.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-6"><span class="nav-number">7.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-6"><span class="nav-number">7.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#H"><span class="nav-number">8.</span> <span class="nav-text">H</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-7"><span class="nav-number">8.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-7"><span class="nav-number">8.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-7"><span class="nav-number">8.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I"><span class="nav-number">9.</span> <span class="nav-text">I</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-8"><span class="nav-number">9.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-8"><span class="nav-number">9.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-8"><span class="nav-number">9.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J"><span class="nav-number">10.</span> <span class="nav-text">J</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-9"><span class="nav-number">10.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-9"><span class="nav-number">10.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-9"><span class="nav-number">10.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#K"><span class="nav-number">11.</span> <span class="nav-text">K</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-10"><span class="nav-number">11.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-10"><span class="nav-number">11.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-10"><span class="nav-number">11.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#L"><span class="nav-number">12.</span> <span class="nav-text">L</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-11"><span class="nav-number">12.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-11"><span class="nav-number">12.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-11"><span class="nav-number">12.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#M"><span class="nav-number">13.</span> <span class="nav-text">M</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-12"><span class="nav-number">13.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-12"><span class="nav-number">13.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-12"><span class="nav-number">13.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li></ol></div>
             
 
           </div>
