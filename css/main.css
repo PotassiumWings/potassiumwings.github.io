@@ -2001,7 +2001,7 @@ pre .javascript .function {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #ff4f3e;
+  background: #fcff75;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3351,8 +3351,8 @@ header.post-header {
   cursor: pointer;
 }
 .close:after {
-  content: "";
+  content: "查看代码▼";
 }
 .open:after {
-  content: "";
+  content: "收起代码▲";
 }
