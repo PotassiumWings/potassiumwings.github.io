@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E     5/5 O Ø O Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-28T14:25:10.067Z">
+<meta property="og:updated_time" content="2019-04-28T15:31:22.282Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 1 题解">
 <meta name="twitter:description" content="Solved A B C D E     5/5 O Ø O Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
@@ -403,7 +403,7 @@
                 
               
 
-              <time title="创建时间：2019-04-28 19:36:00 / 修改时间：22:25:10" itemprop="dateCreated datePublished" datetime="2019-04-28T19:36:00+08:00">2019-04-28</time>
+              <time title="创建时间：2019-04-28 19:36:00 / 修改时间：23:31:22" itemprop="dateCreated datePublished" datetime="2019-04-28T19:36:00+08:00">2019-04-28</time>
             
 
             
@@ -533,7 +533,7 @@
 </div></div>
 </blockquote>
 <h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><blockquote>
-<h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p>现有一序列$a<a href="1\leq i\leq n">i</a>$，初始时$a[i]=i$。有$m$个操作，每次操作翻转$[l,r]$区间内所有数并输出其和。</p>
+<h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p>现有一序列$a_i(1\leq i\leq n)$，初始时$a_i=i$。有$m$个操作，每次操作翻转$[l,r]$区间内所有数并输出其和。</p>
 <p>$1\leq n,m \leq 10^5$。</p>
 <h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p>平衡树，此时用$FHQTreap$。建树不停进行$merge$操作，每次翻转根据子树大小找到$r$的位置并$split$，取左树为$x$，再在$x$中找到$l-1$并$split$，再取右树为$z$。那么$z$的$sum$即为答案。翻转$z$，再$merge$回去即可。</p>
 <h4 id="AC代码-2"><a href="#AC代码-2" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
