@@ -107,18 +107,18 @@
     })();
   </script>
 
-  <meta name="description" content="Solved A B C D E F G     6/7 Ø Ø Ø Ø Ø Ø .     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+  <meta name="description" content="Solved A B C D E F G     7/7 Ø Ø Ø Ø Ø Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019 BUAA Spring Training 2 题解">
 <meta property="og:url" content="http://yoursite.com/2019/04/29/2019springtraining-2/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="Solved A B C D E F G     6/7 Ø Ø Ø Ø Ø Ø .     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta property="og:description" content="Solved A B C D E F G     7/7 Ø Ø Ø Ø Ø Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-04-29T14:09:49.982Z">
+<meta property="og:updated_time" content="2019-04-30T17:21:34.810Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 2 题解">
-<meta name="twitter:description" content="Solved A B C D E F G     6/7 Ø Ø Ø Ø Ø Ø .     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:description" content="Solved A B C D E F G     7/7 Ø Ø Ø Ø Ø Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 
 
 
@@ -403,12 +403,24 @@
                 
               
 
-              <time title="创建时间：2019-04-29 19:10:00 / 修改时间：22:09:49" itemprop="dateCreated datePublished" datetime="2019-04-29T19:10:00+08:00">2019-04-29</time>
+              <time title="创建时间：2019-04-29 19:10:00" itemprop="dateCreated datePublished" datetime="2019-04-29T19:10:00+08:00">2019-04-29</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2019-05-01 01:21:34" itemprop="dateModified" datetime="2019-05-01T01:21:34+08:00">2019-05-01</time>
               
             
           </span>
@@ -473,14 +485,14 @@
 </thead>
 <tbody>
 <tr>
-<td style="text-align:left">6/7</td>
+<td style="text-align:left">7/7</td>
 <td style="text-align:left">Ø</td>
 <td style="text-align:left">Ø</td>
 <td style="text-align:left">Ø</td>
 <td style="text-align:left">Ø</td>
 <td style="text-align:left">Ø</td>
 <td style="text-align:left">Ø</td>
-<td style="text-align:left">.</td>
+<td style="text-align:left">Ø</td>
 </tr>
 </tbody>
 </table>
@@ -554,7 +566,7 @@
 <h4 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h4><p>$f(n,m)$</p>
 <p>$=\sum_{i=1}^{n}\sum_{j=1}^{m}lcm(i,j)$</p>
 <p>$=\sum_{i=1}^{n}\sum_{j=1}^{m}\frac{i\times j}{gcd(i,j)}$</p>
-<p>$=\sum_{g=1}^{min(n,m)}g\times \sum_{i=1}^{n}\sum_{j=1}^{m}i\times j(gcd(i,j)==k)$</p>
+<p>$=\sum_{g=1}^{min(n,m)}g\times \sum_{i=1}^{n}\sum_{j=1}^{m}i\times j(gcd(i,j)==g)$</p>
 <p>$=\sum_{g=1}^{min(n,m)}g\times \sum_{i=1}^{\frac ng}\sum_{j=1}^{\frac mg}i\times j(gcd(i,j)==1)$</p>
 <p>$=\sum_{g=1}^{min(n,m)}g\times u(\frac ng,\frac mg)$</p>
 <p>$u(n,m)$</p>
@@ -562,8 +574,12 @@
 <p>$=\sum_{i=1}^{n}\sum_{j=1}^{m}\sum_{k|gcd(i,j)}i\times j\times \mu(k)$</p>
 <p>$=\sum_{k=1}^{min(n,m)}\mu(k)\times k^2\sum_{i=1}^{\frac nk}\sum_{j=1}^{\frac mk}i\times j$</p>
 <p>于是预处理$\mu(k)\times k^2$，分块处理后半段即可。</p>
+<p>其中：$\sum_{i=1}^{x}\sum_{j=1}^{y}i\times j$</p>
+<p>$=(1+2+…+x)(1+2+…+y)$</p>
+<p>$=\frac{(1+x)x}2\frac{(1+y)y}2$</p>
+<p>分别对$f(n,m)$，$u(n,m)$分块，复杂度$O(n)$。</p>
 <h4 id="AC代码-6"><a href="#AC代码-6" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">还没写</span><br></pre></td></tr></table></figure>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 10000010</span></span><br><span class="line">ll mu[N]=&#123;<span class="number">0</span>,<span class="number">1</span>&#125;,w=<span class="number">20101009</span>;</span><br><span class="line"><span class="keyword">int</span> pr[N/<span class="number">10</span>],a[N]=&#123;<span class="number">1</span>,<span class="number">1</span>&#125;,cnt;</span><br><span class="line">ll inv;</span><br><span class="line"><span class="function">ll <span class="title">qp</span><span class="params">(ll a,ll b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(inv)<span class="keyword">return</span> inv;</span><br><span class="line">    ll ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;b;b&gt;&gt;=<span class="number">1</span>,a=a*a%w)<span class="keyword">if</span>(b&amp;<span class="number">1</span>)ans=ans*a%w;</span><br><span class="line">    <span class="keyword">return</span> inv=ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">F</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">return</span> qp(<span class="number">2</span>,w<span class="number">-2</span>)*x%w*(x+<span class="number">1</span>)%w;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">u</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,r;ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i=r+<span class="number">1</span>)&#123;</span><br><span class="line">        r=min(n/(n/i),m/(m/i));</span><br><span class="line">        ans=(ans+(mu[r]-mu[i<span class="number">-1</span>])*F(n/i)%w*F(m/i)%w+w)%w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">f</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,r;ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i=r+<span class="number">1</span>)&#123;</span><br><span class="line">        r=min(n/(n/i),m/(m/i));</span><br><span class="line">        ans=(ans+u(n/i,m/i)*(r-i+<span class="number">1</span>)%w*(r+i)%w*qp(<span class="number">2</span>,w<span class="number">-2</span>))%w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,n,m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">if</span>(n&gt;m)n^=m^=n^=m;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!a[i])pr[cnt++]=i,mu[i]=<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;cnt&amp;&amp;i*pr[j]&lt;=m;j++)&#123;</span><br><span class="line">            a[i*pr[j]]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i%pr[j]==<span class="number">0</span>)<span class="keyword">break</span>;</span><br><span class="line">            mu[i*pr[j]]=mu[i]*<span class="number">-1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=m;i++)&#123;</span><br><span class="line">        mu[i]=(mu[i]+w)*i%w*i%w;</span><br><span class="line">        mu[i]=(mu[i]+mu[i<span class="number">-1</span>])%w;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,f(n,m));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
