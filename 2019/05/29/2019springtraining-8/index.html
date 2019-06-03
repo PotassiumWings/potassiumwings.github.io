@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E F     3/6 Ø . . . Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-06-03T07:54:08.966Z">
+<meta property="og:updated_time" content="2019-06-03T08:15:16.207Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 8 题解">
 <meta name="twitter:description" content="Solved A B C D E F     3/6 Ø . . . Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-03 15:54:08" itemprop="dateModified" datetime="2019-06-03T15:54:08+08:00">2019-06-03</time>
+                <time title="修改时间：2019-06-03 16:15:16" itemprop="dateModified" datetime="2019-06-03T16:15:16+08:00">2019-06-03</time>
               
             
           </span>
@@ -544,7 +544,7 @@
 <h4 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h4><p>非常有意思的$FMT+FWT$练习题。先求出每个数出现的次数$s_i$，求出$s_a,s_b$的子集卷积，$s_d,s_e$的对称差（异或）卷积，分别乘上$fib$再进行（或）变换，乘起来再做逆运算即可。</p>
 <p>既然是写博，就要自己在复习一遍，故下面是对$FMT$和子集卷积的理解。</p>
 <p>首先是$FMT$。</p>
-<p>定义$H_S=\sum_{L\subseteq S}\sum_{R\subseteq S}f_L\times g_R(L\bigcup R\subseteq S)$（①），我们要求出这个卷积$H$。<br>定义莫比乌斯变换为$f^{‘}<em>S=\sum</em>{T\subseteq S}f_T$。<br>对于①式左右两端取莫比乌斯变换：<br>$H^{‘}<em>S=\sum</em>{L\subseteq S}\sum_{R\subseteq S}f_L\times g_R$<br>故可以进行变换，卷积运算。变换过程：<br>设 $f_S^{‘}(i)=\sum_{T\subseteq S}f_T((S-T)\subseteq(1,2,…,i))$<br>那么，对于任意不包含${i}$的集合$S$，有$f^{\and}_S(i)=f^{\and}<em>S(i-1)$，$f^{‘}</em>{S\bigcup {i}}(i)=f^{‘}<em>{S\bigcup {i}}(i-1)+f^{‘}</em>{S}(i-1)$，这样就可以$O(n\times 2^n)$解决了。反演同理。</p>
+<p>定义$H_S=\sum_{L\subseteq S}\sum_{R\subseteq S}f_L\times g_R(L\bigcup R\subseteq S)$（①），我们要求出这个卷积$H$。<br>定义莫比乌斯变换为$f_S^{‘}=\sum_{T\subseteq S}f_T$。<br>对于①式，左右两端取莫比乌斯变换：<br>$H_S^{‘}=\sum_{L\subseteq S}\sum_{R\subseteq S}f_L\times g_R$<br>故可以进行变换，卷积运算。变换过程：<br>设 $f_S^{‘}(i)=\sum_{T\subseteq S}f_T((S-T)\subseteq(1,2,…,i))$<br>那么，对于任意不包含${i}$的集合$S$，有$f_S^{‘}(i)=f_S^{‘}(i-1)$，$f_{S\bigcup {i}}^{‘}(i)=f_{S\bigcup {i}}^{‘}(i-1)+f_S^{‘}(i-1)$，这样就可以$O(n\times 2^n)$解决了。反演同理。</p>
 <p>对于子集卷积：</p>
 <p>定义$H_S=\sum_{L\subseteq S}f_L\times g_{S-L}$，我们现在要求出这个卷积$H$。因为需要满足交集为空，所以增设一维表示集合大小。设$f_{i,S}$为集合中有$i$个元素、集合表示为$S$的值，那么求卷积的时候$h_{i,S}=\sum_{j=0}^i f_{j,S}\times g_{i-j,S}$（从$f$中选出$j$个元素，从$g$中选出$i-j$个元素，只有他们互不相交的情况下才能够保证$h_{i,S}$合理）。（非常玄学，怎么想出来的）<br>那么最后的结果就是$h_{cnt_i,i}$这个数组了。</p>
 <h4 id="AC代码-5"><a href="#AC代码-5" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
