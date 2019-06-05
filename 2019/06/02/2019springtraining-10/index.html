@@ -115,12 +115,12 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E     4/5 Ø O . O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="https://cdn.luogu.org/upload/pic/30706.png">
-<meta property="og:updated_time" content="2019-06-05T11:42:39.808Z">
+<meta property="og:image" content="http://yoursite.com/image/luogucf434e.jpg">
+<meta property="og:updated_time" content="2019-06-05T11:58:56.390Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 10 题解">
 <meta name="twitter:description" content="Solved A B C D E     4/5 Ø O . O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
-<meta name="twitter:image" content="https://cdn.luogu.org/upload/pic/30706.png">
+<meta name="twitter:image" content="http://yoursite.com/image/luogucf434e.jpg">
 
 
 
@@ -422,7 +422,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-06-05 19:42:39" itemprop="dateModified" datetime="2019-06-05T19:42:39+08:00">2019-06-05</time>
+                <time title="修改时间：2019-06-05 19:58:56" itemprop="dateModified" datetime="2019-06-05T19:58:56+08:00">2019-06-05</time>
               
             
           </span>
@@ -508,7 +508,7 @@
 <p>首先我们观察任意三点构成的带方向和好坏的三角形，共有八种，有两种是答案所求，这两种需要满足三条边同好坏，不是很好求得。所以我们考虑，任意一个不符合答案要求的三角形必然满足有两个点连接两条不同好坏的边，这就可以与第三边脱离关系了，可以用点分治求解。</p>
 <p>我们假设一个点$i$作为好边终点有$in[1][i]$种，作为坏边终点有$in[0][i]$种，作为好边起点有$out[1][i]$种，作为坏边起点有$out[0][i]$种。</p>
 <p>下面引用<a href="https://www.luogu.org/problemnew/solution/CF434E" target="_blank" rel="noopener">洛谷题解</a>中的一张图：（转侵删）</p>
-<p><img src="https://cdn.luogu.org/upload/pic/30706.png" alt></p>
+<p><img src="/image/luogucf434e.jpg" alt></p>
 <p>通过对上述六种三角形的计数，与某个点$i$<strong>有关的</strong>（注意，不是上述链接中题解中所说<strong>产生的</strong>）坏三角形个数即为$\frac12(4in[1][i]in[0][i]+4out[1][i]out[0][i]+2in[1][i]out[0][i]+2out[1][i]in[0][i])$，而一个三角形里有两个这样的点，所以答案即为$n^3$减去这些数的一半。</p>
 <p>这个式子感觉很迷惑，让我们扔掉这个很抽象的图不管，用更形象的方式去理解。</p>
 <p>考虑一个三角形$[u,p][p,v][u,v]$，根据题目描述中的定义，显然这三个点<strong>互不等价</strong>。任意一个点$m$都必为这个三元组中的任意一个，故可以假设$m$为$u,p,v$中的某一点，则$m$的贡献（<strong>有关的</strong>坏三角形数）即为$m$<strong>分别为这三个点</strong>的贡献<strong>之和</strong>。当$m$为$u$点时，贡献为$out[1]out[0]+out[0]out[1]$（考虑$u\rightarrow p,u\rightarrow v$两条边的不同）；当$m$为$v$点时，贡献为$in[1]out[0]+in[0]out[1]$；当$m$为$u$点时，贡献为$in[1]in[0]+in[0]in[1]$。加起来即为刚才的式子。</p>
