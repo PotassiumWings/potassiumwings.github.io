@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E F G H I J     6/10 O O Ø . Ø O . . . O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-22T11:43:05.618Z">
+<meta property="og:updated_time" content="2019-07-22T11:59:10.413Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019牛客暑期多校训练营第一场 题解">
 <meta name="twitter:description" content="Solved A B C D E F G H I J     6/10 O O Ø . Ø O . . . O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-22 19:43:05" itemprop="dateModified" datetime="2019-07-22T19:43:05+08:00">2019-07-22</time>
+                <time title="修改时间：2019-07-22 19:59:10" itemprop="dateModified" datetime="2019-07-22T19:59:10+08:00">2019-07-22</time>
               
             
           </span>
@@ -552,8 +552,8 @@
 <h3 id="E-ABBA"><a href="#E-ABBA" class="headerlink" title="E ABBA"></a>E ABBA</h3><blockquote>
 <h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><p>构造一个长度为$2(n+m)$的$AB$字符串，其中能够拆分出$n$个$AB$，$m$个$BA$，问有多少种构造方法。</p>
 <h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><p>考虑从第一位开始填字符，类似$catalan$数的求法，建立一个坐标轴，$x$轴表示$A$的数量，$y$轴表示$B$的数量。从原点走起，每一次填写$A$则$x++$，否则$y++$，最后走到$(n+m,n+m)$点。</p>
-<p>任意前缀的$B-A$最大值即为这个串中$AB$个数的最小值（后面的$B$只能对应前面的$A$）<a href="证明如下：设$A-B$在某个前缀$[1,l]$取得最大值$p$，则$[l+1,2(n+m)]$区间中$B-A=p$。尽量使得后面区间中的$B$组成$BA$而非$AB$，则可以$BABABA....BA,BBB..B$进行排列，最终有$p$个$B$必须同前面的$A$进行匹配，故$AB$的最小可能值为$p$。">^1</a>，所以如果有某个前缀$B-A&gt;n$，那么$B$要组成大于$n$个$AB$，$BA$的个数就不会到达$m$，所以任意前缀有$B\leq A+n$。</p>
-<p>同理可得：$A\leq B+m$。</p>
+<p><strong>任意前缀的$B-A$最大值即为这个串中$AB$个数的最小值</strong>，所以如果有某个前缀$B-A&gt;n$，那么$B$要组成大于$n$个$AB$，$BA$的个数就不会到达$m$，所以任意前缀有$B\leq A+n$。同理可得：$A\leq B+m$。</p>
+<p>黑体字部分证明如下：设$A-B$在某个前缀$[1,l]$取得最大值$p$，则$[l+1,2(n+m)]$区间中$B-A=p$。尽量使得后面区间中的$B$组成$BA$而非$AB$，则可以$BABABA….BA,BBB..B$进行排列，最终有$p$个$B$必须同前面的$A$进行匹配，故$AB$的最小可能值为$p$。</p>
 <p>通过类似$catalan$数对称处理的方法可以得出答案。</p>
 <h4 id="AC代码-4"><a href="#AC代码-4" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 4010</span></span><br><span class="line">ll fac[N],inv[N],mod=<span class="number">1000000007</span>;</span><br><span class="line"><span class="function">ll <span class="title">qp</span><span class="params">(ll x,<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    ll ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p;p&gt;&gt;=<span class="number">1</span>,x=x*x%mod)<span class="keyword">if</span>(p&amp;<span class="number">1</span>)ans=ans*x%mod;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">c</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> m)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(n&lt;m||m&lt;<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">return</span> fac[n]*inv[m]%mod*inv[n-m]%mod;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,n,m;</span><br><span class="line">    inv[<span class="number">0</span>]=fac[<span class="number">0</span>]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;N;i++)</span><br><span class="line">        fac[i]=fac[i<span class="number">-1</span>]*i%mod,</span><br><span class="line">        inv[i]=qp(fac[i],mod<span class="number">-2</span>);</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m))</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,((c((n+m)&lt;&lt;<span class="number">1</span>,n+m)-c((n+m)&lt;&lt;<span class="number">1</span>,n<span class="number">-1</span>)-c((n+m)&lt;&lt;<span class="number">1</span>,m<span class="number">-1</span>))%mod+mod)%mod);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -641,6 +641,10 @@
 
           <div class="post-nav-prev post-nav-item">
             
+              <a href="/2019/07/22/2019nowcodersummercontest-2/" rel="prev" title="2019牛客暑期多校训练营第二场 题解">
+                2019牛客暑期多校训练营第二场 题解 <i class="fa fa-chevron-right"></i>
+              </a>
+            
           </div>
         </div>
       
@@ -715,7 +719,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">31</span>
+                    <span class="site-state-item-count">32</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
