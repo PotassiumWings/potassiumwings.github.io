@@ -107,18 +107,18 @@
     })();
   </script>
 
-  <meta name="description" content="Solved A B C D E     5/5 Ø O Ø Ø O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+  <meta name="description" content="Solved A B C D E    5/5 Ø O Ø Ø O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019 BUAA Spring Training 5 题解">
 <meta property="og:url" content="http://yoursite.com/2019/05/19/2019springtraining-5/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="Solved A B C D E     5/5 Ø O Ø Ø O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta property="og:description" content="Solved A B C D E    5/5 Ø O Ø Ø O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-05-20T11:28:37.895Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 5 题解">
-<meta name="twitter:description" content="Solved A B C D E     5/5 Ø O Ø Ø O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:description" content="Solved A B C D E    5/5 Ø O Ø Ø O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 
 
 
@@ -473,25 +473,23 @@
         <table>
 <thead>
 <tr>
-<th style="text-align:left">Solved</th>
-<th style="text-align:left">A</th>
-<th style="text-align:left">B</th>
-<th style="text-align:left">C</th>
-<th style="text-align:left">D</th>
-<th style="text-align:left">E</th>
+<th align="left">Solved</th>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">D</th>
+<th align="left">E</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">5/5</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">O</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">O</td>
+<tbody><tr>
+<td align="left">5/5</td>
+<td align="left">Ø</td>
+<td align="left">O</td>
+<td align="left">Ø</td>
+<td align="left">Ø</td>
+<td align="left">O</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <ul>
 <li>O for passing during the contest</li>
 <li>Ø for passing after the contest</li>
@@ -499,6 +497,7 @@
 <li>· for having not attempted yet</li>
 </ul>
 <a id="more"></a>
+
 <p><a href="https://vjudge.net/contest/302216" target="_blank" rel="noopener">比赛链接</a></p>
 <h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><blockquote>
 <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>现有一棵 $n$ 个点的树，每条边 $i$ 都一个边权 $w_i$，接下来有 $m$ 个操作：<br>第一种操作给出两个点 $a_i$,$ b_i$，一个数 $y_i$：从 $a_i$ 沿最短路走到 $b_i$ 的过程中，每经过一条边 $j$，就将 $y_i$ 除以边权 $w_j$ 并向下取整，即进行 $y_i=\lfloor\frac{y_i}{w_j}\rfloor $ ，输出走完后的 $y_i$。<br>第二种操作给出某条边 $e_i$，一个数 $c_i$，满足 $c_i$ &lt; $w_{e_i}$：将 $e_i$ 边权修改为 $c_i$。</p>

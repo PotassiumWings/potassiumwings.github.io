@@ -475,75 +475,77 @@
         <p>今天干了两件事情，学会了后缀数组，搞定了洛谷$AC$数量的问题，以后可以不用洛谷咯！</p>
 <p>继续学习、复习算法，下一步是后缀自动机。</p>
 <a id="more"></a>
+
 <p><img src="/images/520.jpg" alt></p>
 <h2 id="后缀数组"><a href="#后缀数组" class="headerlink" title="后缀数组"></a>后缀数组</h2><p><a href="https://www.luogu.org/problemnew/show/P3809" target="_blank" rel="noopener">这儿有道纯模板题</a></p>
 <h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>只学了倍增法，但也折腾了半天。贴一下自己的想法。</p>
 <p>既然要对后缀排序，那首先当然要找出所有后缀从<strong>第一位</strong>开始比较了。</p>
 <p>于是一上来就有了下面这段代码：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]=s[i]]++;</span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line"><span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[i]]]=i;</span><br></pre></td></tr></table></figure>
+
 <p><del>妈耶，这一堆数组都是啥</del></p>
 <blockquote>
 <p>$c[i]: $一个辅助数组，用处见下面注释<br>$x[i]: $呃，这一步的作用仅仅是记录一下$s[i]$的$ASCII$码值。<br>$s[i]: $就是给定的字符串啦。<br>$sa[i]: $当前排名为$i$的后缀，起始位置的下标。</p>
 </blockquote>
 <p>一句话一句话解释。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line"><span class="comment">//数组清零</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]=s[i]]++;</span><br><span class="line"><span class="comment">//表示这个地方有个东西（比如字符串"abbcc"），最终结果是c['a']=1,c['b']=2,c['c']=2。</span></span><br><span class="line"><span class="comment">//那其实这里的c数组就是一个桶。</span></span><br><span class="line"><span class="comment">//这里先把第一位排好序。</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line"><span class="comment">//统计前缀和，方便后续统计排名。</span></span><br><span class="line"><span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[i]]]=i;</span><br><span class="line"><span class="comment">//统计排名的时候要求排名互不相同，于是强制在字符相同的情况下，第一个字母靠前的排名靠前。</span></span><br><span class="line"><span class="comment">//这里倒着循环以满足上述条件。</span></span><br></pre></td></tr></table></figure>
+
 <p>好了，这步结束之后，第一位比较完了。</p>
 <p>先看一个例子：$ababbaba$</p>
 <p>第一次排序后：（$97$为$‘a’$的$ASCII$码值)</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">$i$</th>
-<th style="text-align:center">$0$</th>
-<th style="text-align:center">$1$</th>
-<th style="text-align:center">$2$</th>
-<th style="text-align:center">$3$</th>
-<th style="text-align:center">$4$</th>
-<th style="text-align:center">$5$</th>
-<th style="text-align:center">$6$</th>
-<th style="text-align:center">$7$</th>
+<th align="center">$i$</th>
+<th align="center">$0$</th>
+<th align="center">$1$</th>
+<th align="center">$2$</th>
+<th align="center">$3$</th>
+<th align="center">$4$</th>
+<th align="center">$5$</th>
+<th align="center">$6$</th>
+<th align="center">$7$</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">$x [i]$</td>
-<td style="text-align:center">$97$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$97$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$97$</td>
-<td style="text-align:center">$98$</td>
-<td style="text-align:center">$97$</td>
+<tbody><tr>
+<td align="center">$x [i]$</td>
+<td align="center">$97$</td>
+<td align="center">$98$</td>
+<td align="center">$97$</td>
+<td align="center">$98$</td>
+<td align="center">$98$</td>
+<td align="center">$97$</td>
+<td align="center">$98$</td>
+<td align="center">$97$</td>
 </tr>
 <tr>
-<td style="text-align:center">$sa [i]$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$5$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
+<td align="center">$sa [i]$</td>
+<td align="center">$0$</td>
+<td align="center">$2$</td>
+<td align="center">$5$</td>
+<td align="center">$7$</td>
+<td align="center">$1$</td>
+<td align="center">$3$</td>
+<td align="center">$4$</td>
+<td align="center">$6$</td>
 </tr>
 <tr>
-<td style="text-align:center">$sa[i+1]$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$5$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
-<td style="text-align:center">$0$</td>
+<td align="center">$sa[i+1]$</td>
+<td align="center">$2$</td>
+<td align="center">$5$</td>
+<td align="center">$7$</td>
+<td align="center">$1$</td>
+<td align="center">$3$</td>
+<td align="center">$4$</td>
+<td align="center">$6$</td>
+<td align="center">$0$</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>根据字典序的思想，在第一位字符相同的情况下应该接着比较下一个位置。也就是<strong>基数排序</strong>，在第一个字符相等的基础上，更细的分离出第二个字符上的区别。</p>
 <p>那么我假设前两个字符都比完了，那么接下来该比较的是前三个字符，前四个字符……<br>但实际上，在比完前两个字符的情况下，可以直接添加两个字符（<strong>第二关键词</strong>）到前四个字符，在下一轮添加四个字符（<strong>第二关键词</strong>）到前八个字符……<br>这里就可以应用<strong>倍增</strong>的思想进行比较了。</p>
 <p>接下来的代码比较长，分几部分，逐步理解。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">    <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=n-k;i&lt;n;i++)y[num++]=i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(sa[i]&gt;=k)y[num++]=sa[i]-k;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>$y[i]:$ 第二关键词（即第2个，第3,4个，第5,6,7,8个……）的排序，$y[i]=j$表示排名$i$的第二关键词，第一关键词的起始位置为$j$。</p>
 </blockquote>
@@ -553,77 +555,76 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">$i$</th>
-<th style="text-align:center">$0$</th>
-<th style="text-align:center">$1$</th>
-<th style="text-align:center">$2$</th>
-<th style="text-align:center">$3$</th>
-<th style="text-align:center">$4$</th>
-<th style="text-align:center">$5$</th>
-<th style="text-align:center">$6$</th>
-<th style="text-align:center">$7$</th>
+<th align="center">$i$</th>
+<th align="center">$0$</th>
+<th align="center">$1$</th>
+<th align="center">$2$</th>
+<th align="center">$3$</th>
+<th align="center">$4$</th>
+<th align="center">$5$</th>
+<th align="center">$6$</th>
+<th align="center">$7$</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">$y [i]$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$3$</td>
-<td style="text-align:center">$5$</td>
+<tbody><tr>
+<td align="center">$y [i]$</td>
+<td align="center">$7$</td>
+<td align="center">$1$</td>
+<td align="center">$4$</td>
+<td align="center">$6$</td>
+<td align="center">$0$</td>
+<td align="center">$2$</td>
+<td align="center">$3$</td>
+<td align="center">$5$</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>接着和第一次几乎一样的排序：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;<span class="comment">//清空桶</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]]++;<span class="comment">//扔进桶</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];<span class="comment">//前缀和</span></span><br><span class="line"><span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[y[i]]]]=y[i];</span><br><span class="line"><span class="comment">//这里是唯一不一样的地方，起到的作用就是在第一次的基础上对第二关键词排序</span></span><br></pre></td></tr></table></figure>
+
 <p>执行完这段代码后：</p>
 <table>
 <thead>
 <tr>
-<th style="text-align:center">$i$</th>
-<th style="text-align:center">$0$</th>
-<th style="text-align:center">$1$</th>
-<th style="text-align:center">$2$</th>
-<th style="text-align:center">$3$</th>
-<th style="text-align:center">$4$</th>
-<th style="text-align:center">$5$</th>
-<th style="text-align:center">$6$</th>
-<th style="text-align:center">$7$</th>
+<th align="center">$i$</th>
+<th align="center">$0$</th>
+<th align="center">$1$</th>
+<th align="center">$2$</th>
+<th align="center">$3$</th>
+<th align="center">$4$</th>
+<th align="center">$5$</th>
+<th align="center">$6$</th>
+<th align="center">$7$</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">$sa[i]$</td>
-<td style="text-align:center">$7$</td>
-<td style="text-align:center">$0$</td>
-<td style="text-align:center">$2$</td>
-<td style="text-align:center">$5$</td>
-<td style="text-align:center">$1$</td>
-<td style="text-align:center">$4$</td>
-<td style="text-align:center">$6$</td>
-<td style="text-align:center">$3$</td>
+<tbody><tr>
+<td align="center">$sa[i]$</td>
+<td align="center">$7$</td>
+<td align="center">$0$</td>
+<td align="center">$2$</td>
+<td align="center">$5$</td>
+<td align="center">$1$</td>
+<td align="center">$4$</td>
+<td align="center">$6$</td>
+<td align="center">$3$</td>
 </tr>
 <tr>
-<td style="text-align:center">对应字符串</td>
-<td style="text-align:center">$a0$</td>
-<td style="text-align:center">$ab$</td>
-<td style="text-align:center">$ab$</td>
-<td style="text-align:center">$ab$</td>
-<td style="text-align:center">$ba$</td>
-<td style="text-align:center">$ba$</td>
-<td style="text-align:center">$ba$</td>
-<td style="text-align:center">$bb$</td>
+<td align="center">对应字符串</td>
+<td align="center">$a0$</td>
+<td align="center">$ab$</td>
+<td align="center">$ab$</td>
+<td align="center">$ab$</td>
+<td align="center">$ba$</td>
+<td align="center">$ba$</td>
+<td align="center">$ba$</td>
+<td align="center">$bb$</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>然后$y$数组已经光荣完成使命，下一轮的$x$数组由这一轮的$x$数组决定。怎么决定呢？显然，如果两个后缀的第一、二关键字在上一轮排名相同，那么本轮排名也相同；否则不同。于是就有：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">std</span>::swap(x,y);<span class="comment">//其实是扔掉了y数组</span></span><br><span class="line">num=<span class="number">1</span>;</span><br><span class="line">x[sa[<span class="number">0</span>]]=<span class="number">0</span>;<span class="comment">//排名为0</span></span><br><span class="line"><span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)x[sa[i]]=y[sa[i<span class="number">-1</span>]]==y[sa[i]]&amp;&amp;y[sa[i<span class="number">-1</span>]+k]==y[sa[i]+k]?num<span class="number">-1</span>:num++;</span><br><span class="line"><span class="keyword">if</span>(num&gt;=n)<span class="keyword">break</span>;<span class="comment">//排序完成的字符数到了n，也就是没有不同排名的后缀了，那么退出</span></span><br><span class="line">m=num;<span class="comment">//优化一下循环</span></span><br></pre></td></tr></table></figure>
+
 <p>多次类似倍增后，即可得到结果。</p>
 <h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 1000010</span></span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="keyword">int</span> x[N],y[N],sa[N],c[<span class="number">10</span>*N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,k,n,m=<span class="number">10000</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">    n=<span class="built_in">strlen</span>(s);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[i]=s[i]]++;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[i]]]=i;</span><br><span class="line">    <span class="keyword">for</span>(k=<span class="number">1</span>;k&lt;=n;k&lt;&lt;=<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> num=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=n-k;i&lt;n;i++)y[num++]=i;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(sa[i]&gt;=k)y[num++]=sa[i]-k;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)c[i]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)c[x[y[i]]]++;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;m;i++)c[i]+=c[i<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">for</span>(i=n<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)sa[--c[x[y[i]]]]=y[i];</span><br><span class="line">        <span class="built_in">std</span>::swap(x,y);</span><br><span class="line">        num=<span class="number">1</span>;</span><br><span class="line">        x[sa[<span class="number">0</span>]]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;n;i++)</span><br><span class="line">            x[sa[i]]=y[sa[i<span class="number">-1</span>]]==y[sa[i]]&amp;&amp;y[sa[i<span class="number">-1</span>]+k]==y[sa[i]+k]?num<span class="number">-1</span>:num++;</span><br><span class="line">        <span class="keyword">if</span>(num&gt;=n)<span class="keyword">break</span>;</span><br><span class="line">        m=num;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="built_in">printf</span>(<span class="string">"%d "</span>,sa[i]+<span class="number">1</span>);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>可是光排序似乎做不了什么事呢！</p>
 <p>引入一个数组$height[i]$，它代表的意义是，排序第$i$和第$i-1$的两个后缀的最长公共前缀。用符号语言表示就是：$height[i]=LCP(suffix(sa[i]),suffix(sa[i-1]))$。（$suffix(i)$表示以$i$为开头的后缀）</p>
 <p>那么如何求这个数组呢？单纯的暴力去求，复杂度是爆炸的$O(n^2)$。</p>
@@ -631,18 +632,22 @@
 <p>设$h[i]=height[rank[i]]$，即$h[i]$表示$suffix(i)$和比$suffix(i)$排名靠前一个的后缀的$LCP$，则有$h[i]\geq h[i-1]-1$（证明略去，手推思考一下就是这么一回事）。故从头枚举$suffix(i)$，递推可以算出$height$数组。</p>
 <p>于是就有了这段代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">geth</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)rank[sa[i]]=i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!rank[i])&#123;</span><br><span class="line">            height[<span class="number">0</span>]=k=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">continue</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">if</span>(k)k--;</span><br><span class="line">        j=sa[rank[i]<span class="number">-1</span>];</span><br><span class="line">        <span class="keyword">while</span>(s[i+k]==s[j+k])k++;</span><br><span class="line">        height[rank[i]]=k;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>学到这里的时候一直不明白这个数组为什么要叫$height$，刚刚才弄明白原来他的意思是后缀$trie$上的从左到右相邻两个末端节点（指代表后缀结束处的节点）$LCA$的深度。</p>
 <p>所以就可以用这个特殊的性质解决问题了。</p>
 <h3 id="问题1-求LCP-suffix-i-suffix-j"><a href="#问题1-求LCP-suffix-i-suffix-j" class="headerlink" title="问题1 求LCP(suffix(i),suffix(j))"></a>问题1 求LCP(suffix(i),suffix(j))</h3><p>也就是求$min(height[k]),k∈[i+1,j]$（假设$i$排名靠前）。用$ST$表+$RMQ$或者线段树查询即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> n)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)st[<span class="number">0</span>][i]=height[i];</span><br><span class="line">    <span class="keyword">for</span>(i=n<span class="number">-1</span>;i;i--)</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;(<span class="number">1</span>&lt;&lt;j)+i<span class="number">-1</span>&lt;=n;j++)</span><br><span class="line">            st[j][i]=<span class="built_in">std</span>::min(st[j<span class="number">-1</span>][i],st[j<span class="number">-1</span>][i+(<span class="number">1</span>&lt;&lt;(j<span class="number">-1</span>))]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">query</span><span class="params">(<span class="keyword">int</span> l,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> m=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">if</span>(l&gt;r)<span class="built_in">std</span>::swap(l,r);</span><br><span class="line">    l++;</span><br><span class="line">    <span class="keyword">while</span>((<span class="number">1</span>&lt;&lt;(m+<span class="number">1</span>))&lt;r-l+<span class="number">1</span>)m++;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">std</span>::min(st[m][l],st[m][r-(<span class="number">1</span>&lt;&lt;m)+<span class="number">1</span>]);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;q);</span><br><span class="line">    <span class="keyword">while</span>(q--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;l,&amp;r);</span><br><span class="line">        <span class="keyword">if</span>(l==r)<span class="built_in">printf</span>(<span class="string">"%d\n"</span>,n-l);</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            l=rank[l];r=rank[r];</span><br><span class="line">            <span class="keyword">if</span>(l&gt;r)swap(l,r);</span><br><span class="line">            <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,query(l+<span class="number">1</span>,r));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="问题2-求可以重叠的最长重复子串"><a href="#问题2-求可以重叠的最长重复子串" class="headerlink" title="问题2 求可以重叠的最长重复子串"></a>问题2 求可以重叠的最长重复子串</h3><p>显然，求出$max(height[i])$即可。</p>
 <p>（强迫症贴个代码）</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)ans=max(ans,height[i]);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="问题3-求不可重叠的最长重复子串"><a href="#问题3-求不可重叠的最长重复子串" class="headerlink" title="问题3 求不可重叠的最长重复子串"></a>问题3 求不可重叠的最长重复子串</h3><p>考虑到可以枚举答案且答案具有单调性，故考虑二分答案。</p>
 <p>问题转化成：是否存在两个长度为$mid$的相同的串，他们的起始位置相差大于等于$mid$。</p>
 <p>在后缀数组中转化成：$LCP(i,j)\geq mid,sa[j]-sa[i]\geq mid$。</p>
 <p>于是在$height[i]&lt;mid$的地方设置隔板，在每一个小区间内求出$sa$数组的最大最小值，判断即可。</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">jud</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,mx=<span class="number">-1e9</span>,mn=<span class="number">1e9</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(height[i]&lt;mid)mx=mn=sa[i];</span><br><span class="line">        <span class="keyword">else</span>&#123;</span><br><span class="line">            mx=max(mx,sa[i]);</span><br><span class="line">            mn=min(mn,sa[i]);</span><br><span class="line">            <span class="keyword">if</span>(mx-mn&gt;=mid)<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">solve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> l=<span class="number">0</span>,r=n,ans=<span class="number">0</span>,mid;</span><br><span class="line">    <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">        mid=(l+r)&gt;&gt;<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">if</span>(jud(mid))l=mid+<span class="number">1</span>,ans=mid;</span><br><span class="line">        <span class="keyword">else</span> r=mid;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>见<a href="https://potassiumwings.github.io/2019/05/05/vjudge299952suffixarraypractice/" target="_blank" rel="noopener">这里</a></p>
 <h2 id="后缀自动机"><a href="#后缀自动机" class="headerlink" title="后缀自动机"></a>后缀自动机</h2><p>此坑待填。</p>
 

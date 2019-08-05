@@ -107,19 +107,19 @@
     })();
   </script>
 
-  <meta name="description" content="Solved A B C D E     5/5 Ø O Ø O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+  <meta name="description" content="Solved A B C D E    5/5 Ø O Ø O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019 BUAA Spring Training 10 题解">
 <meta property="og:url" content="http://yoursite.com/2019/06/02/2019springtraining-10/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="Solved A B C D E     5/5 Ø O Ø O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta property="og:description" content="Solved A B C D E    5/5 Ø O Ø O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/luogucf434e.png">
 <meta property="og:updated_time" content="2019-06-05T13:43:07.265Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 10 题解">
-<meta name="twitter:description" content="Solved A B C D E     5/5 Ø O Ø O O     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:description" content="Solved A B C D E    5/5 Ø O Ø O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="twitter:image" content="http://yoursite.com/images/luogucf434e.png">
 
 
@@ -475,25 +475,23 @@
         <table>
 <thead>
 <tr>
-<th style="text-align:left">Solved</th>
-<th style="text-align:left">A</th>
-<th style="text-align:left">B</th>
-<th style="text-align:left">C</th>
-<th style="text-align:left">D</th>
-<th style="text-align:left">E</th>
+<th align="left">Solved</th>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">D</th>
+<th align="left">E</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">5/5</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">O</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">O</td>
-<td style="text-align:left">O</td>
+<tbody><tr>
+<td align="left">5/5</td>
+<td align="left">Ø</td>
+<td align="left">O</td>
+<td align="left">Ø</td>
+<td align="left">O</td>
+<td align="left">O</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <ul>
 <li>O for passing during the contest</li>
 <li>Ø for passing after the contest</li>
@@ -501,9 +499,10 @@
 <li>· for having not attempted yet</li>
 </ul>
 <a id="more"></a>
+
 <p><a href="https://vjudge.net/contest/305232" target="_blank" rel="noopener">比赛链接</a></p>
 <h3 id="A-CF434E-Furukawa-Nagisa’s-Tree"><a href="#A-CF434E-Furukawa-Nagisa’s-Tree" class="headerlink" title="A CF434E - Furukawa Nagisa’s Tree"></a>A CF434E - Furukawa Nagisa’s Tree</h3><blockquote>
-<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一棵树，每个点有给定权值$val_i$。定义一个长度为$l$的简单路径$[u,v]$是好的当且仅当$(\sum_{i=0}^{l-1}val_ik^i)\%y=x$。问有多少条路径$[u,v]$满足$[u,p][p,v][u,v]$三条路径同好坏，其中$p$为$[u,v]$上一点。</p>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一棵树，每个点有给定权值$val_i$。定义一个长度为$l$的简单路径$[u,v]$是好的当且仅当$(\sum_{i=0}^{l-1}val_ik^i)%y=x$。问有多少条路径$[u,v]$满足$[u,p][p,v][u,v]$三条路径同好坏，其中$p$为$[u,v]$上一点。</p>
 <h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>太神了这题orz</p>
 <p>首先我们观察任意三点构成的带方向和好坏的三角形，共有八种，有两种是答案所求，这两种需要满足三条边同好坏，不是很好求得。所以我们考虑，任意一个不符合答案要求的三角形必然满足有两个点连接两条不同好坏的边，这就可以与第三边脱离关系了，可以用点分治求解。</p>
 <p>我们假设一个点$i$作为好边终点有$in[1][i]$种，作为坏边终点有$in[0][i]$种，作为好边起点有$out[1][i]$种，作为坏边起点有$out[0][i]$种。</p>
@@ -516,7 +515,7 @@
 <p>而对于最后的答案，因为是枚举每一个顶点，所以一个坏三角形会被计数两次，所以需要再除以二。</p>
 <p>说了一大串，下面进入正题。</p>
 <p>我们要统计的是经过给定树根的路径的起点与终点的$in,out$值。</p>
-<p>首先，在$calc$里通过$dfs$可以很容易地得出每一个子树中的节点$p$到根的$up[p]$和$down[p]$值（从该节点向根走，从根走到该节点）。一条通过$rt$的路径$[p,q]$是好的当且仅当$(up[p]-val[rt]+down[q]\times k^{depth[p]})\%y=x$。化一下式子，把$p,q$分离开，有$(buc1(p)=(-up[p]+val[rt]+x)\times k^{-depth[p]}\%y)=(buc2(q)=down[q]\%y)$。</p>
+<p>首先，在$calc$里通过$dfs$可以很容易地得出每一个子树中的节点$p$到根的$up[p]$和$down[p]$值（从该节点向根走，从根走到该节点）。一条通过$rt$的路径$[p,q]$是好的当且仅当$(up[p]-val[rt]+down[q]\times k^{depth[p]})%y=x$。化一下式子，把$p,q$分离开，有$(buc1(p)=(-up[p]+val[rt]+x)\times k^{-depth[p]}%y)=(buc2(q)=down[q]%y)$。</p>
 <p>于是，找到所有通过$rt$的路径的$buc1,buc2$以及其对应起止点，排一下序，即可双指针线性找出每一个起止点对应的$in,out$值增量。我们发现这里重复统计了在相同子树里的不合法路径，故需要把这些东西容斥掉。</p>
 <p>时间复杂度$O(\log n(n+n\log n))=O(n\log^2n)$。</p>
 <h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">

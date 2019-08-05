@@ -107,18 +107,18 @@
     })();
   </script>
 
-  <meta name="description" content="Solved A B C D E F G H I J     6/10 . O . Ø . Ø Ø O . Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+  <meta name="description" content="Solved A B C D E F G H I J    6/10 . O . Ø . Ø Ø O . Ø    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019牛客暑期多校训练营第三场 题解">
 <meta property="og:url" content="http://yoursite.com/2019/07/25/2019nowcodersummercontest-3/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="Solved A B C D E F G H I J     6/10 . O . Ø . Ø Ø O . Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta property="og:description" content="Solved A B C D E F G H I J    6/10 . O . Ø . Ø Ø O . Ø    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-07-31T19:29:55.173Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019牛客暑期多校训练营第三场 题解">
-<meta name="twitter:description" content="Solved A B C D E F G H I J     6/10 . O . Ø . Ø Ø O . Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:description" content="Solved A B C D E F G H I J    6/10 . O . Ø . Ø Ø O . Ø    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 
 
 
@@ -473,35 +473,33 @@
         <table>
 <thead>
 <tr>
-<th style="text-align:left">Solved</th>
-<th style="text-align:left">A</th>
-<th style="text-align:left">B</th>
-<th style="text-align:left">C</th>
-<th style="text-align:left">D</th>
-<th style="text-align:left">E</th>
-<th style="text-align:left">F</th>
-<th style="text-align:left">G</th>
-<th style="text-align:left">H</th>
-<th style="text-align:left">I</th>
-<th style="text-align:left">J</th>
+<th align="left">Solved</th>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">D</th>
+<th align="left">E</th>
+<th align="left">F</th>
+<th align="left">G</th>
+<th align="left">H</th>
+<th align="left">I</th>
+<th align="left">J</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">6/10</td>
-<td style="text-align:left">.</td>
-<td style="text-align:left">O</td>
-<td style="text-align:left">.</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">.</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">O</td>
-<td style="text-align:left">.</td>
-<td style="text-align:left">Ø</td>
+<tbody><tr>
+<td align="left">6/10</td>
+<td align="left">.</td>
+<td align="left">O</td>
+<td align="left">.</td>
+<td align="left">Ø</td>
+<td align="left">.</td>
+<td align="left">Ø</td>
+<td align="left">Ø</td>
+<td align="left">O</td>
+<td align="left">.</td>
+<td align="left">Ø</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <ul>
 <li>O for passing during the contest</li>
 <li>Ø for passing after the contest</li>
@@ -509,6 +507,7 @@
 <li>· for having not attempted yet</li>
 </ul>
 <a id="more"></a>
+
 <p><a href="https://ac.nowcoder.com/acm/contest/883" target="_blank" rel="noopener">比赛链接</a></p>
 <h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><blockquote>
 <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
@@ -531,9 +530,9 @@
 </div></div>
 </blockquote>
 <h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><blockquote>
-<h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><p>问有多少对$(i,j)$满足$A(i^j)\%p=0$，其中$1\leq i\leq n,1\leq j\leq m;p,n,m\leq 10^9$，$p$为素数，$A(x)=111…1$，共$x$个$1$。</p>
-<h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><p>等价变形为：$10^{i^j}\%9p=1$</p>
-<p>先求$10^n\%9p$的循环节$d$。显然有$n=2,n=5$时该式子不可能为$1$；其他时候可枚举$\phi(9p)$的因子。（提前推出了$p=3$的结论：循环节为$3$，所以也可以特判$3$然后枚举$\phi(p)$的因子）</p>
+<h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><p>问有多少对$(i,j)$满足$A(i^j)%p=0$，其中$1\leq i\leq n,1\leq j\leq m;p,n,m\leq 10^9$，$p$为素数，$A(x)=111…1$，共$x$个$1$。</p>
+<h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><p>等价变形为：$10^{i^j}%9p=1$</p>
+<p>先求$10^n%9p$的循环节$d$。显然有$n=2,n=5$时该式子不可能为$1$；其他时候可枚举$\phi(9p)$的因子。（提前推出了$p=3$的结论：循环节为$3$，所以也可以特判$3$然后枚举$\phi(p)$的因子）</p>
 <p>$O(\log p\log\log p )$暴力求出$d$后，考虑有多少对$(i,j)$满足$d|i^j$。</p>
 <p>对于每一个$j$，对$d$质因数分解成$p_1^{k_1}p_2^{k_2}…p_t^{k_t}$后，满足条件的$i$必然为$g=p_1^{\lceil \frac{k_1}j\rceil}p_2^{\lceil \frac{k_2}j\rceil}…p_t^{\lceil \frac{k_t}j\rceil}$的整数倍（否则凑不成$d$的倍数），故这个$j$对答案的贡献为$\frac ng$。显然，在$j\geq max(k_p)$的时候贡献是相同的，于是枚举$j$到$min(30,m)$进行计算即可（因为显然$max(k_p)\leq 30$）。</p>
 <h4 id="AC代码-3"><a href="#AC代码-3" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">

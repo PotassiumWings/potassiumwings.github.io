@@ -395,6 +395,8 @@
         
           <p>因为这只Potassium太摸了，需要写一点题解，以防做了的题白做。</p>
 <a id="more"></a>
+
+
 <h2 id="AC自动机"><a href="#AC自动机" class="headerlink" title="AC自动机"></a>AC自动机</h2><h3 id="P3808-【模板】AC自动机（简单版）（完成时间：2018-12-06）"><a href="#P3808-【模板】AC自动机（简单版）（完成时间：2018-12-06）" class="headerlink" title="P3808 【模板】AC自动机（简单版）（完成时间：2018.12.06）"></a><a href="https://www.luogu.org/problemnew/show/P3808" target="_blank" rel="noopener">P3808 【模板】AC自动机（简单版）</a>（完成时间：2018.12.06）</h3><blockquote>
 <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给定$n$个模式串和$1$个文本串，求有多少个模式串在文本串里出现过。</p>
 <h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><p>$AC$自动机模板题。<br><del>那么我们首先考虑跑$n$次$kmp​$</del></p>
@@ -404,51 +406,49 @@
 <table>
 <thead>
 <tr>
-<th style="text-align:center">i</th>
-<th style="text-align:center">1</th>
-<th style="text-align:center">2</th>
-<th style="text-align:center">3</th>
-<th style="text-align:center">4</th>
-<th style="text-align:center">5</th>
-<th style="text-align:center">6</th>
-<th style="text-align:center">7</th>
-<th style="text-align:center">8</th>
-<th style="text-align:center">9</th>
-<th style="text-align:center">10</th>
-<th style="text-align:center">11</th>
+<th align="center">i</th>
+<th align="center">1</th>
+<th align="center">2</th>
+<th align="center">3</th>
+<th align="center">4</th>
+<th align="center">5</th>
+<th align="center">6</th>
+<th align="center">7</th>
+<th align="center">8</th>
+<th align="center">9</th>
+<th align="center">10</th>
+<th align="center">11</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:center">a[i]</td>
-<td style="text-align:center">a</td>
-<td style="text-align:center">a</td>
-<td style="text-align:center">b</td>
-<td style="text-align:center">a</td>
-<td style="text-align:center">b</td>
-<td style="text-align:center">a</td>
-<td style="text-align:center">a</td>
-<td style="text-align:center">b</td>
-<td style="text-align:center">a</td>
-<td style="text-align:center">b</td>
-<td style="text-align:center">b</td>
+<tbody><tr>
+<td align="center">a[i]</td>
+<td align="center">a</td>
+<td align="center">a</td>
+<td align="center">b</td>
+<td align="center">a</td>
+<td align="center">b</td>
+<td align="center">a</td>
+<td align="center">a</td>
+<td align="center">b</td>
+<td align="center">a</td>
+<td align="center">b</td>
+<td align="center">b</td>
 </tr>
 <tr>
-<td style="text-align:center">next[i]</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">0</td>
-<td style="text-align:center">1</td>
-<td style="text-align:center">2</td>
-<td style="text-align:center">3</td>
-<td style="text-align:center">4</td>
-<td style="text-align:center">5</td>
-<td style="text-align:center">0</td>
+<td align="center">next[i]</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">0</td>
+<td align="center">1</td>
+<td align="center">2</td>
+<td align="center">3</td>
+<td align="center">4</td>
+<td align="center">5</td>
+<td align="center">0</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>举个例子，$i=8$的时候，<strong>aab</strong>$ab$<strong>aab</strong>黑线标出的两段完全相等，用模式串比对到第九个如果失配可以直接跳回到$3$（即$next[8]$），这里用的是$p$作为已经比对过全部匹配的指向模式串的指针，而如果直接无法匹配，则直接跳回到原点（即$0$）。</p>
 <p>那么在$AC$自动机里，这个原点便是$trie$的根节点，用$fail$边起到和$kmp$中$next$数组一样的效果，从一棵枝条跳到另一棵枝条上，保证了从根节点到$fail[p]$这段路和刚刚走过来这段路是完全匹配的。这样就大大减少了时间。</p>
 <h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">Click_To_View_Code</div></div><div class="fold">

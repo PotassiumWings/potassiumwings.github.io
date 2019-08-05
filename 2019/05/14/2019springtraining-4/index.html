@@ -107,18 +107,18 @@
     })();
   </script>
 
-  <meta name="description" content="Solved A B C D E F     6/6 Ø Ø Ø Ø Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+  <meta name="description" content="Solved A B C D E F    6/6 Ø Ø Ø Ø Ø Ø    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019 BUAA Spring Training 4 题解">
 <meta property="og:url" content="http://yoursite.com/2019/05/14/2019springtraining-4/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="Solved A B C D E F     6/6 Ø Ø Ø Ø Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta property="og:description" content="Solved A B C D E F    6/6 Ø Ø Ø Ø Ø Ø    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:updated_time" content="2019-05-22T05:14:49.050Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 4 题解">
-<meta name="twitter:description" content="Solved A B C D E F     6/6 Ø Ø Ø Ø Ø Ø     O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:description" content="Solved A B C D E F    6/6 Ø Ø Ø Ø Ø Ø    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 
 
 
@@ -473,27 +473,25 @@
         <table>
 <thead>
 <tr>
-<th style="text-align:left">Solved</th>
-<th style="text-align:left">A</th>
-<th style="text-align:left">B</th>
-<th style="text-align:left">C</th>
-<th style="text-align:left">D</th>
-<th style="text-align:left">E</th>
-<th style="text-align:left">F</th>
+<th align="left">Solved</th>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">D</th>
+<th align="left">E</th>
+<th align="left">F</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td style="text-align:left">6/6</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">Ø</td>
-<td style="text-align:left">Ø</td>
+<tbody><tr>
+<td align="left">6/6</td>
+<td align="left">Ø</td>
+<td align="left">Ø</td>
+<td align="left">Ø</td>
+<td align="left">Ø</td>
+<td align="left">Ø</td>
+<td align="left">Ø</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <ul>
 <li>O for passing during the contest</li>
 <li>Ø for passing after the contest</li>
@@ -501,6 +499,7 @@
 <li>· for having not attempted yet</li>
 </ul>
 <a id="more"></a>
+
 <p><a href="https://vjudge.net/contest/301325" target="_blank" rel="noopener">比赛链接</a></p>
 <h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><blockquote>
 <h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一个$n\times m(1\leq n,m\leq 500)$的字符矩阵，问从左上角到右下角的路径（只能往右或者下走）中，有多少个路径得到的字符串为回文串。</p>
@@ -536,7 +535,7 @@
 <p>这时候本题最巧妙的地方到了。</p>
 <p>构造一个<strong>长度为$N$的环</strong>，一个个往里面填人$i$，记录下来$n,1,i$三个点是否高兴的状态进行转移。<br>最后统计答案的时候应当在某处断开构成一个环，所以需要记录第$i+1$个人的状态，以方便与$n,1$比较，方便去重。</p>
 <p>故$dp[bit(n)bit(1)][bit(i+1)bit(i)][i][j]$表示状态分别为表示之时，填到第$i$个人，已经有$j$个人高兴的方法。</p>
-<p>于是$r[i]=\sum_{a=0}^{3}\sum_{b=0}^{3}(!(a\&amp;1,b\&amp;2)\quad and\quad!(a\&amp;2,b\&amp;1))dp[a][b][n][i]$。（判断条件是为了去重）</p>
+<p>于是$r[i]=\sum_{a=0}^{3}\sum_{b=0}^{3}(!(a&amp;1,b&amp;2)\quad and\quad!(a&amp;2,b&amp;1))dp[a][b][n][i]$。（判断条件是为了去重）</p>
 <p>边界：$i=1$的时候，$bit(1)=bit(i)$，故$dp[0][0][1][0]=1$（都不高兴），$dp[2][0][1][1]=1$（第$n$个人高兴），$dp[0][2][1][1]=1$（第$i+1$个人高兴），$dp[1][1][1][1]=1$（第$1$个人高兴）。</p>
 <p>转移：</p>
 <p>$dp[a][b][i][j]$可以加一个人什么都不做转移到$dp[a][b&gt;&gt;1][i+1][j]$</p>
