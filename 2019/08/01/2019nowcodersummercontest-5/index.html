@@ -107,23 +107,23 @@
     })();
   </script>
 
-  <meta name="description" content="Solved A B C D E F G H I J    7/10 O O Ø . . O O O Ø .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+  <meta name="description" content="Solved A B C D E F G H I J    8/10 O O Ø . Ø O O O Ø .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2019牛客暑期多校训练营第五场 题解">
 <meta property="og:url" content="http://yoursite.com/2019/08/01/2019nowcodersummercontest-5/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="Solved A B C D E F G H I J    7/10 O O Ø . . O O O Ø .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta property="og:description" content="Solved A B C D E F G H I J    8/10 O O Ø . Ø O O O Ø .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="http://yoursite.com/images/pic1fornowcoder5.png">
 <meta property="og:image" content="http://yoursite.com/images/pic2fornowcoder5.png">
 <meta property="og:image" content="http://yoursite.com/images/pic3fornowcoder5.png">
 <meta property="og:image" content="http://yoursite.com/images/pic4fornowcoder5.png">
 <meta property="og:image" content="http://yoursite.com/images/pic5fornowcoder5.png">
-<meta property="og:updated_time" content="2019-08-05T16:20:41.494Z">
+<meta property="og:updated_time" content="2019-08-06T02:15:28.091Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019牛客暑期多校训练营第五场 题解">
-<meta name="twitter:description" content="Solved A B C D E F G H I J    7/10 O O Ø . . O O O Ø .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:description" content="Solved A B C D E F G H I J    8/10 O O Ø . Ø O O O Ø .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="twitter:image" content="http://yoursite.com/images/pic1fornowcoder5.png">
 
 
@@ -426,7 +426,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-08-06 00:20:41" itemprop="dateModified" datetime="2019-08-06T00:20:41+08:00">2019-08-06</time>
+                <time title="修改时间：2019-08-06 10:15:28" itemprop="dateModified" datetime="2019-08-06T10:15:28+08:00">2019-08-06</time>
               
             
           </span>
@@ -493,12 +493,12 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">7/10</td>
+<td align="left">8/10</td>
 <td align="left">O</td>
 <td align="left">O</td>
 <td align="left">Ø</td>
 <td align="left">.</td>
-<td align="left">.</td>
+<td align="left">Ø</td>
 <td align="left">O</td>
 <td align="left">O</td>
 <td align="left">O</td>
@@ -559,8 +559,10 @@
 </div></div>
 </blockquote>
 <h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><blockquote>
-<h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-4"><a href="#AC代码-4" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
-<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><p>给一张点最多有$26$个的图，求所有子图的独立集大小之和。</p>
+<h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><p>设某个子图为$s$状态，$f[s]$表示该状态独立集的大小。假设$x$为$s$的最低为$1$的位，有$f[s]$为去掉$x$的大小和去掉$x$连边大小$+1$的最大值，即$f[s]=max(f[s-(1&lt;&lt;x)],1+f[s&amp;(\text ~state[x])])$，其中$state[i]$表示和$i$连边或$i$本身的状态。</p>
+<h4 id="AC代码-4"><a href="#AC代码-4" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> state[<span class="number">30</span>];<span class="keyword">int</span> ans;</span><br><span class="line"><span class="keyword">char</span> dp[(<span class="number">1</span>&lt;&lt;<span class="number">26</span>)+<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,n,m,u,v,mb=<span class="number">-1</span>;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)state[i]|=<span class="number">1</span>&lt;&lt;i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;u,&amp;v);</span><br><span class="line">        state[u]|=<span class="number">1</span>&lt;&lt;v;</span><br><span class="line">        state[v]|=<span class="number">1</span>&lt;&lt;u;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;(<span class="number">1</span>&lt;&lt;n);i++)&#123;</span><br><span class="line">        mb+=(i&amp;(-i))==i;</span><br><span class="line">        dp[i]=max(dp[i-(<span class="number">1</span>&lt;&lt;mb)],(<span class="keyword">char</span>)(dp[i&amp;(~state[mb])]+<span class="number">1</span>));</span><br><span class="line">        ans+=dp[i];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%d"</span>,ans);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 </div></div>
 </blockquote>
