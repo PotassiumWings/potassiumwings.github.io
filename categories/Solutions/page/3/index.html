@@ -107,25 +107,20 @@
     })();
   </script>
 
-  <meta name="description" content="题目链接Jurassic Remains">
-<meta name="keywords" content="Solutions">
-<meta property="og:type" content="website">
-<meta property="og:title" content="UVA-1326 Jurassic Remains（中途相遇法）">
-<meta property="og:url" content="http://yoursite.com/bin/uva1326.html">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="Potassium&#39;s blog">
+<meta property="og:url" content="http://yoursite.com/categories/Solutions/page/3/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="题目链接Jurassic Remains">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-29T04:32:28.840Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UVA-1326 Jurassic Remains（中途相遇法）">
-<meta name="twitter:description" content="题目链接Jurassic Remains">
+<meta name="twitter:title" content="Potassium&#39;s blog">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/bin/uva1326.html">
+  <link rel="canonical" href="http://yoursite.com/categories/Solutions/page/3/">
 
 
 
@@ -135,7 +130,7 @@
   };
 </script>
 
-  <title>UVA-1326 Jurassic Remains（中途相遇法） | Potassium's blog</title>
+  <title>分类: Solutions | Potassium's blog</title>
   
 
 
@@ -183,7 +178,7 @@
     
   
 
-  <div class="container sidebar-position-left page-post-detail">
+  <div class="container sidebar-position-left ">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -272,7 +267,7 @@
         
         
           
-          <li class="menu-item menu-item-categories">
+          <li class="menu-item menu-item-categories menu-item-active">
 
     
     
@@ -366,66 +361,61 @@
           <div id="content" class="content">
             
 
-  <div id="posts" class="posts-expand">
-    
-    
-    
-    <div class="post-block page">
-      <header class="post-header">
-
-<h1 class="post-title" itemprop="name headline">UVA-1326 Jurassic Remains（中途相遇法）
-
-</h1>
-
-<div class="post-meta">
   
   
+  
+  <div class="post-block category">
 
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
-        
-        
-          <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://vjudge.net/problem/UVA-1326" target="_blank" rel="noopener">Jurassic Remains</a></p>
-<a id="more"></a>
-
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>由于直接状态压缩的消耗太大，分成两部分状态压缩解决，通过保存第一部分的状态，枚举第二部分的状态时$O(lgn)$寻找（$STL$的$map$），时间复杂度从$O(2^n)$降到$O(2^{\frac n2}logn)$。</p>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> n,state[<span class="number">50</span>];</span><br><span class="line"><span class="keyword">char</span> s[<span class="number">100010</span>];</span><br><span class="line"><span class="built_in">map</span>&lt;<span class="keyword">int</span>,<span class="keyword">int</span>&gt;m;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> p=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(x)p+=(x&amp;<span class="number">1</span>),x&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">return</span> p;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">while</span>(~<span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n)&amp;&amp;n)&#123;</span><br><span class="line">        m.clear();</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">            <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">            state[i]=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;s[j];j++)state[i]^=(<span class="number">1</span>&lt;&lt;(s[j]-<span class="string">'A'</span>));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> n1=n/<span class="number">2</span>,n2=n-n1,ans=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;n1);i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x=<span class="number">0</span>,cnt=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n1;j++)<span class="keyword">if</span>(i&amp;(<span class="number">1</span>&lt;&lt;j))x^=state[j],cnt++;</span><br><span class="line">            <span class="keyword">if</span>(!m.count(x)||cnt&gt;count(m[x]))m[x]=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;(<span class="number">1</span>&lt;&lt;n2);i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> x=<span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n2;j++)<span class="keyword">if</span>(i&amp;(<span class="number">1</span>&lt;&lt;j))x^=state[j+n1];</span><br><span class="line">            <span class="keyword">if</span>(m.count(x)&amp;&amp;count(m[x])+count(i)&gt;count(ans))</span><br><span class="line">                ans=(i&lt;&lt;n1)^m[x];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%d\n"</span>,count(ans));</span><br><span class="line">        <span class="keyword">int</span> flag=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)<span class="keyword">if</span>(ans&amp;(<span class="number">1</span>&lt;&lt;i))&#123;</span><br><span class="line">            <span class="keyword">if</span>(!flag)<span class="built_in">printf</span>(<span class="string">"%d"</span>,i+<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">else</span> <span class="built_in">printf</span>(<span class="string">" %d"</span>,i+<span class="number">1</span>);</span><br><span class="line">            flag=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"\n"</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-        
+    <div id="posts" class="posts-collapse">
+      <div class="collection-title">
+        <h1>Solutions<small>分类</small>
+        </h1>
       </div>
+
       
-      
+        
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+    <header class="post-header">
+
+      <h2 class="post-title">
+        
+          <a class="post-title-link" href="/2019/03/21/14thbcpc-pretest/" itemprop="url">
+            
+              <span itemprop="name">第十四届北航程序设计竞赛预赛题解</span>
+            
+          </a>
+        
+      </h2>
+
+      <div class="post-meta">
+        <time class="post-time" itemprop="dateCreated" datetime="2019-03-21T14:00:00+08:00" content="2019-03-21">
+          03-21
+        </time>
+      </div>
+
+    </header>
+  </article>
+
+
       
     </div>
-    
 
-
-
-    
-    
-    
   </div>
+  
+  
+  
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/categories/Solutions/page/2/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/categories/Solutions/">1</a><a class="page-number" href="/categories/Solutions/page/2/">2</a><span class="page-number current">3</span>
+  </nav>
+
+
 
 
           </div>
           
-
-  
-    <div class="comments" id="comments">
-    </div>
-
-  
-
-
 
         </div>
         
@@ -446,17 +436,8 @@
       
 
       
-        <ul class="sidebar-nav motion-element">
-          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            文章目录
-          </li>
-          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            站点概览
-          </li>
-        </ul>
-      
 
-      <div class="site-overview-wrap sidebar-panel">
+      <div class="site-overview-wrap sidebar-panel sidebar-panel-active">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -650,23 +631,6 @@
       </div>
 
       
-      <!--noindex-->
-        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
-          <div class="post-toc">
-
-            
-            
-            
-            
-
-            
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-number">3.</span> <span class="nav-text">AC代码</span></a></li></ol></div>
-            
-
-          </div>
-        </div>
-      <!--/noindex-->
-      
 
       
         <div class="back-to-top">
@@ -809,10 +773,6 @@
 
 
   
-  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
-<script src="/js/src/post-details.js?v=6.7.0"></script>
-
-
 
   
 
