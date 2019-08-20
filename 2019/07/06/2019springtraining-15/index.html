@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E F G H I J K L    6/12 . . . . O . O O O O . O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-07-09T06:12:58.303Z">
+<meta property="og:updated_time" content="2019-08-19T16:03:25.756Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 BUAA Spring Training 15 题解">
 <meta name="twitter:description" content="Solved A B C D E F G H I J K L    6/12 . . . . O . O O O O . O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-07-09 14:12:58" itemprop="dateModified" datetime="2019-07-09T14:12:58+08:00">2019-07-09</time>
+                <time title="修改时间：2019-08-20 00:03:25" itemprop="dateModified" datetime="2019-08-20T00:03:25+08:00">2019-08-20</time>
               
             
           </span>
@@ -573,8 +573,8 @@
 <h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><p>$n\leq 2e7$，$T\leq 1e5$组数据，求$\sum_{i=1}^n\sum_{j=1}^{i-1}[gcd(i+j,i-j)==1]$。</p>
 <h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><p>$\sum_{i=1}^n\sum_{j=1}^{i-1}[gcd(i+j,i-j)==1]$</p>
 <p>$=\sum_{i=1}^n\sum_{j=1}^{i-1}[gcd(i+j,2j)==1]$</p>
-<p>$=\sum_{i=1}^n\sum_{j=1}^{i-1}[gcd(i+j,j)==1\quad and\quad (i+j)&amp;1]$</p>
-<p>$=\sum_{i=1}^n\sum_{j=1}^{i-1}[gcd(i,j)==1\quad and\quad (i+j)&amp;1]$</p>
+<p>$=\sum_{i=1}^n\sum_{j=1}^{i-1}[gcd(i+j,j)==1\space and\space (i+j) \ &amp;1]$</p>
+<p>$=\sum_{i=1}^n\sum_{j=1}^{i-1}[gcd(i,j)==1\space and\space (i+j)\ &amp;1]$</p>
 <p>分类讨论，$i$为偶数时，所有偶数$j$都有$gcd(i,j)!=1$，故贡献为$\phi(i)$；$i$为奇数时，假设$gcd(i,j)==1$，则$gcd(i,i-j)==1$，$i$与$i-j$奇偶性相反，故贡献为$\frac{\phi(i)}2$。</p>
 <h4 id="AC代码-8"><a href="#AC代码-8" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N 20000000</span></span><br><span class="line"><span class="keyword">int</span> prime[N],a[N+<span class="number">10</span>]=&#123;<span class="number">1</span>,<span class="number">1</span>&#125;,cnt;</span><br><span class="line">ll phi[N+<span class="number">10</span>];</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">sieve</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">2</span>;i&lt;N;i++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!a[i])prime[++cnt]=i,phi[i]=i<span class="number">-1</span>;</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">1</span>;j&lt;=cnt&amp;&amp;prime[j]*i&lt;N;j++)&#123;</span><br><span class="line">            a[prime[j]*i]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(i%prime[j]==<span class="number">0</span>)&#123;</span><br><span class="line">                phi[i*prime[j]]=phi[i]*prime[j];</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;<span class="keyword">else</span> phi[i*prime[j]]=phi[i]*(prime[j]<span class="number">-1</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;N;++i)&#123;</span><br><span class="line">        <span class="keyword">if</span>(i&amp;<span class="number">1</span>)phi[i]&gt;&gt;=<span class="number">1</span>;</span><br><span class="line">        phi[i]+=phi[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> t,i,n;</span><br><span class="line">    sieve();</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,phi[n]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -729,7 +729,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">44</span>
+                    <span class="site-state-item-count">45</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
