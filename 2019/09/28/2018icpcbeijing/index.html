@@ -115,7 +115,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E F G H I J    6/10 O O O O . . . O O .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-28T17:25:52.282Z">
+<meta property="og:updated_time" content="2019-09-28T17:31:44.380Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018 ICPC Beijing Regional Contest 题解">
 <meta name="twitter:description" content="Solved A B C D E F G H I J    6/10 O O O O . . . O O .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
@@ -420,7 +420,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-09-29 01:25:52" itemprop="dateModified" datetime="2019-09-29T01:25:52+08:00">2019-09-29</time>
+                <time title="修改时间：2019-09-29 01:31:44" itemprop="dateModified" datetime="2019-09-29T01:31:44+08:00">2019-09-29</time>
               
             
           </span>
@@ -529,13 +529,13 @@
 <h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><p>求出满足$a^2+b^2=c^2,c\leq n$且$a,b,c&gt; 0$的三元组个数。</p>
 <h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p>$a^2+b^2=c^2$，于是$(a^2-b^2)^2+(2ab)^2=c^2$。故$a,b,c$必可表示为$a=x^2-y^2,b=2xy,c=x^2+y^2$的形式。易证，其中$a,b$必为一奇一偶，$c$必为奇数。</p>
 <p>设$f(x)$表示$c\leq x$的三元组数，$g(x)$表示本原的$c\leq x$的三元组数（即$gcd(a,b)=1$）。再设$F,G$分别为$f,g$的前缀和。那么有如下关系：</p>
-<p>$g(n)=\sum_{x=1}^{n}\sum_{y=1}^{n}[x^2+y^2=n][gcd(x,y)=1]<a href="[x%2==1][y%2==0]or[x%2==0][y%2==1]">x&gt;y</a>$</p>
+<p>$g(n)=\sum_{x=1}^{n}\sum_{y=1}^{n}[x^2+y^2=n][gcd(x,y)=1][x&gt;y]([x\space is\space odd][y\space is\space even]or[x\space is\space even][y\space is\space odd])$</p>
 <p>$=\sum_{x=1}^{n}\sum_{y=1}^{n}[x^2+y^2=n][gcd(x,y)=1][x%2==1][y%2==0]$</p>
 <p>$f(x)=\sum_{d|x}g(d)$</p>
 <p>$F(n)=\sum_{i=1}^{n}f(i)=\sum_{i=1}^{n}\sum_{d|i}g(d)=\sum_{d=1}^{n}\sum_{i=1}^{\lfloor\frac nd \rfloor}g(i)=\sum_{d=1}^{n}G(\lfloor\frac nd\rfloor)$</p>
 <p>$G(n)=\sum_{i=1}^{n}g(i)$</p>
-<p>$=\sum_{x=1}^{n}\sum_{y=1}^{n}[x^2+y^2\leq n][gcd(x,y)=1][x%2==1][y%2==0]$</p>
-<p>$=\sum_{x=1,x\ %2==1}^{n}\sum_{y=1,y\ %2==0}^{n}[x^2+y^2\leq n]\sum_{d|gcd(x,y)}\mu(d)$</p>
+<p>$=\sum_{x=1}^{n}\sum_{y=1}^{n}[x^2+y^2\leq n][gcd(x,y)=1][x\space is\space odd][y\space is\space even]$</p>
+<p>$=\sum_{x=1,x\space is\space odd}^{n}\sum_{y=1,y\space is\space even}^{n}[x^2+y^2\leq n]\sum_{d|gcd(x,y)}\mu(d)$</p>
 <p>$=\frac12\sum_{d=1}^{\sqrt{\frac n2}}(\sum_{x=1}^{n}\sum_{y=1}^{n}-\sum_{x=1,x\space is\space odd}^{n}\sum_{y=1,y\space is\space odd}^{n})[x^2+y^2\leq n][d|x][d|y]$</p>
 <p>$=\frac12\sum_{d=1}^{\sqrt{\frac n2}}(\sum_{i=1}^{\lfloor\frac{\sqrt{n}}d\rfloor}\sum_{y=1}^{n}[i^2d^2+y^2\leq n][d|y]-\sum_{i=1,id\space is\space odd}^{\lfloor\frac{\sqrt{n}}d\rfloor}\sum_{y=1}^{n}[i^2d^2+y^2\leq n][d|y])$</p>
 <p>$=\frac12\sum_{d=1}^{\sqrt{\frac n2}}(\sum_{i=1}^{\lfloor\frac {\sqrt{n}}d\rfloor}\sum_{j=1}^{\lfloor\frac {\sqrt{n-i^2d^2}}d\rfloor}1-\sum_{i=1,id\space is\space odd}^{\lfloor\frac {\sqrt{n}}d\rfloor}\sum_{j=1,jd\space is\space odd}^{\lfloor\frac {\sqrt{n-i^2d^2}}d\rfloor}1)$</p>
