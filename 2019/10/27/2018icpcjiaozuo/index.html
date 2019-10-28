@@ -107,20 +107,20 @@
     })();
   </script>
 
-  <meta name="description" content="Solved A B C D E F G H I J K L    8/11 O O Ø O O O . O O . . .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+  <meta name="description" content="Solved A B C D E F G H I J K L    8/12 O O Ø O O O . O O . . .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
 <meta property="og:type" content="article">
 <meta property="og:title" content="2018 ICPC Jiaozuo Regional Contest 题解">
 <meta property="og:url" content="http://yoursite.com/2019/10/27/2018icpcjiaozuo/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="Solved A B C D E F G H I J K L    8/11 O O Ø O O O . O O . . .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta property="og:description" content="Solved A B C D E F G H I J K L    8/12 O O Ø O O O . O O . . .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/jiaozuo2018-C.png">
-<meta property="og:updated_time" content="2019-10-28T19:32:31.592Z">
+<meta property="og:image" content="http://yoursite.com/images/jiaozuo2018-C.png">
+<meta property="og:updated_time" content="2019-10-28T19:40:41.821Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2018 ICPC Jiaozuo Regional Contest 题解">
-<meta name="twitter:description" content="Solved A B C D E F G H I J K L    8/11 O O Ø O O O . O O . . .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
-<meta name="twitter:image" content="http://yoursite.com/jiaozuo2018-C.png">
+<meta name="twitter:description" content="Solved A B C D E F G H I J K L    8/12 O O Ø O O O . O O . . .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:image" content="http://yoursite.com/images/jiaozuo2018-C.png">
 
 
 
@@ -422,7 +422,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2019-10-29 03:32:31" itemprop="dateModified" datetime="2019-10-29T03:32:31+08:00">2019-10-29</time>
+                <time title="修改时间：2019-10-29 03:40:41" itemprop="dateModified" datetime="2019-10-29T03:40:41+08:00">2019-10-29</time>
               
             
           </span>
@@ -491,7 +491,7 @@
 </tr>
 </thead>
 <tbody><tr>
-<td align="left">8/11</td>
+<td align="left">8/12</td>
 <td align="left">O</td>
 <td align="left">O</td>
 <td align="left">Ø</td>
@@ -540,7 +540,7 @@
 <p>有$m$次操作：将棋盘上所有棋子向上/下/左/右移动$x$格，棋子可重叠，不可超出边界；询问某个点坐标；询问有多少对棋子在同一个格子上。</p>
 <p>$1\leq n,m\leq 300000$</p>
 <h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p>考虑将边界向内收，用四个变量<code>lrud</code>记录上下左右收到哪里了，用另四个变量<code>LRUD</code>记录空出来的区域大小。（现在看来似乎只用后四个就行了）</p>
-<p><img src="/jiaozuo2018-C.png" alt></p>
+<p><img src="/images/jiaozuo2018-C.png" alt></p>
 <p>记录收起来的左上角、右上角、左下角、右下角的棋子个数（代码中使用了$cnt[1],cnt[3],cnt[7],cnt[9]$，因为刚开始的时候是当做九宫格处理的，后来发现只需要维护这四个即可），因为只有在这里相遇。然后每个点只能使用一次，记录一下即可。</p>
 <p>调了好久结果是一个$mplr$写成$mpud$的问题……</p>
 <p>这题没有一个中强的数据，提供一个：</p>
