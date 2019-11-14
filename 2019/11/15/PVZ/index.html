@@ -114,7 +114,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="最近忙于各种学业问题，算法只能先搁置一波了……">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-14T17:35:48.748Z">
+<meta property="og:updated_time" content="2019-11-14T17:38:08.624Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JAVA大作业编写思路">
 <meta name="twitter:description" content="最近忙于各种学业问题，算法只能先搁置一波了……">
@@ -402,7 +402,7 @@
                 
               
 
-              <time title="创建时间：2019-11-15 00:30:00 / 修改时间：01:35:48" itemprop="dateCreated datePublished" datetime="2019-11-15T00:30:00+08:00">2019-11-15</time>
+              <time title="创建时间：2019-11-15 00:30:00 / 修改时间：01:38:08" itemprop="dateCreated datePublished" datetime="2019-11-15T00:30:00+08:00">2019-11-15</time>
             
 
             
@@ -518,6 +518,7 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> controller.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SunProducer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Controller controller;</span><br><span class="line">    </span><br><span class="line">    SunProducer(Controller controller)&#123;</span><br><span class="line">        <span class="keyword">this</span>.controller = controller;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (controller.isRunning)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep((<span class="keyword">int</span>) (Math.random()*<span class="number">1000</span>)+<span class="number">7000</span>);</span><br><span class="line">                <span class="comment">//7~8s随机生成一个</span></span><br><span class="line">                <span class="keyword">new</span> Thread(<span class="keyword">new</span> Sun(controller)).start();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.currentThread().interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <p>到此为止，基本的向日葵有关的操作已经结束了。然后又向Plant、controller、card里面加了点关于豌豆射手的东西，接下来就该添加僵尸和子弹了。</p>
+<p>这里用了个map存名字和植物类型的关系，大概可以参考一下<a href="https://blog.csdn.net/qq_29373285/article/details/81487594" target="_blank" rel="noopener">java笔记–Map的用法 - CSDN</a></p>
 <h2 id="2019-11-15"><a href="#2019-11-15" class="headerlink" title="2019.11.15"></a>2019.11.15</h2><p>由于前几天考计组，又在补作业，被迫停了一段时间。这段时间里，梳理了一下大致需要做的方向：</p>
 <p>普通僵尸位置、碰撞、啃食、死亡逻辑；普通僵尸生成；子弹发射、碰撞逻辑；</p>
 <p>新植物及其逻辑；新僵尸及其逻辑；</p>
