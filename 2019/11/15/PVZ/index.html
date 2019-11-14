@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","width":240,"display":"post","offset":15,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script>
+    (function(){
+    if(''){
+    if (prompt('请输入文章密码') !== ''){
+    alert('密码错误！');
+    history.back();
+    }
+    }
+    })();
+  </script>
+
+  <meta name="description" content="最近忙于各种学业问题，算法只能先搁置一波了……">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JAVA大作业编写思路">
+<meta property="og:url" content="http://yoursite.com/2019/11/15/PVZ/index.html">
+<meta property="og:site_name" content="Potassium&#39;s blog">
+<meta property="og:description" content="最近忙于各种学业问题，算法只能先搁置一波了……">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-11-14T17:35:48.748Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="JAVA大作业编写思路">
+<meta name="twitter:description" content="最近忙于各种学业问题，算法只能先搁置一波了……">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/11/15/PVZ/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>JAVA大作业编写思路 | Potassium's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Potassium's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/potassiumwings" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/11/15/PVZ/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Potassium">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/main.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Potassium's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">JAVA大作业编写思路
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-11-15 00:30:00 / 修改时间：01:35:48" itemprop="dateCreated datePublished" datetime="2019-11-15T00:30:00+08:00">2019-11-15</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/11/15/PVZ/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2019/11/15/PVZ/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>最近忙于各种学业问题，算法只能先搁置一波了……</p>
+<a id="more"></a>
+
+<p><strong>本文出现的全部代码只是当时写完的版本，不是最终版本，最终版本（始终在更新）请移步github：<a href="https://github.com/PotassiumWings/MyPVZ" target="_blank" rel="noopener">MyPVZ</a></strong></p>
+<p>本来对大作业一筹莫展，在周日出去玩回来的地铁上被某人一语点醒：“可以做个植物大战僵尸呀！”</p>
+<p>好，似乎植物大战僵尸也就是几个格子，判断一下碰撞之类的东西，应该比较好写，那就收集一下图片啥的资源开始做吧。（然而到现在还没写到判断碰撞的逻辑……真是太低估这东西的难度了）</p>
+<h2 id="2019-11-10"><a href="#2019-11-10" class="headerlink" title="2019.11.10"></a>2019.11.10</h2><p>既然要写java，那得先会这门语言吧…还好两天前（周五）考过了java的期末，稍微搞明白了一点java与C系列语言直接面向过程编写代码的不同之处：首先得把一种东西视作对象，实现这个对象所要的需求，然后将这个对象实例化（new一个出来），进行所需要的一系列操作。</p>
+<p>好像确实没什么的，那就开始写吧。</p>
+<p>先找到了一份有img的源码，拿走img。</p>
+<p>既然是个游戏，我寻思不然就用前几天刚分析的2048的套路，controller+view+model吧（不过搞到后来似乎都没有model）。</p>
+<p>首先植物是个模型，先写个植物再说。</p>
+<h3 id="Plant-java"><a href="#Plant-java" class="headerlink" title="Plant.java"></a>Plant.java</h3><p>于是去学了一手JLabel和runnable实现动画效果，写了一下。</p>
+<p>对于植物，实现了一些属性：名字name、价格price、血量hp、当前外观照片pic、产出冷却时间CD（产阳光、发射子弹等等）、图像是否可以修改canChange（update：当时觉得card类需要extend一下，所以留了这么一个接口，没想到以后card没用到，倒是其他地方起了作用）、控制器controller、位置row column、两次动画间隔时间sleepTime、对应卡片冷却时间cardCD。由于它们都是private的，需要很多public的接口供外面使用，所以添加了一堆东西，但这不是主要的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//active model of Plants</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">package</span> view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> controller.*;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Plant</span> <span class="keyword">extends</span> <span class="title">JLabel</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    <span class="keyword">private</span> String name;</span><br><span class="line">    <span class="keyword">private</span> ImageIcon img;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> hp = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> price = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> pic = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> SumPic = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> CD; <span class="comment">// 冷却时间</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> Cnow = <span class="number">0</span>; <span class="comment">// 积累时间</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> canChange = <span class="keyword">false</span>; <span class="comment">// 图像是否为gif（区分card）</span></span><br><span class="line">    <span class="keyword">private</span> Controller controller;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> row, column;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> sleepTime;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> cardCD;<span class="comment">// 卡片冷却时间</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 实现一些接口</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getR</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> row;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getC</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> column;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCardCD</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cardCD;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCD</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> CD;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCnow</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> Cnow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPic</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> pic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setCnow</span><span class="params">(<span class="keyword">int</span> Cnow)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.Cnow=Cnow;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPos</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.row = row;</span><br><span class="line">        <span class="keyword">this</span>.column = column;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setController</span><span class="params">(Controller controller)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.controller = controller;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Controller <span class="title">getController</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> controller;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.name;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.price;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">attacked</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.hp--;</span><br><span class="line">        <span class="keyword">if</span> (hp == <span class="number">0</span>) &#123;</span><br><span class="line">            die();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">die</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// System.out.println(name + " is dead.");</span></span><br><span class="line">        controller.plantDeath(row, column);</span><br><span class="line">        <span class="keyword">this</span>.setVisible(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">attack</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="comment">// to-do</span></span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>同时实现了一些SunFlower、Plant初始化的小问题。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> Plant <span class="title">getPlant</span><span class="params">(String name)</span> </span>&#123;</span><br><span class="line">    Plant newPlant = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">switch</span> (name) &#123;</span><br><span class="line">    <span class="keyword">case</span> <span class="string">"SunFlower"</span>:</span><br><span class="line">        newPlant = <span class="keyword">new</span> Plant().SunFlower();</span><br><span class="line">        <span class="keyword">break</span>;</span><br><span class="line">    <span class="comment">//TO-DO</span></span><br><span class="line">    <span class="keyword">return</span> newPlant;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Plant</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.img = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.name = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">this</span>.price = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">this</span>.hp = <span class="number">0</span>;</span><br><span class="line">    <span class="comment">//this.attack = 0;</span></span><br><span class="line">    <span class="keyword">this</span>.SumPic = <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="title">Plant</span><span class="params">(String name, <span class="keyword">int</span> price, <span class="keyword">int</span> attack, <span class="keyword">int</span> hp, <span class="keyword">int</span> SumPic, <span class="keyword">boolean</span> canChange)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// System.out.println("Set " + name + ".");</span></span><br><span class="line">    <span class="comment">// System.out.println("Price:" + price);</span></span><br><span class="line">    <span class="comment">// System.out.println("Attack:" + attack);</span></span><br><span class="line">    <span class="comment">// System.out.println("HP:" + hp);</span></span><br><span class="line">    <span class="keyword">this</span>.canChange = canChange;</span><br><span class="line">    <span class="keyword">this</span>.img = <span class="keyword">new</span> ImageIcon(<span class="string">"img\\"</span> + <span class="keyword">this</span>.name + <span class="string">"\\"</span> + <span class="keyword">this</span>.name + <span class="string">"_"</span> + <span class="string">"0.png"</span>);</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">    <span class="keyword">this</span>.price = price;</span><br><span class="line">    <span class="keyword">this</span>.hp = hp;</span><br><span class="line">    <span class="comment">//this.attack = attack;</span></span><br><span class="line">    <span class="keyword">this</span>.SumPic = SumPic;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// various plants</span></span><br><span class="line"><span class="comment">// price attack hp sumpic canchange</span></span><br><span class="line"><span class="function"><span class="keyword">public</span> Plant <span class="title">SunFlower</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    Plant tempPlant = <span class="keyword">new</span> Plant(<span class="string">"SunFlower"</span>, <span class="number">50</span>, <span class="number">0</span>, <span class="number">300</span>, <span class="number">17</span>, <span class="keyword">true</span>);</span><br><span class="line">    tempPlant.CD = <span class="number">24000</span> / <span class="number">90</span>;</span><br><span class="line">    tempPlant.cardCD = <span class="number">7500</span>;</span><br><span class="line">    tempPlant.sleepTime = <span class="number">90</span>;</span><br><span class="line">    <span class="keyword">return</span> tempPlant;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// TO-DO:PLANTS</span></span><br></pre></td></tr></table></figure>
+
+<p>主要的就是两部分：重写paintComponent和重写run。这也是贯穿整个项目外观的两个重要部分：线程运行run，外观通过paintComponent改变。</p>
+<p>paintComponent主要实现了当前JLabel标签的image，在植物方面大概只需要画底部阴影shadow和植物主体img就可以了。</p>
+<p>run是Runnable接口调用的关键，是线程运行的主体。当植物存活的时候，不停积累产出冷却所需时间并重画（repaint），期间需要让线程sleep一段时间保证计算不过于频繁。</p>
+<p>关于线程，参考资料：<a href="https://www.jianshu.com/p/95b5eb630079" target="_blank" rel="noopener">Java Thread线程使用、线程安全（一） - 简书</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">picChange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        pic = (pic + <span class="number">1</span>) % SumPic;</span><br><span class="line">        img = <span class="keyword">new</span> ImageIcon(<span class="string">"img\\"</span> + <span class="keyword">this</span>.name + <span class="string">"\\"</span> + <span class="keyword">this</span>.name + <span class="string">"_"</span> + pic + <span class="string">".png"</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">accumulate</span><span class="params">()</span> </span>&#123;<span class="comment">// accumulate to CD?</span></span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">this</span>.canChange == <span class="keyword">false</span>)</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">this</span>.picChange();</span><br><span class="line">        <span class="keyword">this</span>.Cnow = <span class="keyword">this</span>.Cnow + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.paintComponent(g);</span><br><span class="line">        Graphics2D g2 = (Graphics2D) g;</span><br><span class="line">        <span class="comment">// 植物底部阴影</span></span><br><span class="line">        ImageIcon shadow = <span class="keyword">new</span> ImageIcon(<span class="string">"img\\shadow.png"</span>);</span><br><span class="line">        g2.drawImage(shadow.getImage(), -<span class="number">11</span>, <span class="number">45</span>, shadow.getIconWidth(), shadow.getIconHeight(), <span class="keyword">null</span>);</span><br><span class="line">        g.drawImage(img.getImage(), <span class="number">0</span>, <span class="number">0</span>, img.getIconWidth(), img.getIconHeight(), <span class="keyword">null</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (hp &gt;= <span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(sleepTime);</span><br><span class="line">                <span class="keyword">this</span>.accumulate();</span><br><span class="line">                <span class="keyword">if</span>(<span class="keyword">this</span>.getCnow()&gt;=<span class="keyword">this</span>.getCD())&#123;</span><br><span class="line">                    <span class="keyword">this</span>.setCnow(<span class="number">0</span>);</span><br><span class="line">                    <span class="comment">//TO-DO:SunProduce</span></span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.repaint();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>大概plant部分就到此为止。</p>
+<h3 id="Controller-java"><a href="#Controller-java" class="headerlink" title="Controller.java"></a>Controller.java</h3><p>接下来就是最主要的控制器了。</p>
+<p>控制器是各个部件的中枢，所有的对象通过这个控制器对其他对象产生影响。</p>
+<p>所以除了要实现植物的矩阵之外，也要预留一下卡片、小车、僵尸、太阳等的位置（在此没有预留小车位置），同时在种植过程中，图片应当跟随鼠标进行显示，因此还需要一个鼠标事件监听器和JPanel。</p>
+<p>同时，控制器需要向gameboardview传输信号，因此将整个gameboard作为一个JLayeredPane处理。</p>
+<p>关于JFrame的层次结构，参考资料：<a href="https://blog.csdn.net/qq_32006373/article/details/49659129" target="_blank" rel="noopener">JFrame 的层次结构 - CSDN</a></p>
+<p>关于鼠标事件监听器，参考资料：<a href="https://blog.csdn.net/wengduke/article/details/84985125" target="_blank" rel="noopener">MouseListener与MouseAdapter的区别 - CSDN</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> controller;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> view.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseAdapter;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseMotionListener;</span><br><span class="line"><span class="keyword">import</span> java.util.HashMap;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.ImageIcon;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JFrame;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLabel;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLayeredPane;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JPanel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Controller</span> </span>&#123;</span><br><span class="line">    <span class="comment">//appearance</span></span><br><span class="line">    <span class="keyword">private</span> JFrame frame;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> cardHeight = <span class="number">90</span>, cardWidth = <span class="number">45</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> tileHeight = <span class="number">100</span>, tileWidth = <span class="number">80</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//plants</span></span><br><span class="line">    <span class="keyword">private</span> Plant[][] plants = <span class="keyword">new</span> Plant[<span class="number">5</span>][<span class="number">9</span>];</span><br><span class="line">    <span class="keyword">public</span> Plant nowPlant = <span class="keyword">null</span>;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//sun</span></span><br><span class="line">    <span class="keyword">private</span> JLabel sunCount = <span class="keyword">new</span> JLabel();</span><br><span class="line"></span><br><span class="line">    <span class="comment">//mouse</span></span><br><span class="line">    <span class="keyword">private</span> Point mouseP;</span><br><span class="line">    <span class="keyword">private</span> JLayeredPane layeredPane;</span><br><span class="line">    <span class="keyword">private</span> TopPanel topPanel = <span class="keyword">new</span> TopPanel();</span><br><span class="line">    <span class="keyword">private</span> ImageIcon preImg;</span><br><span class="line">    <span class="keyword">private</span> ImageIcon blurImg;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//state</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">boolean</span> isRunning=<span class="keyword">false</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setLayeredPane</span><span class="params">(JLayeredPane gameboardView)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.layeredPane = gameboardView;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JLayeredPane <span class="title">getLayeredPane</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> layeredPane;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setFrame</span><span class="params">(JFrame frame)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.frame = frame;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JFrame <span class="title">getFrame</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">this</span>.frame;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Point <span class="title">getP</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> topPanel.getMousePosition();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setP</span><span class="params">(Point p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.mouseP = p;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> JPanel <span class="title">getTopPanel</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> topPanel;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setPreImg</span><span class="params">(ImageIcon preImg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.preImg=preImg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setBlurImg</span><span class="params">(ImageIcon blurImg)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.blurImg=blurImg;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//鼠标移动效果，选中的植物</span></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">TopPanel</span> <span class="keyword">extends</span> <span class="title">JPanel</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">        Graphics2D g2;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">super</span>.paintComponent(g);</span><br><span class="line">            g2 = (Graphics2D) g;</span><br><span class="line">            Point mouseP = getP();</span><br><span class="line">            <span class="keyword">if</span> (mouseP != <span class="keyword">null</span>) &#123;</span><br><span class="line">                <span class="keyword">int</span> c = (mouseP.x - <span class="number">40</span>) / <span class="number">80</span>;</span><br><span class="line">                <span class="keyword">int</span> r = (mouseP.y - <span class="number">90</span>) / <span class="number">100</span>;</span><br><span class="line">                <span class="keyword">if</span> (isOnGrass(r, c) &amp;&amp; plants[r][c] == <span class="keyword">null</span>) &#123;</span><br><span class="line">                    g2.drawImage(blurImg.getImage(), <span class="number">40</span> + c * <span class="number">80</span>, <span class="number">90</span> + r * <span class="number">100</span>, <span class="keyword">this</span>);</span><br><span class="line">                &#125;</span><br><span class="line">                g2.drawImage(preImg.getImage(), mouseP.x - <span class="number">35</span>, mouseP.y - <span class="number">40</span>, </span><br><span class="line">                             preImg.getIconWidth(),</span><br><span class="line">                             preImg.getIconWidth(), <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">            Image offScreenImage = <span class="keyword">this</span>.createImage(<span class="number">800</span>, <span class="number">600</span>);</span><br><span class="line">            Graphics gImage = offScreenImage.getGraphics();</span><br><span class="line">            paint(gImage);</span><br><span class="line">            <span class="keyword">if</span> (mouseP != <span class="keyword">null</span>) &#123;</span><br><span class="line">                g.drawImage(offScreenImage, mouseP.x - <span class="number">35</span>, mouseP.y - <span class="number">40</span>, <span class="keyword">null</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">plantDeath</span><span class="params">(<span class="keyword">int</span> row, <span class="keyword">int</span> column)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (plants[row][column] != <span class="keyword">null</span>) &#123;</span><br><span class="line">            System.out.println(<span class="string">"Error occurred:deleted a non-exist plant from ("</span> + row + <span class="string">","</span> + column + <span class="string">")"</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">//System.out.println(plants[row][column].getName() + " is dead at(" + row + "," + column + ")");</span></span><br><span class="line">        plants[row][column] = <span class="keyword">null</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">boolean</span> <span class="title">isOnGrass</span><span class="params">(<span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;<span class="comment">// (r,c)-&gt;grass</span></span><br><span class="line">        <span class="keyword">return</span> r &gt;= <span class="number">0</span> &amp;&amp; r &lt; numRow &amp;&amp; c &gt;= <span class="number">0</span> &amp;&amp; c &lt; numCol;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//鼠标选中的植物卡牌下标</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> selectedIndex = -<span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setSelectedIndex</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.selectedIndex = x;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getSelectedIndex</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> selectedIndex;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">myMouseListener</span> <span class="keyword">extends</span> <span class="title">MouseAdapter</span> <span class="keyword">implements</span> <span class="title">MouseMotionListener</span> </span>&#123;</span><br><span class="line">        <span class="keyword">private</span> TopPanel topPanel;</span><br><span class="line"></span><br><span class="line">        myMouseListener(TopPanel topPanel) &#123;</span><br><span class="line">            <span class="keyword">this</span>.topPanel = topPanel;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseClicked</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">            Point p = getP();</span><br><span class="line">            <span class="keyword">if</span>(p==<span class="keyword">null</span>)<span class="keyword">return</span>;</span><br><span class="line">            <span class="comment">//TO-DO 种植</span></span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseMoved</span><span class="params">(MouseEvent e)</span></span>&#123;</span><br><span class="line">            setP(e.getPoint());</span><br><span class="line">            topPanel.repaint();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mousePressed</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseEntered</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseDragged</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseExited</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">plant</span><span class="params">(<span class="keyword">int</span> r,<span class="keyword">int</span> c,Plant plant)</span></span>&#123;</span><br><span class="line">        plant.setController(<span class="keyword">this</span>);</span><br><span class="line">        plant.setVisible(<span class="keyword">true</span>);</span><br><span class="line">        plant.setBounds(<span class="number">45</span> + c * <span class="number">80</span>, <span class="number">90</span> + r * <span class="number">100</span>, <span class="number">300</span>, <span class="number">300</span>);</span><br><span class="line">        plant.setPos(r, c);</span><br><span class="line">        layeredPane.add(plant, <span class="keyword">new</span> Integer(<span class="number">50</span>));</span><br><span class="line">        plants[r][c]=plant;</span><br><span class="line">        <span class="keyword">new</span> Thread(plant).start();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">findZombie</span><span class="params">(<span class="keyword">int</span> row,<span class="keyword">int</span> column)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">false</span>;<span class="comment">//TO-DO</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Controller</span><span class="params">()</span></span>&#123;</span><br><span class="line">        setCardMap();</span><br><span class="line">        cardNum=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">this</span>.setSunCount(<span class="number">150</span>);</span><br><span class="line">        <span class="keyword">this</span>.topPanel.addMouseMotionListener(<span class="keyword">new</span> myMouseListener(<span class="keyword">this</span>.topPanel));</span><br><span class="line">        <span class="keyword">this</span>.topPanel.addMouseListener(<span class="keyword">new</span> myMouseListener(<span class="keyword">this</span>.topPanel));</span><br><span class="line">        <span class="keyword">this</span>.topPanel.setVisible(<span class="keyword">false</span>);</span><br><span class="line">        isRunning=<span class="keyword">true</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="2019-11-11"><a href="#2019-11-11" class="headerlink" title="2019.11.11"></a>2019.11.11</h2><h3 id="GameboardView-java"><a href="#GameboardView-java" class="headerlink" title="GameboardView.java"></a>GameboardView.java</h3><p>我就是调参大师.jpg</p>
+<p>实现了上来左右摇摆对准的功能以及倒计时，并分配了cardboard的进入动画和鼠标图片topPanel。</p>
+<p>移动方面有待改进……效果还可以，留到以后再改。</p>
+<p>这部分对准参数之后没啥好说的。每个动画效果都是在不停的对坐标进行修改、对Panel进行repaint做出来的。</p>
+<p>这里panel、Panel分别表示了背景图片和Panel，cardboard和Cardboard同理。这里命名有问题，以后再做修改。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> controller.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.awt.Graphics;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executor;</span><br><span class="line"><span class="keyword">import</span> java.util.concurrent.Executors;</span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GameboardView</span> <span class="keyword">extends</span> <span class="title">JLayeredPane</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    <span class="keyword">private</span> JFrame GameFrame;</span><br><span class="line">    <span class="keyword">private</span> ImageIcon panel, cardboard;</span><br><span class="line">    <span class="keyword">private</span> JPanel Panel;</span><br><span class="line">    <span class="keyword">private</span> JPanel Cardboard;</span><br><span class="line"></span><br><span class="line">    Controller controller;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x = -<span class="number">10</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> flag = <span class="keyword">false</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> direction = <span class="number">1</span>;</span><br><span class="line">    <span class="keyword">private</span> JLabel SunLabel;</span><br><span class="line"></span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">PaintThread</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line">        JFrame frame;</span><br><span class="line"></span><br><span class="line">        PaintThread(LaunchFrame launchFrame) &#123;</span><br><span class="line">            <span class="keyword">this</span>.frame = launchFrame;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="meta">@Override</span></span><br><span class="line">        <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1600</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//左右移动对准</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; <span class="number">895</span>; i++) &#123;</span><br><span class="line">                <span class="comment">// System.out.println("now x:" + x + ",i:" + i);</span></span><br><span class="line">                <span class="keyword">if</span> (x &lt;= -<span class="number">560</span> &amp;&amp; !flag) &#123;</span><br><span class="line">                    flag = <span class="keyword">true</span>;</span><br><span class="line">                    direction = -<span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">try</span> &#123;</span><br><span class="line">                        Thread.sleep(<span class="number">400</span>);</span><br><span class="line">                    &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                        e.printStackTrace();</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">int</span> j=i-<span class="number">551</span>;</span><br><span class="line">                <span class="keyword">int</span> delaytime=</span><br><span class="line">                    i&lt;<span class="number">1</span>?<span class="number">10</span>:</span><br><span class="line">                    i&lt;<span class="number">2</span>?<span class="number">9</span>:</span><br><span class="line">                    i&lt;<span class="number">3</span>?<span class="number">8</span>:</span><br><span class="line">                    i&lt;<span class="number">4</span>?<span class="number">7</span>:</span><br><span class="line">                    i&lt;<span class="number">5</span>?<span class="number">6</span>:</span><br><span class="line">                    i&lt;<span class="number">6</span>?<span class="number">5</span>:</span><br><span class="line">                    i&lt;<span class="number">7</span>?<span class="number">4</span>:</span><br><span class="line">                    i&lt;<span class="number">8</span>?<span class="number">3</span>:</span><br><span class="line">                    i&lt;<span class="number">9</span>?<span class="number">2</span>:</span><br><span class="line">                    i&lt;<span class="number">534</span>?<span class="number">1</span>:</span><br><span class="line">                    i&lt;<span class="number">537</span>?<span class="number">2</span>:</span><br><span class="line">                    i&lt;<span class="number">540</span>?<span class="number">3</span>:</span><br><span class="line">                    i&lt;<span class="number">544</span>?<span class="number">4</span>:</span><br><span class="line">                    i&lt;<span class="number">547</span>?<span class="number">5</span>:</span><br><span class="line">                    i&lt;<span class="number">549</span>?<span class="number">6</span>:</span><br><span class="line">                    i&lt;<span class="number">550</span>?<span class="number">8</span>:<span class="number">14</span>;</span><br><span class="line">                <span class="keyword">if</span>(j&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                    delaytime=</span><br><span class="line">                    j&lt;<span class="number">1</span>?<span class="number">12</span>:</span><br><span class="line">                    j&lt;<span class="number">2</span>?<span class="number">11</span>:</span><br><span class="line">                    j&lt;<span class="number">3</span>?<span class="number">10</span>:</span><br><span class="line">                    j&lt;<span class="number">4</span>?<span class="number">9</span>:</span><br><span class="line">                    j&lt;<span class="number">5</span>?<span class="number">8</span>:</span><br><span class="line">                    j&lt;<span class="number">6</span>?<span class="number">7</span>:</span><br><span class="line">                    j&lt;<span class="number">7</span>?<span class="number">6</span>:</span><br><span class="line">                    j&lt;<span class="number">8</span>?<span class="number">5</span>:</span><br><span class="line">                    j&lt;<span class="number">9</span>?<span class="number">4</span>:</span><br><span class="line">                    j&lt;<span class="number">10</span>?<span class="number">3</span>:</span><br><span class="line">                    j&lt;<span class="number">12</span>?<span class="number">2</span>:</span><br><span class="line">                    j&lt;<span class="number">314</span>?<span class="number">1</span>:</span><br><span class="line">                    j&lt;<span class="number">319</span>?<span class="number">2</span>:</span><br><span class="line">                    j&lt;<span class="number">324</span>?<span class="number">3</span>:</span><br><span class="line">                    j&lt;<span class="number">327</span>?<span class="number">4</span>:</span><br><span class="line">                    j&lt;<span class="number">330</span>?<span class="number">5</span>:</span><br><span class="line">                    j&lt;<span class="number">333</span>?<span class="number">6</span>:</span><br><span class="line">                    j&lt;<span class="number">334</span>?<span class="number">8</span>:<span class="number">14</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(delaytime);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                x-=direction;</span><br><span class="line">                Panel.repaint();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//cardboard淡入</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> y = -<span class="number">40</span> ; y &lt;= <span class="number">5</span>; y++) &#123;</span><br><span class="line">                Cardboard.setBounds(<span class="number">20</span>,y,cardboard.getIconWidth(), cardboard.getIconHeight());</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">10</span>);</span><br><span class="line">                &#125;<span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                Cardboard.repaint();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="comment">//倒计时</span></span><br><span class="line">            JLabel label;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i=<span class="number">1</span> ; i&lt;=<span class="number">3</span> ; i++)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    label = <span class="keyword">new</span> JLabel(<span class="keyword">new</span> ImageIcon(<span class="string">"img\\PrepareGrowPlants"</span>+i+<span class="string">".png"</span>));</span><br><span class="line">                    GameboardView.<span class="keyword">this</span>.add(label,<span class="number">1</span>);</span><br><span class="line">                    label.setBounds(<span class="number">250</span>,<span class="number">200</span>,<span class="number">300</span>,<span class="number">200</span>);</span><br><span class="line">                    Thread.sleep(<span class="number">700</span>);</span><br><span class="line">                    label.setVisible(<span class="keyword">false</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">800</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line"></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    GameboardView(LaunchFrame launchframe)&#123;</span><br><span class="line">        <span class="keyword">this</span>.controller=<span class="keyword">new</span> Controller();</span><br><span class="line">        <span class="keyword">this</span>.GameFrame=launchframe;</span><br><span class="line">        <span class="keyword">this</span>.GameFrame.setContentPane(GameboardView.<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">this</span>.setVisible(<span class="keyword">true</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//bg</span></span><br><span class="line">        panel=<span class="keyword">new</span> ImageIcon(<span class="string">"img\\background1.jpg"</span>);</span><br><span class="line">        Panel=<span class="keyword">new</span> JPanel()&#123;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span></span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.paintComponent(g);</span><br><span class="line">                g.drawImage(panel.getImage(),x,<span class="number">0</span>,</span><br><span class="line">                            <span class="keyword">this</span>.getWidth(),<span class="keyword">this</span>.getHeight(),</span><br><span class="line">                            <span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Panel.setVisible(<span class="keyword">true</span>);</span><br><span class="line">        Panel.setBounds(<span class="number">0</span>,<span class="number">0</span>,panel.getIconWidth(),panel.getIconHeight());</span><br><span class="line">        GameboardView.<span class="keyword">this</span>.add(Panel,-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//cardboard</span></span><br><span class="line">        cardboard=<span class="keyword">new</span> ImageIcon(<span class="string">"img\\SeedBank.png"</span>);</span><br><span class="line">        Cardboard=<span class="keyword">new</span> JPanel()&#123;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.paintComponent(g);</span><br><span class="line">                g.drawImage(cardboard.getImage(),<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">                            cardboard.getIconWidth(),</span><br><span class="line">                            cardboard.getIconHeight(),<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        Cardboard.setVisible(<span class="keyword">true</span>);</span><br><span class="line">        Cardboard.setLayout(<span class="keyword">null</span>);</span><br><span class="line">        GameboardView.<span class="keyword">this</span>.add(Cardboard,<span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">        Executor exec = Executors.newSingleThreadExecutor();</span><br><span class="line">        Thread Animation=<span class="keyword">new</span> Thread(<span class="keyword">new</span> PaintThread(launchframe));</span><br><span class="line">        exec.execute(Animation);</span><br><span class="line"></span><br><span class="line">        JPanel topPanel = controller.getTopPanel();</span><br><span class="line">        topPanel.setVisible(<span class="keyword">false</span>);</span><br><span class="line">        topPanel.setBounds(<span class="number">0</span>,<span class="number">0</span>, panel.getIconWidth(), panel.getIconHeight());</span><br><span class="line">        GameboardView.<span class="keyword">this</span>.add(topPanel, <span class="keyword">new</span> Integer(<span class="number">114514</span>));</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="LaunchFrame-java"><a href="#LaunchFrame-java" class="headerlink" title="LaunchFrame.java"></a>LaunchFrame.java</h3><p>实现了一个开始界面（留了很多余地给之后分配，这里不是游戏主体先不去做扩展）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseAdapter;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseEvent;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LaunchFrame</span> <span class="keyword">extends</span> <span class="title">JFrame</span></span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    <span class="keyword">private</span> JLayeredPane layeredPane = <span class="keyword">new</span> JLayeredPane();</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LaunchFrame</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);</span><br><span class="line">        <span class="keyword">this</span>.setTitle(<span class="string">"PVZ"</span>);</span><br><span class="line">        <span class="keyword">this</span>.setSize(<span class="number">810</span>,<span class="number">625</span>);</span><br><span class="line">        <span class="keyword">this</span>.setResizable(<span class="keyword">false</span>);</span><br><span class="line">        <span class="keyword">this</span>.setLocationRelativeTo(<span class="keyword">null</span>);</span><br><span class="line">        <span class="keyword">this</span>.setVisible(<span class="keyword">true</span>);</span><br><span class="line">        <span class="keyword">this</span>.setContentPane(layeredPane);</span><br><span class="line">        <span class="keyword">this</span>.setIconImage(<span class="keyword">new</span> ImageIcon(<span class="string">"img\\Icon.png"</span>).getImage());</span><br><span class="line"></span><br><span class="line">        ImageIcon background=<span class="keyword">new</span> ImageIcon(<span class="string">"img\\Surface.png"</span>);</span><br><span class="line">        JPanel panel=<span class="keyword">new</span> JPanel()&#123;</span><br><span class="line">            <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">super</span>.paintComponent(g);</span><br><span class="line">                g.drawImage(background.getImage(),<span class="number">0</span>,<span class="number">0</span>,</span><br><span class="line">                            <span class="keyword">this</span>.getWidth(),<span class="keyword">this</span>.getHeight(),<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">        panel.setBounds(<span class="number">0</span>,<span class="number">0</span>,background.getIconWidth(),background.getIconHeight());</span><br><span class="line">        layeredPane.add(panel,<span class="number">10</span>);</span><br><span class="line"></span><br><span class="line">        ImageIcon startImg=<span class="keyword">new</span> ImageIcon(<span class="string">"img\\SelectorScreen_Adventure_highlight.png"</span>);</span><br><span class="line">        ImageIcon startImg2=<span class="keyword">new</span> ImageIcon(<span class="string">"img\\SelectorScreen_StartAdventure_Highlight.png"</span>);</span><br><span class="line">        JLabel startLabel=<span class="keyword">new</span> JLabel(startImg);</span><br><span class="line">        startLabel.addMouseListener(<span class="keyword">new</span> MouseAdapter() &#123;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseEntered</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">                startLabel.setIcon(startImg2);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseExited</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">                startLabel.setIcon(startImg);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseClicked</span><span class="params">(MouseEvent e)</span></span>&#123;</span><br><span class="line">                layeredPane.setVisible(<span class="keyword">false</span>);</span><br><span class="line">                <span class="keyword">new</span> GameboardView(LaunchFrame.<span class="keyword">this</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        startLabel.setBounds(<span class="number">410</span>,<span class="number">70</span>,startImg.getIconWidth(),startImg2.getIconHeight());</span><br><span class="line">        layeredPane.add(startLabel, <span class="number">0</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Main-java"><a href="#Main-java" class="headerlink" title="Main.java"></a>Main.java</h3><p>？</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> view.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">new</span> LaunchFrame();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>写完这些之后终于可以运行了……感觉还不错（疯狂debug）</p>
+<h2 id="2019-11-12"><a href="#2019-11-12" class="headerlink" title="2019.11.12"></a>2019.11.12</h2><p>把卡片和太阳给做了（</p>
+<h3 id="Card-java"><a href="#Card-java" class="headerlink" title="Card.java"></a>Card.java</h3><p>卡片类，实现选中/非选中状态的图片切换，在Controller.java、Plant.java中也有对应修改，在此不放出。</p>
+<p>TO-DO：实现进度条式改变冷却图片，不是只有一黑一白（注释掉了一行失败的尝试）。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> controller.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseEvent;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseListener;</span><br><span class="line"><span class="keyword">import</span> java.util.Map;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.ImageIcon;</span><br><span class="line"><span class="keyword">import</span> javax.swing.JLabel;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Card</span> <span class="keyword">extends</span> <span class="title">JLabel</span> <span class="keyword">implements</span> <span class="title">MouseListener</span>, <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> inCooling;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> cd;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> totTime;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> String cardName;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> price;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> cardWidth;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> cardHeight;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ImageIcon card;</span><br><span class="line">    <span class="keyword">private</span> ImageIcon cardLight;</span><br><span class="line">    <span class="keyword">private</span> ImageIcon cardDark;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> ImageIcon preImg;</span><br><span class="line">    <span class="keyword">private</span> ImageIcon blurImg;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Map&lt;String, Plant&gt; plantMap;</span><br><span class="line">    <span class="keyword">private</span> Controller controller;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> y;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Rectangle rectangle;<span class="comment">//卡片位置</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> index;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getIndex</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> index;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setIndex</span><span class="params">(<span class="keyword">int</span> index)</span></span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.index = index;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setRectangle</span><span class="params">(<span class="keyword">int</span> x, <span class="keyword">int</span> y, <span class="keyword">int</span> w, <span class="keyword">int</span> h)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.rectangle = <span class="keyword">new</span> Rectangle(x, y, w, h);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> Rectangle <span class="title">getRectangle</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> rectangle;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Card</span><span class="params">(String name, Controller controller)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.controller = controller;</span><br><span class="line">        <span class="keyword">this</span>.plantMap = controller.getPlantMap();</span><br><span class="line">        <span class="keyword">this</span>.cardName = name;</span><br><span class="line">        <span class="keyword">this</span>.cardLight = <span class="keyword">new</span> ImageIcon(<span class="string">"Img\\Cards\\"</span> + cardName + <span class="string">"0.png"</span>);</span><br><span class="line">        <span class="keyword">this</span>.cardDark = <span class="keyword">new</span> ImageIcon(<span class="string">"Img\\Cards\\"</span> + cardName + <span class="string">"1.png"</span>);</span><br><span class="line">        <span class="keyword">this</span>.preImg = <span class="keyword">new</span> ImageIcon(<span class="string">"img\\"</span> + cardName + <span class="string">"\\"</span> + cardName + <span class="string">"_0.png "</span>);</span><br><span class="line">        <span class="keyword">this</span>.blurImg = <span class="keyword">new</span> ImageIcon(<span class="string">"img\\Blurs\\"</span> + cardName + <span class="string">".png "</span>);</span><br><span class="line">        <span class="keyword">this</span>.card = cardDark;</span><br><span class="line">        <span class="keyword">this</span>.inCooling = <span class="keyword">false</span>;</span><br><span class="line">        <span class="keyword">this</span>.addMouseListener(<span class="keyword">this</span>);</span><br><span class="line">        <span class="keyword">this</span>.cardHeight = cardLight.getIconHeight();</span><br><span class="line">        <span class="keyword">this</span>.cardWidth = cardLight.getIconWidth();</span><br><span class="line">        <span class="keyword">this</span>.price = plantMap.get(cardName).getPrice();</span><br><span class="line">        <span class="keyword">this</span>.cd = plantMap.get(cardName).getCardCD();</span><br><span class="line">        <span class="keyword">this</span>.y = card.getIconHeight();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">check</span><span class="params">(<span class="keyword">int</span> SunCount)</span> </span>&#123;<span class="comment">//能否选择这个卡，能：light，否：dark</span></span><br><span class="line">        <span class="keyword">if</span> (SunCount &gt;= plantMap.get(<span class="keyword">this</span>.cardName).getPrice() &amp;&amp; !inCooling) &#123;</span><br><span class="line">            card = cardLight;</span><br><span class="line">            <span class="keyword">this</span>.repaint();</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            card = cardDark;</span><br><span class="line">            <span class="keyword">this</span>.repaint();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">setInCooling</span><span class="params">(<span class="keyword">boolean</span> b)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.inCooling = b;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">getInCooling</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> inCooling;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getPrice</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> price;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> String <span class="title">getCardName</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cardName;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCardWidth</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cardWidth;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">getCardHeight</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> cardHeight;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.paintComponent(g);</span><br><span class="line">        <span class="comment">//int h=card.getIconHeight();</span></span><br><span class="line">        g.drawImage(card.getImage(), <span class="number">0</span>, <span class="number">0</span>, card.getIconWidth(), card.getIconHeight(), <span class="keyword">this</span>);</span><br><span class="line">        <span class="comment">//g.drawImage(card.getImage(), 0, h-h*totTime/cd, card.getIconWidth(), h*totTime/cd, this);</span></span><br><span class="line">        g.drawImage(cardDark.getImage(), <span class="number">0</span>, y, card.getIconWidth(), card.getIconHeight(), <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">selected</span><span class="params">()</span> </span>&#123;<span class="comment">//卡牌被选中</span></span><br><span class="line">        <span class="keyword">if</span> (!inCooling &amp;&amp; controller.getIntSunCount() &gt;= <span class="keyword">this</span>.getPrice()) &#123;</span><br><span class="line">            controller.getTopPanel().setVisible(<span class="keyword">true</span>);</span><br><span class="line">            controller.setPreImg(<span class="keyword">this</span>.preImg);</span><br><span class="line">            controller.setBlurImg(<span class="keyword">this</span>.blurImg);</span><br><span class="line">            controller.setCard(<span class="keyword">this</span>);</span><br><span class="line">            controller.setSelectedIndex(index);</span><br><span class="line">            controller.nowPlant = <span class="keyword">new</span> Plant().getPlant(<span class="keyword">this</span>.getCardName());</span><br><span class="line">            <span class="comment">//System.out.println("Selected :" + controller.nowPlant.getName());</span></span><br><span class="line">            inCooling = <span class="keyword">true</span>;</span><br><span class="line">            check(<span class="number">0</span>);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseClicked</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">        selected();</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseEntered</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseExited</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mousePressed</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line">    <span class="meta">@Override</span> <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseReleased</span><span class="params">(MouseEvent e)</span> </span>&#123;&#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">while</span> (controller.isRunning) &#123;</span><br><span class="line">            <span class="keyword">while</span> (controller.isRunning &amp;&amp; !inCooling) &#123;</span><br><span class="line">                check(controller.getIntSunCount());</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">4</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            check(controller.getIntSunCount());</span><br><span class="line">            <span class="keyword">while</span>(controller.isRunning)&#123;</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">3</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                    e.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                totTime+=<span class="number">3</span>;</span><br><span class="line">                <span class="keyword">if</span>(totTime&gt;=cd)&#123;</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                check(controller.getIntSunCount());</span><br><span class="line">            &#125;</span><br><span class="line">            totTime=<span class="number">0</span>;</span><br><span class="line">            inCooling=<span class="keyword">false</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="Sun-java"><a href="#Sun-java" class="headerlink" title="Sun.java"></a>Sun.java</h3><p>阳光有两种方式生成，向日葵掉落或者随机从天上生成。分为三个阶段，掉落、停留、消失。掉落阶段一个是抛物线，一个是直线，分别模拟一下就可以了，这里抛物线用若干条线段进行模拟；停留阶段进行旋转；消失阶段进行边收集边消失或者直接淡出。</p>
+<p>这里太阳逐渐消失用到了一个神秘函数：g2.setComposite(AlphaComposite.SrcOver.derive((float) alpha / 100));</p>
+<p>其中alpha表示不透明度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> javax.swing.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.*;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseAdapter;</span><br><span class="line"><span class="keyword">import</span> java.awt.event.MouseEvent;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> controller.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sun</span> <span class="keyword">extends</span> <span class="title">JLabel</span> <span class="keyword">implements</span> <span class="title">Runnable</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> <span class="keyword">long</span> serialVersionUID = <span class="number">1L</span>;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> Image image, offScreenImage;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> x, y;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> isCollected;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> nowPic;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">int</span> totPic = <span class="number">21</span>;</span><br><span class="line">    <span class="keyword">private</span> Controller controller;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">boolean</span> drop;<span class="comment">// 掉落还是随机生成</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 随机生成：</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ymax;<span class="comment">// 下</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// 向日葵掉落：</span></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> ymin;</span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> startX,startY, endX,endY;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sun</span><span class="params">(Controller controller)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.x = (<span class="keyword">int</span>) (Math.random() * <span class="number">660</span>) + <span class="number">30</span>;</span><br><span class="line">        <span class="keyword">this</span>.ymin = <span class="keyword">this</span>.y = <span class="number">40</span>;</span><br><span class="line">        <span class="keyword">this</span>.ymax = (<span class="keyword">int</span>) (Math.random() * <span class="number">400</span>) + <span class="number">130</span>;</span><br><span class="line">        <span class="keyword">this</span>.controller = controller;</span><br><span class="line">        <span class="keyword">this</span>.drop = <span class="keyword">false</span>;</span><br><span class="line">        setVisible(<span class="keyword">true</span>);</span><br><span class="line">        controller.getLayeredPane().add(<span class="keyword">this</span>, <span class="keyword">new</span> Integer(<span class="number">500</span>));</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">Sun</span><span class="params">(Controller controller, <span class="keyword">int</span> r, <span class="keyword">int</span> c)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>(controller);</span><br><span class="line">        <span class="keyword">this</span>.drop = <span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">this</span>.ymin = r * <span class="number">100</span> + <span class="number">55</span>;</span><br><span class="line">        startX=c * <span class="number">80</span> + <span class="number">34</span> + (<span class="keyword">int</span>) (Math.random() * <span class="number">2</span>);</span><br><span class="line">        startY= r * <span class="number">100</span> + <span class="number">80</span>;</span><br><span class="line">        endX=c * <span class="number">80</span> + <span class="number">30</span> + (<span class="keyword">int</span>) (Math.random() * <span class="number">10</span>);</span><br><span class="line">        endY=r * <span class="number">100</span> + <span class="number">100</span>;</span><br><span class="line">        <span class="keyword">this</span>.x = startX;</span><br><span class="line">        <span class="keyword">this</span>.y = startY;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">picChange</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        nowPic = (nowPic + <span class="number">1</span>) % totPic;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">shrink</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">50</span>; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">8</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                picChange();</span><br><span class="line">            &#125;</span><br><span class="line">            alpha -= <span class="number">2</span>;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">7</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            repaint();</span><br><span class="line">        &#125;</span><br><span class="line">        setVisible(<span class="keyword">false</span>);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.addMouseListener(<span class="keyword">new</span> MouseAdapter() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">mouseEntered</span><span class="params">(MouseEvent e)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">if</span> (!isCollected) &#123;</span><br><span class="line">                    isCollected = <span class="keyword">true</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line"></span><br><span class="line">        <span class="comment">//dropping</span></span><br><span class="line">        <span class="keyword">if</span> (drop) &#123;</span><br><span class="line">            <span class="comment">// 掉落，用线段近似二次函数</span></span><br><span class="line">            <span class="keyword">int</span> vx=<span class="number">1</span>,vy=<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">boolean</span> flag1=<span class="keyword">false</span>,flag2=<span class="keyword">false</span>,flag3=<span class="keyword">false</span>,flag4=<span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">int</span> dx=(endX&gt;=startX)?<span class="number">1</span>:-<span class="number">1</span>,dy=-<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">1</span>; (<span class="keyword">this</span>.x&lt;=endX&amp;&amp;dx==<span class="number">1</span>)||(<span class="keyword">this</span>.x&gt;=endX&amp;&amp;dx==-<span class="number">1</span>) || <span class="keyword">this</span>.y&lt;=endY; i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(i%<span class="number">5</span>==<span class="number">0</span>)&#123;</span><br><span class="line">                    <span class="keyword">this</span>.picChange();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.setBounds(x,y,<span class="number">78</span>,<span class="number">78</span>);</span><br><span class="line">                <span class="keyword">try</span>&#123;</span><br><span class="line">                    Thread.sleep(<span class="number">10</span>);</span><br><span class="line">                &#125;<span class="keyword">catch</span>(InterruptedException e1)&#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                x+=dx*vx;y+=dy*vy;</span><br><span class="line">                <span class="keyword">if</span>(!flag1)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(y&lt;=(ymin+startY)/<span class="number">2</span>)&#123;</span><br><span class="line">                        flag1=<span class="keyword">true</span>;</span><br><span class="line">                        vy=<span class="number">1</span>;</span><br><span class="line">                    &#125;;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!flag2)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(y&lt;=ymin)&#123;</span><br><span class="line">                        vy=-<span class="number">1</span>;</span><br><span class="line">                        flag2=<span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!flag3)&#123;</span><br><span class="line">                    <span class="keyword">if</span>((x&gt;=(endX*<span class="number">3</span>+startX)/<span class="number">4</span>||y&gt;=(ymin+endY)/<span class="number">2</span>))&#123;</span><br><span class="line">                        vy=-<span class="number">2</span>;</span><br><span class="line">                        flag3=<span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;<span class="keyword">else</span> <span class="keyword">if</span>(!flag4)&#123;</span><br><span class="line">                    <span class="keyword">if</span>((x&gt;=(endX*<span class="number">7</span>+startX)/<span class="number">8</span>||y&gt;=(startY+endY)/<span class="number">2</span>))&#123;</span><br><span class="line">                        vy=-<span class="number">3</span>;</span><br><span class="line">                        flag4=<span class="keyword">true</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.repaint();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            <span class="comment">// 随机生成，直线</span></span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; <span class="keyword">this</span>.y &lt; ymax &amp;&amp; !isCollected; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i % <span class="number">50</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.picChange();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">this</span>.setBounds(x, y, <span class="number">78</span>, <span class="number">78</span>);</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e1) &#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">if</span> (i % <span class="number">10</span> == <span class="number">0</span>)</span><br><span class="line">                    <span class="keyword">this</span>.y++;</span><br><span class="line">                <span class="keyword">this</span>.repaint();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// onGround</span></span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; i &lt;= <span class="number">5000</span> &amp;&amp; !isCollected; i++) &#123;</span><br><span class="line">            <span class="keyword">if</span> (i % <span class="number">50</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                <span class="keyword">this</span>.picChange();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep(<span class="number">1</span>);</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e1) &#123;</span><br><span class="line">                e1.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">this</span>.repaint();</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="comment">// collected</span></span><br><span class="line">        Point tempPoint=<span class="keyword">new</span> Point(x,y);</span><br><span class="line">        <span class="keyword">if</span> (isCollected) &#123;</span><br><span class="line">            controller.addSunCount(<span class="number">25</span>);</span><br><span class="line">            controller.checkCards();</span><br><span class="line">            <span class="keyword">int</span> dir=x&lt;<span class="number">33</span>?-<span class="number">1</span>:<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">1</span>; (dir==<span class="number">1</span>&amp;&amp;x &gt; <span class="number">33</span>||x&lt;=<span class="number">33</span>&amp;&amp;dir==-<span class="number">1</span>) &amp;&amp; y &gt; <span class="number">33</span>; i++) &#123;</span><br><span class="line">                <span class="keyword">if</span> (i % <span class="number">10</span> == <span class="number">0</span>) &#123;</span><br><span class="line">                    <span class="keyword">this</span>.picChange();</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">double</span> ty=(x-<span class="number">33</span>)*(tempPoint.getY()-<span class="number">33</span>)/(tempPoint.getX()-<span class="number">33</span>)+<span class="number">33</span>;</span><br><span class="line">                <span class="keyword">if</span>((ty&lt;=y&amp;&amp;dir==<span class="number">1</span>)||(ty&gt;=y&amp;&amp;dir==-<span class="number">1</span>))&#123;</span><br><span class="line">                    y--;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    x--;</span><br><span class="line">                    <span class="keyword">if</span>((<span class="keyword">int</span>)((<span class="number">100</span>*x-<span class="number">3200</span>)/(tempPoint.getX()-<span class="number">33</span>))!=(<span class="keyword">int</span>)((<span class="number">100</span>*x-<span class="number">3300</span>)/(tempPoint.getX()-<span class="number">33</span>)))&#123;</span><br><span class="line">                        alpha-=(Math.random()&gt;=<span class="number">0.45</span>)?<span class="number">1</span>:<span class="number">0</span>;</span><br><span class="line">                        <span class="comment">//System.out.println("alpha reduced from point ("+x+","+y+")");</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">                <span class="keyword">this</span>.setBounds(x, y, <span class="number">78</span>, <span class="number">78</span>);</span><br><span class="line">                <span class="keyword">this</span>.repaint();</span><br><span class="line">                <span class="keyword">try</span> &#123;</span><br><span class="line">                    Thread.sleep(<span class="number">1</span>);</span><br><span class="line">                &#125; <span class="keyword">catch</span> (InterruptedException e1) &#123;</span><br><span class="line">                    e1.printStackTrace();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">            <span class="comment">//disappear</span></span><br><span class="line">            <span class="keyword">this</span>.shrink();</span><br><span class="line">        &#125;</span><br><span class="line">        setVisible(<span class="keyword">false</span>);</span><br><span class="line">        Thread.currentThread().interrupt();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">double</span> alpha = <span class="number">100</span>;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">paintComponent</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">super</span>.paintComponent(g);</span><br><span class="line">        ImageIcon img = <span class="keyword">new</span> ImageIcon(<span class="string">"img\\Sun\\"</span>+nowPic+<span class="string">".png"</span>);</span><br><span class="line">        image = img.getImage();</span><br><span class="line">        Graphics2D g2 = (Graphics2D) g;</span><br><span class="line">        g2.setComposite(AlphaComposite.SrcOver.derive((<span class="keyword">float</span>) alpha / <span class="number">100</span>));</span><br><span class="line">        g2.drawImage(image, <span class="number">0</span>, <span class="number">0</span>, img.getIconWidth(), img.getIconWidth(),  <span class="keyword">this</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">update</span><span class="params">(Graphics g)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(offScreenImage == <span class="keyword">null</span>) offScreenImage = <span class="keyword">this</span>.createImage(<span class="number">800</span>, <span class="number">600</span>);</span><br><span class="line">        Graphics gImage = offScreenImage.getGraphics();</span><br><span class="line">        paint(gImage);</span><br><span class="line">        g.drawImage(offScreenImage, <span class="number">0</span>, <span class="number">0</span>, <span class="keyword">null</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="SunProducer-java"><a href="#SunProducer-java" class="headerlink" title="SunProducer.java"></a>SunProducer.java</h3><p>负责从天上随机掉落阳光。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">package</span> view;</span><br><span class="line"></span><br><span class="line"><span class="keyword">import</span> controller.*;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">SunProducer</span> <span class="keyword">implements</span> <span class="title">Runnable</span></span>&#123;</span><br><span class="line">    <span class="keyword">private</span> Controller controller;</span><br><span class="line">    </span><br><span class="line">    SunProducer(Controller controller)&#123;</span><br><span class="line">        <span class="keyword">this</span>.controller = controller;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="meta">@Override</span></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">run</span><span class="params">()</span> </span>&#123;</span><br><span class="line">        <span class="keyword">try</span> &#123;</span><br><span class="line">            Thread.sleep(<span class="number">3000</span>);</span><br><span class="line">        &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">while</span> (controller.isRunning)&#123;</span><br><span class="line">            <span class="keyword">try</span> &#123;</span><br><span class="line">                Thread.sleep((<span class="keyword">int</span>) (Math.random()*<span class="number">1000</span>)+<span class="number">7000</span>);</span><br><span class="line">                <span class="comment">//7~8s随机生成一个</span></span><br><span class="line">                <span class="keyword">new</span> Thread(<span class="keyword">new</span> Sun(controller)).start();</span><br><span class="line">            &#125; <span class="keyword">catch</span> (InterruptedException e) &#123;</span><br><span class="line">                e.printStackTrace();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        Thread.currentThread().interrupt();</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>到此为止，基本的向日葵有关的操作已经结束了。然后又向Plant、controller、card里面加了点关于豌豆射手的东西，接下来就该添加僵尸和子弹了。</p>
+<h2 id="2019-11-15"><a href="#2019-11-15" class="headerlink" title="2019.11.15"></a>2019.11.15</h2><p>由于前几天考计组，又在补作业，被迫停了一段时间。这段时间里，梳理了一下大致需要做的方向：</p>
+<p>普通僵尸位置、碰撞、啃食、死亡逻辑；普通僵尸生成；子弹发射、碰撞逻辑；</p>
+<p>新植物及其逻辑；新僵尸及其逻辑；</p>
+<p>对向日葵将要产出太阳时的动画进行优化；</p>
+<p>设置关卡；</p>
+<p>在初始界面设置其他操作；</p>
+<p>在游戏中设置暂停、退出、重新开始、返回主菜单等功能。</p>
+<p>不知道这些东西能实现到哪里？</p>
+<h3 id="Zombie-java"><a href="#Zombie-java" class="headerlink" title="Zombie.java"></a>Zombie.java</h3><p>本以为僵尸不是那么难写，结果又要掉胳膊又要掉头还要有啃食动画，搞不好被樱桃炸弹炸糊了还得有个特殊的动画，这还不算多，搜了一下还有临界血量，低于这个血量虽然失去攻击力但还能吸收伤害并不断掉血……</p>
+<p>好麻烦……</p>
+<p>（还没写完，正在写）</p>
+<p>（感觉真的好难写）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">还没写完</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/27/2018icpcjiaozuo/" rel="next" title="2018 ICPC Jiaozuo Regional Contest 题解">
+                <i class="fa fa-chevron-left"></i> 2018 ICPC Jiaozuo Regional Contest 题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/main.png" alt="Potassium">
+            
+              <p class="site-author-name" itemprop="name">Potassium</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">58</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">6</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">4</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/potassiumwings" title="GitHub &rarr; https://github.com/potassiumwings" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:mumuyuyululu@126.com" title="E-Mail &rarr; mailto:mumuyuyululu@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://m.mugzone.net/accounts/user/57439" title="Malody &rarr; http://m.mugzone.net/accounts/user/57439" rel="noopener" target="_blank"><i class="fa fa-fw fa-gamepad"></i>Malody</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://space.bilibili.com/11227808?from=search&seid=1471932430476256344" title="Bilibili &rarr; https://space.bilibili.com/11227808?from=search&seid=1471932430476256344" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>Bilibili</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/potassium-31" title="Zhihu &rarr; http://www.zhihu.com/people/potassium-31" rel="noopener" target="_blank"><i class="fa fa-fw fa-bitbucket"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/#/user/home?id=266891778" title="Music163 &rarr; https://music.163.com/#/user/home?id=266891778" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Music163</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cnblogs.com/potassium" title="https://cnblogs.com/potassium" rel="noopener" target="_blank">My cnblog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nikkukun.github.io" title="https://nikkukun.github.io" rel="noopener" target="_blank">Nikkukun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cnblogs.com/hugegun" title="https://cnblogs.com/hugegun" rel="noopener" target="_blank">HugeGun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://member.bitcron.com/" title="http://member.bitcron.com/" rel="noopener" target="_blank">Member</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://kevin00.ac.cn" title="http://kevin00.ac.cn" rel="noopener" target="_blank">Kevin</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-11-10"><span class="nav-number">1.</span> <span class="nav-text">2019.11.10</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Plant-java"><span class="nav-number">1.1.</span> <span class="nav-text">Plant.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Controller-java"><span class="nav-number">1.2.</span> <span class="nav-text">Controller.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-11-11"><span class="nav-number">2.</span> <span class="nav-text">2019.11.11</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#GameboardView-java"><span class="nav-number">2.1.</span> <span class="nav-text">GameboardView.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#LaunchFrame-java"><span class="nav-number">2.2.</span> <span class="nav-text">LaunchFrame.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Main-java"><span class="nav-number">2.3.</span> <span class="nav-text">Main.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-11-12"><span class="nav-number">3.</span> <span class="nav-text">2019.11.12</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Card-java"><span class="nav-number">3.1.</span> <span class="nav-text">Card.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Sun-java"><span class="nav-number">3.2.</span> <span class="nav-text">Sun.java</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SunProducer-java"><span class="nav-number">3.3.</span> <span class="nav-text">SunProducer.java</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2019-11-15"><span class="nav-number">4.</span> <span class="nav-text">2019.11.15</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Zombie-java"><span class="nav-number">4.1.</span> <span class="nav-text">Zombie.java</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Potassium</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'KlBLsl9J7kKp0F0333XoU0Nm-gzGzoHsz',
+      appKey: 'fICBqCeUocC3l7Lu7ym4tD90',
+      placeholder: '有什么话想和Potassium说呢？ヾﾉ≧∀≦)o',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
