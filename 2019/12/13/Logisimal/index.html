@@ -114,15 +114,15 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="这次是python大作业（">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2019/12/13/Logisimal/images/firstversion.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/13/Logisimal/images/gates.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/13/Logisimal/images/secondversion.png">
-<meta property="og:image" content="http://yoursite.com/2019/12/13/Logisimal/images/secondversion2.png">
-<meta property="og:updated_time" content="2019-12-12T16:21:02.710Z">
+<meta property="og:image" content="http://yoursite.com/images/firstversion.png">
+<meta property="og:image" content="http://yoursite.com/images/gates.png">
+<meta property="og:image" content="http://yoursite.com/images/secondversion.png">
+<meta property="og:image" content="http://yoursite.com/images/secondversion2.png">
+<meta property="og:updated_time" content="2019-12-12T16:23:56.542Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python大作业编写思路">
 <meta name="twitter:description" content="这次是python大作业（">
-<meta name="twitter:image" content="http://yoursite.com/2019/12/13/Logisimal/images/firstversion.png">
+<meta name="twitter:image" content="http://yoursite.com/images/firstversion.png">
 
 
 
@@ -407,7 +407,7 @@
                 
               
 
-              <time title="创建时间：2019-12-13 00:10:00 / 修改时间：00:21:02" itemprop="dateCreated datePublished" datetime="2019-12-13T00:10:00+08:00">2019-12-13</time>
+              <time title="创建时间：2019-12-13 00:10:00 / 修改时间：00:23:56" itemprop="dateCreated datePublished" datetime="2019-12-13T00:10:00+08:00">2019-12-13</time>
             
 
             
@@ -479,7 +479,7 @@
 <p>笔记：设置一下pen和brush就可以实现填充与否、线的颜色和宽度了（12.2凌晨）</p>
 <h3 id="12-2"><a href="#12-2" class="headerlink" title="12.2"></a>12.2</h3><p>my完成基本bfs设计以及基础连线（包括折线方向问题，但比较粗糙，存在不少bug）</p>
 <p>效果：</p>
-<p><img src="images/firstversion.png" alt="1576165591060"></p>
+<p><img src="/images/firstversion.png" alt="1576165591060"></p>
 <p>大致框架已经具备，但可以观察到的是，从外界复制过来的bmp图存在遮挡线条的bug，同时因为bmp是一个类似panel的东西，会阻止鼠标事件的响应。同时，存在绘图刷新频率过高、闪烁的现象。同时由于对齐格点使用向下取整，只能从output的端口右下小范围拉线</p>
 <p>第一版结束。</p>
 <p>目标：将所有图直接使用线条画，同时改变对齐逻辑，同时解决以上bug。</p>
@@ -487,11 +487,11 @@
 <p><a href="https://blog.csdn.net/webzhuce/article/details/72802670" target="_blank" rel="noopener">wxpython之解决闪烁</a><br><a href="https://segmentfault.com/a/1190000000487499" target="_blank" rel="noopener">给wxPython事件处理函数传递参数</a><br><a href="https://blog.csdn.net/m0_37816922/article/details/99582939" target="_blank" rel="noopener">wxpython之DC绘图</a><br><a href="https://blog.csdn.net/linuxarmsummary/article/details/78838417" target="_blank" rel="noopener">【wxpython】设备上下文简介</a></p>
 <p>成功手动画出各种门，但无法解决statictext无法跟随移动的问题（静态文本移动个锤子）</p>
 <p><a href="https://www.cnblogs.com/ankier/archive/2012/09/16/2687945.html" target="_blank" rel="noopener">wxPython控件学习之wx.StaticText</a></p>
-<p><img src="images/gates.png" alt></p>
-<p><img src="images/secondversion.png" alt></p>
+<p><img src="/images/gates.png" alt></p>
+<p><img src="/images/secondversion.png" alt></p>
 <p>改动bfs逻辑，修改小bug，添加鼠标悬浮在可画线点上时显示小绿圈的功能，添加左键拖拽和左键右键删除的功能，添加右键改变input gate value的功能，添加从工具栏选择门时右键可以取消选择的功能。</p>
 <p>大致效果如下：</p>
-<p><img src="images/secondversion2.png" alt></p>
+<p><img src="/images/secondversion2.png" alt></p>
 <h3 id="12-4"><a href="#12-4" class="headerlink" title="12.4"></a>12.4</h3><p>修改颜色，修bug，删除无关工具栏按钮，第二版结束（就是当前的版本）。</p>
 <h3 id="12-11"><a href="#12-11" class="headerlink" title="12.11"></a>12.11</h3><p>答辩结束，暂告一段落。（吐槽：为啥答辩全场不是pygame就是爬虫？）</p>
 <p>目前存在的缺陷：</p>
