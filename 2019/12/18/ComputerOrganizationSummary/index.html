@@ -114,7 +114,7 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved P-1 P0 P1 P2 P3 P4 P5 P6 P7 P8    P7/P8 O O O O Ø O O Ø Ø .    O for one pass and AK Ø for passing after one failure and AK ! for passed but not AK or after failing more than once · for havi">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-15T06:20:22.290Z">
+<meta property="og:updated_time" content="2020-01-15T06:25:17.682Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机组成课程总结">
 <meta name="twitter:description" content="Solved P-1 P0 P1 P2 P3 P4 P5 P6 P7 P8    P7/P8 O O O O Ø O O Ø Ø .    O for one pass and AK Ø for passing after one failure and AK ! for passed but not AK or after failing more than once · for havi">
@@ -419,7 +419,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-15 14:20:22" itemprop="dateModified" datetime="2020-01-15T14:20:22+08:00">2020-01-15</time>
+                <time title="修改时间：2020-01-15 14:25:17" itemprop="dateModified" datetime="2020-01-15T14:25:17+08:00">2020-01-15</time>
               
             
           </span>
@@ -532,8 +532,9 @@
 <p>笔者建议同学从不考虑冒险搭起，先把流水线的框架（FDEMW级）搭起来，把每一级里的东西设计好，记得CMP模块要放在D级。差不多搭完之后，不要先想着加转发暂停，而是完备地测试这个CPU能否正常运行10指令，当然在造测试程序的时候别忘了每条指令后面加4个nop。</p>
 <p>测试完备之后，再开始想转发暂停该如何加入。注意到我们主要想做的是尽可能多的转发，也就是暂停的目的是把所有无论如何不能转发的两个指令间插入nop，所以先判断一下啥时候会需要暂停。这时候用教程上的$T_{use}$、$T_{new}$的概念，画出表格，就可以判断出来哪些时候会强制要求暂停。暂停其实是在IF/ID级阻塞，ID/EX级产生空泡，这样需求者始终在D级，只需要分类讨论供给者的位置和寄存器号即可，减少了许多不必要的代码量。</p>
 <p>转发就稍微麻烦一些，笔者建议同学们使用比较简便的“标记转发法”，即是在每个已经算出结果（存入寄存器的值）的流水级设置flag=1，这时候<strong>允许</strong>在当前流水级对应寄存器的值被转发到前面流水级。每到需要寄存器值的前面，就要<strong>从前往后</strong>依次判断哪一级流水线的该寄存器值可以被转发，如果都不能那就使用从GRF里读取的数据。这样做的合理性在于，一是暂停保证了在使用寄存器值的时候，必然已经算出结果；二是能通过这个优先级找到最近的修改该寄存器的操作，而不会错误地转发别的数值，比如：</p>
-<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">&gt; li $<span class="number">1</span>,<span class="number">1</span></span><br><span class="line">&gt; <span class="keyword">lw </span>$<span class="number">1</span>,-<span class="number">1</span>($<span class="number">1</span>)</span><br><span class="line">&gt; <span class="keyword">addu </span>$<span class="number">1</span>,$<span class="number">1</span>,$<span class="number">1</span></span><br><span class="line">&gt; <span class="keyword">subu </span>$<span class="number">11</span>,$<span class="number">1</span>,$<span class="number">0</span></span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
 </blockquote>
+<figure class="highlight mips"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">li $<span class="number">1</span>,<span class="number">1</span></span><br><span class="line"><span class="keyword">lw </span>$<span class="number">1</span>,-<span class="number">1</span>($<span class="number">1</span>)</span><br><span class="line"><span class="keyword">addu </span>$<span class="number">1</span>,$<span class="number">1</span>,$<span class="number">1</span></span><br><span class="line"><span class="keyword">subu </span>$<span class="number">11</span>,$<span class="number">1</span>,$<span class="number">0</span></span><br></pre></td></tr></table></figure>
+
 <blockquote>
 <p>在subu转发的时候，会依次比较addu（是否已经flag=1，寄存器编号是否一样），lw（是否已经flag=1，寄存器编号是否一样）。这样保证了有多个转发点的时候选取最新的数据。</p>
 <p>对于转发暂停，建议使用指令分类，这对P6大有裨益。</p>
@@ -673,7 +674,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">61</span>
+                    <span class="site-state-item-count">64</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
