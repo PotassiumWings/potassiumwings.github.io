@@ -115,10 +115,12 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E F G H I J    9/10 O O O Ø O O O O O .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2020-01-23T18:54:52.200Z">
+<meta property="og:image" content="http://yoursite.com/images/2020wannaflycampday1E.png">
+<meta property="og:updated_time" content="2020-01-23T19:27:46.289Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2020 CCPC Wannafly camp day1 题解">
 <meta name="twitter:description" content="Solved A B C D E F G H I J    9/10 O O O Ø O O O O O .    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:image" content="http://yoursite.com/images/2020wannaflycampday1E.png">
 
 
 
@@ -420,7 +422,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-01-24 02:54:52" itemprop="dateModified" datetime="2020-01-24T02:54:52+08:00">2020-01-24</time>
+                <time title="修改时间：2020-01-24 03:27:46" itemprop="dateModified" datetime="2020-01-24T03:27:46+08:00">2020-01-24</time>
               
             
           </span>
@@ -532,7 +534,7 @@
 <p>给$n,l,r$，求$\sum_{i=l}^rg(n,i)$。（$\text {mod 998244353}$）</p>
 <h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><p>solved by nikkukun</p>
 <p>可以猜到，当颜色尽量均分的时候连边数最多。设有$x$种颜色染了$\lfloor\frac nk\rfloor$个点，$y$个点染了$\lfloor\frac nk\rfloor+1$个点。</p>
-<p>显然，有${\begin{aligned}&amp;x+y=k\&amp;y=n\text{ mod k}=n-k\lfloor\frac nk\rfloor\end{aligned} $。</p>
+<p>显然，有$\left [\begin{aligned}&amp;x+y=k\\ &amp;y=n\text{ mod k}=n-k\lfloor\frac nk\rfloor\end{aligned}\right. $。</p>
 <p>为了简便，下设$b=\lfloor\frac nk\rfloor$。</p>
 <p>连边：完全图边数-同色内不能连边</p>
 <p>$=\frac{n(n-1)}2-\frac {b(b-1)}2x-\frac{b(b+1)}2y$</p>
@@ -550,23 +552,29 @@
 <p>感觉<a href="http://blog.xty.im/2019/06/19/laplacian-matrix/" target="_blank" rel="noopener">这篇</a>博客写的很好，除了其中一个重要定理的证明以外，其他的都给出了详细的说明和推演。</p>
 <p>这个博客概括为以下六条：</p>
 <ol>
-<li>考虑图$G$的关联矩阵$M_{m\times n}$，设$e$为连接$i,j$的边（$i&gt;j$），则$M_{ev}=\left{\begin{aligned}&amp;1&amp;v=i\&amp;\text-1&amp;v=j\&amp;0&amp;o.w.\end{aligned}\right.$，则基尔霍夫矩阵$L=M^TM$，容易推出$L=D-A$。</li>
+<li>考虑图$G$的关联矩阵$M_{m\times n}$，设$e$为连接$i,j$的边（$i&gt;j$），则$M_{ev}=\left[\begin{aligned}&amp;1&amp;v=i\\ &amp;\text-1&amp;v=j\\ &amp;0&amp;o.w.\end{aligned}\right.$，则基尔霍夫矩阵$L=M^TM$，容易推出$L=D-A$。</li>
 <li>$L$的任意代数余子式值都相等。（非常重要的性质）</li>
 <li>$L$的任意一行、一列的和均为$0$。（非常重要的性质）</li>
 <li>$L$有一个特征值$0$，且特征值$\lambda_i$均$\geq 0$，即$L$是奇异的、半正定的。</li>
-<li>$\det(A_{1,1})=\sum_{S}\det(M_{1,S})^2$，其中$S\in\left(\begin{aligned}\ [m]\n-1\end{aligned}\right)$，即$S$为从边集中任意选出的$n-1$个边的集合；$M_1$表示$M$去掉第一列（$v=1$）后的矩阵，$M_{1,S}$为$M_1$的行下标位于$S$中（边$e\in e_S$）的子矩阵。</li>
+<li>$\det(A_{1,1})=\sum_{S}\det(M_{1,S})^2$，其中$S\in\left(\begin{aligned}\ [m]\\ n-1\end{aligned}\right)$，即$S$为从边集中任意选出的$n-1$个边的集合；$M_1$表示$M$去掉第一列（$v=1$）后的矩阵，$M_{1,S}$为$M_1$的行下标位于$S$中（边$e\in e_S$）的子矩阵。</li>
 <li>当边不连通，有$\det(M_{1,S})=0$；连通时有$\det(M_{1,S})=\pm1$。</li>
 </ol>
 <p>因此普通的基尔霍夫矩阵的任意代数余子式为生成树的个数。</p>
 <p>以下为个人yy：（不知正误）</p>
 <p>在此基础上，我们将$M$稍作修改：</p>
-<p>$M’_{ev}=\left{\begin{aligned}&amp;\sqrt{w_e}&amp;v=i\&amp;\text-\sqrt{w_e}&amp;v=j\&amp;0&amp;o.w.\end{aligned}\right.$</p>
-<p>$M’^TM’$得到的矩阵$L’$仍满足上述$2,3,4$性质。此时，$L_{ij}=\left{\begin{aligned}&amp;\sum_{e}w_e[e与i关联]&amp;i=j\&amp;\text-w_{ij}&amp;i\neq j\end{aligned}\right.$。</p>
-<p>同样有$\det(A’<em>{1,1})=\sum</em>{S}\det(M’_{1,S})^2$。</p>
-<p>当边不连通时，有$\det(M’<em>{1,S})=0$；连通时有$\det(M’</em>{1,S})=\pm\sqrt{\Pi_ew_e[e\in S]}$，同样可以得出，$L’$任意代数余子式为生成树中所有边权之积的和。这就是变元矩阵树定理。</p>
+<p>$M’_{ev}=\left[\begin{aligned}&amp;\sqrt{w_e}&amp;v=i\\ &amp;\text-\sqrt{w_e}&amp;v=j\\ &amp;0&amp;o.w.\end{aligned}\right.$</p>
+<p>$M’^TM’$得到的矩阵$L’$仍满足上述$2,3,4$性质。此时，$L_{ij}=\left[\begin{aligned}&amp;\sum_{e}w_e[e与i关联]&amp;i=j\\ &amp;\text-w_{ij}&amp;i\neq j\end{aligned}\right.$。</p>
+<p>同样有</p>
+<p>$\det(A’_{1,1})$</p>
+<p>$=\sum_{S}\det(M’_{1,S})^2$。</p>
+<p>当边不连通时，有$\det(M’_{1,S})=0$；</p>
+<p>连通时有$\det(M’_{1,S})=\pm\sqrt{\Pi_ew_e[e\in S]}$.</p>
+<p>同样可以得出，$L’$任意代数余子式为生成树中所有边权之积的和。这就是变元矩阵树定理。</p>
 <p>利用变元矩阵树定理可以求解本题：</p>
 <p>构造矩阵$L’$，其中设只出现在$G_1$中的边对应的“边权”为$1$，同时出现在$G_1,G_2$中的边对应的“边权”为$x$，那么$L’$的代数余子式$|A(x)|$为一个$x$的$n-1$次多项式，记为$f(x)$，有$f(x)=\sum a_ix^i$，其中$a_i$表示有$i$条公共边的生成树个数。</p>
-<p>我们要求的就是$\sum a_i\times i=f’(1)$，故$ans=f’(1)=|A(1)|\sum_{i=1}^{n-1}\sum_{j=1}^{n-1}(A(1)^{-1})<em>{i,j} A’(1)</em>{j,i}$。</p>
+<p>我们要求的就是$\sum a_i\times i=f’(1)$，</p>
+<p>故$ans=f’(1)$</p>
+<p>$=|A(1)|\sum_{i=1}^{n-1}\sum_{j=1}^{n-1}A(1)^{-1}[i][j]A’(1)[j][i]$。</p>
 <h4 id="AC代码-2"><a href="#AC代码-2" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;queue&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cmath&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdlib&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;set&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;unordered_map&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;vector&gt;</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">440</span>;</span><br><span class="line"><span class="keyword">const</span> ll mod=<span class="number">998244353</span>;</span><br><span class="line">ll a[N][N],b[N][N],inv[N][N];</span><br><span class="line"><span class="keyword">int</span> equ,var;</span><br><span class="line"><span class="function">ll <span class="title">qp</span><span class="params">(ll a,ll p)</span></span>&#123;</span><br><span class="line">    ll ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(;p;p&gt;&gt;=<span class="number">1</span>,a=a*a%mod)<span class="keyword">if</span>(p&amp;<span class="number">1</span>)ans=ans*a%mod;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">Gauss</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k,col,max_r;</span><br><span class="line">    ll ans=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">for</span>(k=<span class="number">0</span>,col=<span class="number">0</span>;k&lt;equ&amp;&amp;col&lt;var;k++,col++)&#123;</span><br><span class="line">        max_r=k;</span><br><span class="line">        <span class="keyword">for</span>(i=k+<span class="number">1</span>;i&lt;equ;i++)</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">abs</span>(a[i][col])&gt;<span class="built_in">abs</span>(a[max_r][col]))</span><br><span class="line">                max_r=i;</span><br><span class="line">        <span class="keyword">if</span>(!a[max_r][col])<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">if</span>(k!=max_r)&#123;</span><br><span class="line">            <span class="keyword">for</span>(j=col;j&lt;var;j++)swap(a[k][j],a[max_r][j]);</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;var;j++)swap(inv[k][j],inv[max_r][j]);</span><br><span class="line">            ans=mod-ans;</span><br><span class="line">        &#125;</span><br><span class="line">        ans=ans*a[k][k]%mod;</span><br><span class="line">        ll fm=qp(a[k][col],mod<span class="number">-2</span>);</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;var;j++)inv[k][j]=inv[k][j]*fm%mod;</span><br><span class="line">        <span class="keyword">for</span>(j=col+<span class="number">1</span>;j&lt;var;j++)a[k][j]=a[k][j]*fm%mod;</span><br><span class="line">        a[k][col]=<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;equ;i++)</span><br><span class="line">            <span class="keyword">if</span>(i!=k)&#123;</span><br><span class="line">            	<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;var;j++)(inv[i][j]-=inv[k][j]*a[i][col])%=mod;</span><br><span class="line">                <span class="keyword">for</span>(j=col+<span class="number">1</span>;j&lt;var;j++)(a[i][j]-=a[k][j]*a[i][col])%=mod;</span><br><span class="line">                a[i][col]=<span class="number">0</span>;</span><br><span class="line">            &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">//消成E|A-1 </span></span><br><span class="line">    <span class="keyword">for</span>(i=var<span class="number">-1</span>;i&gt;=<span class="number">0</span>;i--)</span><br><span class="line">    	<span class="keyword">for</span>(j=i<span class="number">-1</span>;j&gt;=<span class="number">0</span>;j--)</span><br><span class="line">    		<span class="keyword">for</span>(k=<span class="number">0</span>;k&lt;var;k++)</span><br><span class="line">    			(inv[j][k]-=a[j][i]*inv[i][k])%=mod;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">char</span> s[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,n,j;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;n);</span><br><span class="line">    equ=var=n<span class="number">-1</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)a[i][j]=(s[j]==<span class="string">'1'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%s"</span>,s);</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)b[i][j]=(s[j]==<span class="string">'1'</span>&amp;&amp;a[i][j]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">        <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;n;j++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(i==j)<span class="keyword">continue</span>;</span><br><span class="line">            a[i][i]+=a[i][j];b[i][i]+=b[i][j];</span><br><span class="line">            a[i][j]=-a[i][j];b[i][j]=-b[i][j];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;n<span class="number">-1</span>;i++)inv[i][i]=<span class="number">1</span>;</span><br><span class="line">    ll ans=Gauss(),ans2=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;var;i++)<span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;var;j++)</span><br><span class="line">        (ans2=ans2+b[i][j]*inv[j][i])%=mod;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld"</span>,((ans*ans2%mod)+mod)%mod);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
@@ -577,7 +585,9 @@
 <p>给定一棵树和$m$条路径，对于每一个$r\in [1,n]$，计算当$r$为根节点时，所有路径的权值和是多少。</p>
 <h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><p>考虑先计算出$1$为根时的答案，然后换根。</p>
 <p>考虑$u,v$路径对各个节点的贡献：设$f=LCA(u,v)$，$l_1=len(u,f),l_2=len(v,f)$，则对$LCA$贡献$l_1l_2$，对$a_2$贡献$(l_1-1)(l_2+1)=l_1l_2-l_2+l_1-1$，对$a_1$贡献$l_1l_2-2l_2+2l_1-4$，……</p>
-<p>考虑路径上贡献的差值。$a_2,f$之间的差值为 $d_1=(l_1-l_2-1)$，$a_1,a_2$之间的差值为$d_2=(l_1-l_2-3)$，这是一个等差数列，在树上胡乱维护一下即可。</p>
+<p>考虑路径上贡献的差值。</p>
+<p> 如图，$a_2,f$之间的差值为 $d_1=(l_1-l_2-1)$，$a_1,a_2$之间的差值为$d_2=(l_1-l_2-3)$，这是一个等差数列，在树上胡乱维护一下即可。</p>
+<p><img src="/images/2020wannaflycampday1E.png" alt></p>
 <p>具体的维护方式：</p>
 <p>差值从下到上构成一个公差为$2$的等差数列，通过树上差分（先维护孩子$\to$父亲的差值之差，再求出每个节点的差值）可以求出这个差值；通过这个差值再从上到下更新每个节点对应的答案。</p>
 <div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
@@ -760,7 +770,7 @@
                 
                   <a href="/archives/">
                 
-                    <span class="site-state-item-count">64</span>
+                    <span class="site-state-item-count">63</span>
                     <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
