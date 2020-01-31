@@ -107,25 +107,25 @@
     })();
   </script>
 
-  <meta name="description" content="题目链接Garbage Heap">
+  <meta name="description" content="Solved A B C D E F G H I J    7/10 O O . . O . O O O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta name="keywords" content="Solutions">
-<meta property="og:type" content="website">
-<meta property="og:title" content="UVA-10755 Garbage Heap（三维前缀和）">
-<meta property="og:url" content="http://yoursite.com/bin/uva10755.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="2020 CCPC Wannafly camp day5 题解">
+<meta property="og:url" content="http://yoursite.com/2020/01/31/2020ccpcwannaflycampday5/index.html">
 <meta property="og:site_name" content="Potassium&#39;s blog">
-<meta property="og:description" content="题目链接Garbage Heap">
+<meta property="og:description" content="Solved A B C D E F G H I J    7/10 O O . . O . O O O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-03-29T04:32:23.767Z">
+<meta property="og:updated_time" content="2020-01-31T14:38:24.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="UVA-10755 Garbage Heap（三维前缀和）">
-<meta name="twitter:description" content="题目链接Garbage Heap">
+<meta name="twitter:title" content="2020 CCPC Wannafly camp day5 题解">
+<meta name="twitter:description" content="Solved A B C D E F G H I J    7/10 O O . . O . O O O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 
 
 
 
 
 
-  <link rel="canonical" href="http://yoursite.com/bin/uva10755.html">
+  <link rel="canonical" href="http://yoursite.com/2020/01/31/2020ccpcwannaflycampday5/">
 
 
 
@@ -135,7 +135,7 @@
   };
 </script>
 
-  <title>UVA-10755 Garbage Heap（三维前缀和） | Potassium's blog</title>
+  <title>2020 CCPC Wannafly camp day5 题解 | Potassium's blog</title>
   
 
 
@@ -340,81 +340,284 @@
           
             
 
-    
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-      
-      
-    
-    
-
-  
-
-
           
           <div id="content" class="content">
             
 
   <div id="posts" class="posts-expand">
     
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/01/31/2020ccpcwannaflycampday5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Potassium">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/main.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Potassium's blog">
+    </span>
+
     
-    
-    <div class="post-block page">
       <header class="post-header">
 
-<h1 class="post-title" itemprop="name headline">UVA-10755 Garbage Heap（三维前缀和）
-
-</h1>
-
-<div class="post-meta">
-  
-  
-
-
-
-</div>
-
-</header>
-
-      
-      
-      
-      <div class="post-body">
         
         
-          <h2 id="题目链接"><a href="#题目链接" class="headerlink" title="题目链接"></a>题目链接</h2><p><a href="https://vjudge.net/problem/UVA-10755" target="_blank" rel="noopener">Garbage Heap</a></p>
+          <h1 class="post-title" itemprop="name headline">2020 CCPC Wannafly camp day5 题解
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-31 17:30:00 / 修改时间：22:38:24" itemprop="dateCreated datePublished" datetime="2020-01-31T17:30:00+08:00">2020-01-31</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2020/01/31/2020ccpcwannaflycampday5/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2020/01/31/2020ccpcwannaflycampday5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <table>
+<thead>
+<tr>
+<th align="left">Solved</th>
+<th align="left">A</th>
+<th align="left">B</th>
+<th align="left">C</th>
+<th align="left">D</th>
+<th align="left">E</th>
+<th align="left">F</th>
+<th align="left">G</th>
+<th align="left">H</th>
+<th align="left">I</th>
+<th align="left">J</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">7/10</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">.</td>
+<td align="left">.</td>
+<td align="left">O</td>
+<td align="left">.</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+<td align="left">O</td>
+</tr>
+</tbody></table>
+<ul>
+<li>O for passing during the contest</li>
+<li>Ø for passing after the contest</li>
+<li>! for attempted but failed</li>
+<li>· for having not attempted yet</li>
+</ul>
 <a id="more"></a>
 
-<h2 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h2><p>裸的三维前缀和。</p>
-<p>$UVA$上一定要用$%lld$！！！只有$CF$才需要$I64d$！！！空格换行要求也很严格！</p>
-<p>大致思路是，把三维用前缀和表示，每次枚举两维，第三维再用前缀和的思想用类似求最大子序列的求法$O(n)$解决，总复杂度$O(n^5)$。</p>
-<h2 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h2><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;stdio.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;string.h&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> For(i,a,b) for(i=a;i&lt;=b;i++)</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> FFF For(i,1,a)For(j,1,b)For(k,1,c)</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">long</span> <span class="keyword">long</span> ll;</span><br><span class="line">ll m[<span class="number">25</span>][<span class="number">25</span>][<span class="number">25</span>];</span><br><span class="line"><span class="keyword">int</span> a,b,c,t;</span><br><span class="line"><span class="function">ll <span class="title">sumf</span><span class="params">(<span class="keyword">int</span> x1,<span class="keyword">int</span> x2,<span class="keyword">int</span> y1,<span class="keyword">int</span> y2,<span class="keyword">int</span> z1,<span class="keyword">int</span> z2)</span></span>&#123;</span><br><span class="line">    ll num=m[x2][y2][z2];</span><br><span class="line">    num-=m[x1<span class="number">-1</span>][y2][z2];</span><br><span class="line">    num-=m[x2][y1<span class="number">-1</span>][z2];</span><br><span class="line">    num-=m[x2][y2][z1<span class="number">-1</span>];</span><br><span class="line">    num+=m[x1<span class="number">-1</span>][y1<span class="number">-1</span>][z2];</span><br><span class="line">    num+=m[x1<span class="number">-1</span>][y2][z1<span class="number">-1</span>];</span><br><span class="line">    num+=m[x2][y1<span class="number">-1</span>][z1<span class="number">-1</span>];</span><br><span class="line">    num-=m[x1<span class="number">-1</span>][y1<span class="number">-1</span>][z1<span class="number">-1</span>];</span><br><span class="line">    <span class="keyword">return</span> num;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j,k,l,p;</span><br><span class="line">    ll ans,minpre,sum;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d"</span>,&amp;t);</span><br><span class="line">    <span class="keyword">while</span>(t--)&#123;</span><br><span class="line">        ans=<span class="number">-1e18</span>;</span><br><span class="line">        <span class="built_in">memset</span>(m,<span class="number">0</span>,<span class="keyword">sizeof</span>(m));</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%d"</span>,&amp;a,&amp;b,&amp;c);</span><br><span class="line">        <span class="function">FFF <span class="title">scanf</span><span class="params">(<span class="string">"%lld"</span>,&amp;m[i][j][k])</span></span>;</span><br><span class="line">        FFF m[i][j][k]+=m[i<span class="number">-1</span>][j][k];</span><br><span class="line">        FFF m[i][j][k]+=m[i][j<span class="number">-1</span>][k];</span><br><span class="line">        FFF m[i][j][k]+=m[i][j][k<span class="number">-1</span>];</span><br><span class="line">        For(i,<span class="number">1</span>,a)For(j,i,a)For(k,<span class="number">1</span>,b)For(l,k,b)&#123;</span><br><span class="line">            minpre=<span class="number">0</span>;</span><br><span class="line">            For(p,<span class="number">1</span>,c)&#123;</span><br><span class="line">                sum=sumf(i,j,k,l,<span class="number">1</span>,p);</span><br><span class="line">                <span class="keyword">if</span>(sum-minpre&gt;ans)ans=sum-minpre;</span><br><span class="line">                <span class="keyword">if</span>(sum&lt;minpre)minpre=sum;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,ans);</span><br><span class="line">        <span class="keyword">if</span>(t)<span class="built_in">putchar</span>(<span class="string">'\n'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>coming soon</p>
+<p><a href="https://ac.nowcoder.com/acm/contest/4120" target="_blank" rel="noopener">比赛链接</a></p>
+<h3 id="A"><a href="#A" class="headerlink" title="A"></a>A</h3><blockquote>
+<h4 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路"><a href="#解题思路" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码"><a href="#AC代码" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
+</div></div>
+</blockquote>
+<h3 id="B"><a href="#B" class="headerlink" title="B"></a>B</h3><blockquote>
+<h4 id="题目描述-1"><a href="#题目描述-1" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-1"><a href="#解题思路-1" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-1"><a href="#AC代码-1" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
 
-        
-      </div>
-      
-      
+</div></div>
+</blockquote>
+<h3 id="C"><a href="#C" class="headerlink" title="C"></a>C</h3><blockquote>
+<h4 id="题目描述-2"><a href="#题目描述-2" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-2"><a href="#解题思路-2" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-2"><a href="#AC代码-2" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="D"><a href="#D" class="headerlink" title="D"></a>D</h3><blockquote>
+<h4 id="题目描述-3"><a href="#题目描述-3" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-3"><a href="#解题思路-3" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-3"><a href="#AC代码-3" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="E"><a href="#E" class="headerlink" title="E"></a>E</h3><blockquote>
+<h4 id="题目描述-4"><a href="#题目描述-4" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-4"><a href="#解题思路-4" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-4"><a href="#AC代码-4" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="F"><a href="#F" class="headerlink" title="F"></a>F</h3><blockquote>
+<h4 id="题目描述-5"><a href="#题目描述-5" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-5"><a href="#解题思路-5" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-5"><a href="#AC代码-5" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="G"><a href="#G" class="headerlink" title="G"></a>G</h3><blockquote>
+<h4 id="题目描述-6"><a href="#题目描述-6" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-6"><a href="#解题思路-6" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-6"><a href="#AC代码-6" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="H"><a href="#H" class="headerlink" title="H"></a>H</h3><blockquote>
+<h4 id="题目描述-7"><a href="#题目描述-7" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-7"><a href="#解题思路-7" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-7"><a href="#AC代码-7" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="I"><a href="#I" class="headerlink" title="I"></a>I</h3><blockquote>
+<h4 id="题目描述-8"><a href="#题目描述-8" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-8"><a href="#解题思路-8" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-8"><a href="#AC代码-8" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+<h3 id="J"><a href="#J" class="headerlink" title="J"></a>J</h3><blockquote>
+<h4 id="题目描述-9"><a href="#题目描述-9" class="headerlink" title="题目描述"></a>题目描述</h4><h4 id="解题思路-9"><a href="#解题思路-9" class="headerlink" title="解题思路"></a>解题思路</h4><h4 id="AC代码-9"><a href="#AC代码-9" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+</div></div>
+</blockquote>
+
       
     </div>
-    
-
-
 
     
+
     
     
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Solutions/" rel="tag"># Solutions</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2020/01/25/2020ccpcwannaflycampday3/" rel="next" title="2020 CCPC Wannafly camp day3 题解">
+                <i class="fa fa-chevron-left"></i> 2020 CCPC Wannafly camp day3 题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
   </div>
 
 
@@ -666,7 +869,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#题目链接"><span class="nav-number">1.</span> <span class="nav-text">题目链接</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解题思路"><span class="nav-number">2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#AC代码"><span class="nav-number">3.</span> <span class="nav-text">AC代码</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#A"><span class="nav-number">1.</span> <span class="nav-text">A</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述"><span class="nav-number">1.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路"><span class="nav-number">1.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码"><span class="nav-number">1.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#B"><span class="nav-number">2.</span> <span class="nav-text">B</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-1"><span class="nav-number">2.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-1"><span class="nav-number">2.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-1"><span class="nav-number">2.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C"><span class="nav-number">3.</span> <span class="nav-text">C</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-2"><span class="nav-number">3.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-2"><span class="nav-number">3.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-2"><span class="nav-number">3.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#D"><span class="nav-number">4.</span> <span class="nav-text">D</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-3"><span class="nav-number">4.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-3"><span class="nav-number">4.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-3"><span class="nav-number">4.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#E"><span class="nav-number">5.</span> <span class="nav-text">E</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-4"><span class="nav-number">5.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-4"><span class="nav-number">5.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-4"><span class="nav-number">5.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#F"><span class="nav-number">6.</span> <span class="nav-text">F</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-5"><span class="nav-number">6.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-5"><span class="nav-number">6.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-5"><span class="nav-number">6.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#G"><span class="nav-number">7.</span> <span class="nav-text">G</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-6"><span class="nav-number">7.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-6"><span class="nav-number">7.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-6"><span class="nav-number">7.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#H"><span class="nav-number">8.</span> <span class="nav-text">H</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-7"><span class="nav-number">8.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-7"><span class="nav-number">8.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-7"><span class="nav-number">8.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#I"><span class="nav-number">9.</span> <span class="nav-text">I</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-8"><span class="nav-number">9.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-8"><span class="nav-number">9.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-8"><span class="nav-number">9.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#J"><span class="nav-number">10.</span> <span class="nav-text">J</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#题目描述-9"><span class="nav-number">10.1.</span> <span class="nav-text">题目描述</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#解题思路-9"><span class="nav-number">10.2.</span> <span class="nav-text">解题思路</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#AC代码-9"><span class="nav-number">10.3.</span> <span class="nav-text">AC代码</span></a></li></ol></li></ol></div>
             
 
           </div>
