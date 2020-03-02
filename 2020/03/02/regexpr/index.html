@@ -114,20 +114,20 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="（以下内容仅是提纲，其中的标题包含关系不代表内容包含关系，具体见讲述） 正则表达式正则表达式的本质 DFA(Deterministic Finite Automaton)，确定有限状态自动机 我们之前在计组上接触的，主要是确定有限状态自动机，可以方便的画出状态转移图  NFA(Nondeterministic Finite Automaton)，非确定有限状态自动机 优点：可以多路径匹配（不确">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302nfa.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302dfa.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302backtracking20.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302backtrackingway1.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302backtrackingway1-1.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302backtrackingway2.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302backtrackingway2-1.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images/20200302test.png">
-<meta property="og:image" content="http://yoursite.com/2020/03/02/regexpr/images/20200302hucefanche.png">
-<meta property="og:updated_time" content="2020-03-02T14:25:36.642Z">
+<meta property="og:image" content="http://yoursite.com/images/20200302nfa.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302dfa.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302backtracking20.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302backtrackingway1.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302backtrackingway1-1.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302backtrackingway2.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302backtrackingway2-1.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302test.png">
+<meta property="og:image" content="http://yoursite.com/images/20200302hucefanche.png">
+<meta property="og:updated_time" content="2020-03-02T14:32:05.555Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2020.3.4 OO研讨课 - 正则表达式和作业的一些碎碎念 提纲">
 <meta name="twitter:description" content="（以下内容仅是提纲，其中的标题包含关系不代表内容包含关系，具体见讲述） 正则表达式正则表达式的本质 DFA(Deterministic Finite Automaton)，确定有限状态自动机 我们之前在计组上接触的，主要是确定有限状态自动机，可以方便的画出状态转移图  NFA(Nondeterministic Finite Automaton)，非确定有限状态自动机 优点：可以多路径匹配（不确">
-<meta name="twitter:image" content="http://yoursite.com/2020/03/02/regexpr/images%5C20200302nfa.png">
+<meta name="twitter:image" content="http://yoursite.com/images/20200302nfa.png">
 
 
 
@@ -412,7 +412,7 @@
                 
               
 
-              <time title="创建时间：2020-03-02 18:30:00 / 修改时间：22:25:36" itemprop="dateCreated datePublished" datetime="2020-03-02T18:30:00+08:00">2020-03-02</time>
+              <time title="创建时间：2020-03-02 18:30:00 / 修改时间：22:32:05" itemprop="dateCreated datePublished" datetime="2020-03-02T18:30:00+08:00">2020-03-02</time>
             
 
             
@@ -479,8 +479,8 @@
 </li>
 </ol>
 <p>例：</p>
-<p><img src="images%5C20200302nfa.png" alt="NFA"></p>
-<p><img src="images%5C20200302dfa.png" alt="DFA"></p>
+<p><img src="/images/20200302nfa.png" alt="NFA"></p>
+<p><img src="/images/20200302dfa.png" alt="DFA"></p>
 <p>有兴趣的同学可以运用<a href="http://www.luobotang.cn/nfa/app/" target="_blank" rel="noopener">这个网页</a>对比两种自动机（只支持简单正则（复杂正则DFA不一定行</p>
 <h3 id="正则表达式的使用"><a href="#正则表达式的使用" class="headerlink" title="正则表达式的使用"></a>正则表达式的使用</h3><h4 id="灾难性回溯-catastrophic-backtracking"><a href="#灾难性回溯-catastrophic-backtracking" class="headerlink" title="灾难性回溯(catastrophic backtracking)"></a>灾难性回溯(<a href="http://www.regular-expressions.info/catastrophic.html" target="_blank" rel="noopener">catastrophic backtracking</a>)</h4><ol>
 <li><p>避免’.’符号，具有专一性</p>
@@ -493,12 +493,13 @@
 <blockquote>
 <p> 1,2,3,4,5,6</p>
 </blockquote>
-<p><video src="images\20200302backtracking5.mp4"></video><br><img src="images%5C20200302backtracking20.png" alt="backtracking20"></p>
+<p><video src="/images/20200302backtracking5.mp4"></video></p>
+<p><img src="/images/20200302backtracking20.png" alt="backtracking20"></p>
 <p>解决方案1：“懒惰”式匹配（尽少匹配）</p>
 <blockquote>
 <p>^(.*?,){19}</p>
 </blockquote>
-<p><img src="images%5C20200302backtrackingway1.png" alt="way1"></p>
+<p><img src="/images/20200302backtrackingway1.png" alt="way1"></p>
 <p>改变条件：模式串要求前缀匹配改为要求全串匹配：</p>
 <blockquote>
 <p>^(.*?,){5}$</p>
@@ -507,16 +508,16 @@
 <blockquote>
 <p>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20</p>
 </blockquote>
-<p><img src="images%5C20200302backtrackingway1-1.png" alt="way1-1"></p>
+<p><img src="/images/20200302backtrackingway1-1.png" alt="way1-1"></p>
 <p>解决方案2：专一性匹配</p>
 <blockquote>
 <p>^([^,]*,){19}</p>
 </blockquote>
-<p><img src="images%5C20200302backtrackingway2.png" alt="way2"></p>
+<p><img src="/images/20200302backtrackingway2.png" alt="way2"></p>
 <blockquote>
 <p>^([^,]*,){19}$</p>
 </blockquote>
-<p><img src="images%5C20200302backtrackingway2-1.png" alt="way2-1"></p>
+<p><img src="/images/20200302backtrackingway2-1.png" alt="way2-1"></p>
 </li>
 <li><p><a href="https://www.cnblogs.com/chanshuyi/p/the_regex_backtracking_trap.html" target="_blank" rel="noopener">独占模式实例</a>（链接的合法性实例，有兴趣的同学可以参阅）</p>
 </li>
@@ -535,7 +536,7 @@
 <h2 id="作业相关"><a href="#作业相关" class="headerlink" title="作业相关"></a>作业相关</h2><h3 id="读题"><a href="#读题" class="headerlink" title="读题"></a>读题</h3><p>参与WF的形式化表述一定要保证理解正确，不能随意使用未能证明的结论（比如<code>+ - x</code>不合法（其实是合法的））。</p>
 <h3 id="数据"><a href="#数据" class="headerlink" title="数据"></a>数据</h3><p>构造数据不是随机生成就一定最好。在写一个较复杂的题目之前，先要对数据熟悉，可以手动构造出来一些数据，想一想程序是如何处理这些数据的，这样后面才能写得得心应手。数据的构造见“正确性检查”节。</p>
 <p>笔者在写代码前出的数据：</p>
-<p><img src="images/20200302test.png" alt></p>
+<p><img src="/images/20200302test.png" alt></p>
 <p>（其中WF表示WRONG FORMAT，可以看到笔者把<code>+- x</code>判做了WF，导致互测翻车）</p>
 <h3 id="架构"><a href="#架构" class="headerlink" title="架构"></a>架构</h3><p>可以从上到下构造函数，也可以从最基础的部分想起，每个类里分别要实现什么功能，需要和其他的类如何沟通，注意爸爸不要帮孩子写作业。如果想要性能分而且时间足够，可以仔细想想：如何优化？这样的架构能不能应对以后的优化？如果发现当前的架构进行优化需要大量重构，那么就要考虑改变架构了。</p>
 <h3 id="上手"><a href="#上手" class="headerlink" title="上手"></a>上手</h3><p>根据自己的架构coding~</p>
@@ -550,7 +551,7 @@
 <h3 id="互测"><a href="#互测" class="headerlink" title="互测"></a>互测</h3><p>不会互测，只会被hack</p>
 <p>一个bug被五次hack，太惨痛了.jpg（最后变6次了</p>
 <p>放出来供大佬一哂</p>
-<p><img src="images/20200302hucefanche.png" alt></p>
+<p><img src="/images/20200302hucefanche.png" alt></p>
 
       
     </div>
