@@ -123,7 +123,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20200302backtrackingway2-1.png">
 <meta property="og:image" content="http://yoursite.com/images/20200302test.png">
 <meta property="og:image" content="http://yoursite.com/images/20200302hucefanche.png">
-<meta property="og:updated_time" content="2020-03-02T16:15:29.347Z">
+<meta property="og:updated_time" content="2020-03-03T10:35:12.453Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2020.3.4 OO研讨课 - 正则表达式和作业的一些碎碎念 提纲">
 <meta name="twitter:description" content="（以下内容仅是提纲，其中的标题包含关系不代表内容包含关系，具体见讲述） 正则表达式正则表达式的本质 DFA(Deterministic Finite Automaton)，确定有限状态自动机 我们之前在计组上接触的，主要是确定有限状态自动机，可以方便的画出状态转移图  NFA(Nondeterministic Finite Automaton)，非确定有限状态自动机 优点：可以多路径匹配（不确">
@@ -183,7 +183,7 @@
   </style>
 </noscript>
 
-<link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"><script src="/assets/js/DPlayer.min.js"></script></head>
+<script src="/assets/js/DPlayer.min.js"></script><link rel="stylesheet" type="text/css" href="/assets/css/DPlayer.min.css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-03 00:15:29" itemprop="dateModified" datetime="2020-03-03T00:15:29+08:00">2020-03-03</time>
+                <time title="修改时间：2020-03-03 18:35:12" itemprop="dateModified" datetime="2020-03-03T18:35:12+08:00">2020-03-03</time>
               
             
           </span>
@@ -490,7 +490,7 @@
 <p>优点：可以多路径匹配（不确定匹配位置）；缺点：需要回溯，性能差</p>
 </li>
 </ol>
-<p>例：</p>
+<p>例：<code>x|xy</code>表达式的NFA表示和DFA表示（上：NFA，下：DFA）</p>
 <p><img src="/images/20200302nfa.png" alt="NFA"></p>
 <p><img src="/images/20200302dfa.png" alt="DFA"></p>
 <p>有兴趣的同学可以运用<a href="http://www.luobotang.cn/nfa/app/" target="_blank" rel="noopener">这个网页</a>对比两种自动机（只支持简单正则（复杂正则DFA不一定行</p>
@@ -507,6 +507,15 @@
 </blockquote>
 </li>
 </ol>
+<p>   扩大一点数据呢？比如5-6$\rightarrow$ 19-20？</p>
+<p>   模式串</p>
+<blockquote>
+<p>^(.*,){19}</p>
+</blockquote>
+<p>   匹配串（仍然匹配）</p>
+<blockquote>
+<p>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20</p>
+</blockquote>
 <div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://potassiumwings.github.io/images/20200302backtracking5.mp4","pic":"https://potassiumwings.github.io/images/20200302backtracking5.png"},"danmaku":{"api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
 
 <p>   <img src="/images/20200302backtracking20.png" alt="backtracking20"></p>
@@ -519,16 +528,19 @@
 <blockquote>
 <p>^(.*?,){5}$</p>
 </blockquote>
-<p>   匹配串（非匹配）</p>
+<p>  匹配串（非匹配）（注意到20后面没有逗号）</p>
 <blockquote>
 <p>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20</p>
 </blockquote>
+<p>   懒惰式匹配结果：</p>
 <p>   <img src="/images/20200302backtrackingway1-1.png" alt="way1-1"></p>
 <p>   解决方案2：专一性匹配</p>
+<p>   第一种需求的结果：</p>
 <blockquote>
 <p>^([^,]*,){19}</p>
 </blockquote>
 <p>   <img src="/images/20200302backtrackingway2.png" alt="way2"></p>
+<p>   第二种需求的结果：</p>
 <blockquote>
 <p>^([^,]*,){19}$</p>
 </blockquote>
