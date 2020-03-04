@@ -123,7 +123,7 @@
 <meta property="og:image" content="http://yoursite.com/images/20200302backtrackingway2-1.png">
 <meta property="og:image" content="http://yoursite.com/images/20200302test.png">
 <meta property="og:image" content="http://yoursite.com/images/20200302hucefanche.png">
-<meta property="og:updated_time" content="2020-03-03T10:35:12.453Z">
+<meta property="og:updated_time" content="2020-03-04T03:27:13.385Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2020.3.4 OO研讨课 - 正则表达式和作业的一些碎碎念 提纲">
 <meta name="twitter:description" content="（以下内容仅是提纲，其中的标题包含关系不代表内容包含关系，具体见讲述） 正则表达式正则表达式的本质 DFA(Deterministic Finite Automaton)，确定有限状态自动机 我们之前在计组上接触的，主要是确定有限状态自动机，可以方便的画出状态转移图  NFA(Nondeterministic Finite Automaton)，非确定有限状态自动机 优点：可以多路径匹配（不确">
@@ -429,7 +429,7 @@
                 
                   <span class="post-meta-item-text">更新于</span>
                 
-                <time title="修改时间：2020-03-03 18:35:12" itemprop="dateModified" datetime="2020-03-03T18:35:12+08:00">2020-03-03</time>
+                <time title="修改时间：2020-03-04 11:27:13" itemprop="dateModified" datetime="2020-03-04T11:27:13+08:00">2020-03-04</time>
               
             
           </span>
@@ -505,47 +505,45 @@
 <blockquote>
 <p> 1,2,3,4,5,6</p>
 </blockquote>
-</li>
-</ol>
-<p>   扩大一点数据呢？比如5-6$\rightarrow$ 19-20？</p>
-<p>   模式串</p>
+<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://potassiumwings.github.io/images/20200302backtracking5.mp4","pic":"https://potassiumwings.github.io/images/20200302backtracking5.png"},"danmaku":{"api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
+
+<p>扩大一点数据呢？比如5-6$\rightarrow$ 19-20？</p>
+<p>模式串</p>
 <blockquote>
 <p>^(.*,){19}</p>
 </blockquote>
-<p>   匹配串（仍然匹配）</p>
+<p>匹配串（仍然匹配）</p>
 <blockquote>
 <p>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20</p>
 </blockquote>
-<div id="dplayer0" class="dplayer hexo-tag-dplayer-mark" style="margin-bottom: 20px;"></div><script>(function(){var player = new DPlayer({"container":document.getElementById("dplayer0"),"theme":"#FADFA3","loop":true,"video":{"url":"https://potassiumwings.github.io/images/20200302backtracking5.mp4","pic":"https://potassiumwings.github.io/images/20200302backtracking5.png"},"danmaku":{"api":"http://dplayer.daoapp.io","token":"tokendemo"}});window.dplayers||(window.dplayers=[]);window.dplayers.push(player);})()</script>
-
-<p>   <img src="/images/20200302backtracking20.png" alt="backtracking20"></p>
-<p>   解决方案1：“懒惰”式匹配（尽少匹配）</p>
+<p><img src="/images/20200302backtracking20.png" alt="backtracking20"></p>
+<p>解决方案1：“懒惰”式匹配（尽少匹配）</p>
 <blockquote>
 <p>^(.*?,){19}</p>
 </blockquote>
-<p>   <img src="/images/20200302backtrackingway1.png" alt="way1"></p>
-<p>   改变条件：模式串要求前缀匹配改为要求全串匹配：</p>
+<p><img src="/images/20200302backtrackingway1.png" alt="way1"></p>
+<p>改变条件：模式串要求前缀匹配改为要求全串匹配，且最后一个字符要求为逗号：</p>
 <blockquote>
 <p>^(.*?,){5}$</p>
 </blockquote>
-<p>  匹配串（非匹配）（注意到20后面没有逗号）</p>
+<p>匹配串（非匹配）（注意到20后面没有逗号）</p>
 <blockquote>
 <p>1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20</p>
 </blockquote>
-<p>   懒惰式匹配结果：</p>
-<p>   <img src="/images/20200302backtrackingway1-1.png" alt="way1-1"></p>
-<p>   解决方案2：专一性匹配</p>
-<p>   第一种需求的结果：</p>
+<p>懒惰式匹配结果：</p>
+<p><img src="/images/20200302backtrackingway1-1.png" alt="way1-1"></p>
+<p>解决方案2：专一性匹配</p>
+<p>第一种需求的结果：</p>
 <blockquote>
 <p>^([^,]*,){19}</p>
 </blockquote>
-<p>   <img src="/images/20200302backtrackingway2.png" alt="way2"></p>
-<p>   第二种需求的结果：</p>
+<p><img src="/images/20200302backtrackingway2.png" alt="way2"></p>
+<p>第二种需求的结果：</p>
 <blockquote>
-<p>^([^,]*,){19}$</p>
+<p>^([^,]*,){4}.*,$</p>
 </blockquote>
-<p>   <img src="/images/20200302backtrackingway2-1.png" alt="way2-1"></p>
-<ol start="2">
+<p><img src="/images/20200302backtrackingway2-1.png" alt="way2-1"></p>
+</li>
 <li><p><a href="https://www.cnblogs.com/chanshuyi/p/the_regex_backtracking_trap.html" target="_blank" rel="noopener">独占模式实例</a>（链接的合法性实例，有兴趣的同学可以参阅）</p>
 </li>
 <li><p>总结：慎重使用懒惰式、独占式、’.’符号，尽量专一匹配、化简匹配。</p>
@@ -576,7 +574,7 @@
 <h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>然后是优化。考虑各种情况的优化，其实这里的数据一般只能靠自己构造了，比如同类项、数学合并、乘法分配律啊之类的（但一定注意输出要合法）。方法….后面几次可能就看脑洞了（？</p>
 <h3 id="对拍"><a href="#对拍" class="headerlink" title="对拍"></a>对拍</h3><p>对拍可以稍微随机一些，这个同学已经讲过了就不再赘述了。</p>
 <h3 id="互测"><a href="#互测" class="headerlink" title="互测"></a>互测</h3><p>不会互测，只会被hack</p>
-<p>一个bug被五次hack，太惨痛了.jpg（最后变6次了</p>
+<p>一个bug被hack五次，太惨痛了.jpg（最后变6次了</p>
 <p>放出来供大佬一哂</p>
 <p><img src="/images/20200302hucefanche.png" alt></p>
 
