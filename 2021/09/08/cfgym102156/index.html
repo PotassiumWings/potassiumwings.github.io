@@ -115,10 +115,14 @@
 <meta property="og:site_name" content="Potassium&#39;s blog">
 <meta property="og:description" content="Solved A B C D E F G H I J    6/10 O . O Ø . . . O O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2021-09-07T19:10:26.200Z">
+<meta property="og:image" content="http://yoursite.com/images/matroid1.png">
+<meta property="og:image" content="http://yoursite.com/images/matroid2.png">
+<meta property="og:image" content="http://yoursite.com/images/matroid3.png">
+<meta property="og:updated_time" content="2021-09-07T19:20:08.094Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="2019 Petrozavodsk Winter Camp, Yandex Cup 题解">
 <meta name="twitter:description" content="Solved A B C D E F G H I J    6/10 O . O Ø . . . O O O    O for passing during the contest Ø for passing after the contest ! for attempted but failed · for having not attempted yet">
+<meta name="twitter:image" content="http://yoursite.com/images/matroid1.png">
 
 
 
@@ -403,7 +407,7 @@
                 
               
 
-              <time title="创建时间：2021-09-08 17:00:00 / 修改时间：03:10:26" itemprop="dateCreated datePublished" datetime="2021-09-08T17:00:00+08:00">2021-09-08</time>
+              <time title="创建时间：2021-09-08 17:00:00 / 修改时间：03:20:08" itemprop="dateCreated datePublished" datetime="2021-09-08T17:00:00+08:00">2021-09-08</time>
             
 
             
@@ -538,6 +542,10 @@
 <p>求一个集合中同时满足两个拟阵的过程，称为求拟阵交。</p>
 <p>求拟阵交的过程就是暴力扩展。设两拟阵分别为 $M_1,M_2$，维护这个结果集合 $I$，初始时为空（或者为满足两拟阵的一个初始集合）。每次尝试加入一些元素使得两个拟阵仍然满足。设 $X_1$ 为 $I$ 外直接暴力加入 $x$ 仍保证 $M_1$ 的 $x$ 集合，$X_2$ 为 $I$ 外直接暴力加入 $x$ 仍保证 $M_2$ 的 $x$ 集合。如果能够加入 $X_1$ 中的某元素，删掉其对于 $M_2$ 的影响，再加上删掉元素能要回来的元素，…，一直加回来某个能保证 $M_2$ 的元素，那么恰好净增加了一个元素，一次扩展结束。考虑如何维护这个过程。</p>
 <p>设二分图 $D_{M_1,M_2}(I)$ 的左部为 $I$，右部为 $\complement_SI$ ，左部 $y$ 指向右部 $x$ 当且仅当 $I-\{y\}+\{x\}$ 满足 $M_1$，右部 $x$ 指向左部 $y$ 当且仅当 $I-\{y\}+\{x\}$ 满足 $M_2$，则二分图上最短的从 $X_1$ 到 $X_2$ 的路径即为所求。$\complement_S I$ 表示补集 $S-I$。</p>
+<p><a href="http://zory.ink/files/%E8%AE%BA%E6%96%87%E9%9B%862018.pdf" target="_blank" rel="noopener">原论文链接</a>，P154，下截图摘录，可以与上述描述结合理解。</p>
+<p><img src="/images/matroid1.png" alt="p1"></p>
+<p><img src="/images/matroid2.png" alt="p2"></p>
+<p><img src="/images/matroid3.png" alt="p3"></p>
 <p>这里如果没有权值，具体求解的过程可以 BFS。对 $M_1,M_2$ 和每个 $y$ 维护一个 $I-y$ 的集合并检查 $x$ 加入是否合法即可。</p>
 <p>本题的非模板具体实现（比较偏向原理，容易理解一些）：</p>
 <h4 id="AC代码-3"><a href="#AC代码-3" class="headerlink" title="AC代码"></a>AC代码</h4><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
