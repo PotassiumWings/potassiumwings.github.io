@@ -1,0 +1,1370 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next gemini use-motion" lang="zh-CN">
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2">
+
+<link rel="stylesheet" href="/css/main.css?v=6.7.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png?v=6.7.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png?v=6.7.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=6.7.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Gemini',
+    version: '6.7.0',
+    sidebar: {"position":"left","width":240,"display":"post","offset":15,"b2t":true,"scrollpercent":true,"onmobile":false},
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+<script>
+    (function(){
+    if(''){
+    if (prompt('请输入文章密码') !== ''){
+    alert('密码错误！');
+    history.back();
+    }
+    }
+    })();
+  </script>
+
+  <meta name="description" content="引入前些天看到了一个比较有趣的题目，需要用到一般图最大权匹配。可是我只会二分图最大匹配，甚至不会 KM 和带花树的原理，于是就进行了一个资料的搜，顺便增长一下板子库。然而—— 对一般图最大权匹配，网上现成高质量资料较少。  苦于资料杂乱、且无论正确性还是代码具体实现都没有一个清晰的全流程教程，在吸取众长、奋斗三天后，终于通过了 UOJ 上的模板题。  这篇博客主要目的在于，梳理整个流程（包含代码实">
+<meta name="keywords" content="notes">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从匈牙利算法到带权带花树——详解对偶问题在图匹配上的应用">
+<meta property="og:url" content="http://yoursite.com/2021/09/10/from_hungary_to_blossom_tree/index.html">
+<meta property="og:site_name" content="Potassium&#39;s blog">
+<meta property="og:description" content="引入前些天看到了一个比较有趣的题目，需要用到一般图最大权匹配。可是我只会二分图最大匹配，甚至不会 KM 和带花树的原理，于是就进行了一个资料的搜，顺便增长一下板子库。然而—— 对一般图最大权匹配，网上现成高质量资料较少。  苦于资料杂乱、且无论正确性还是代码具体实现都没有一个清晰的全流程教程，在吸取众长、奋斗三天后，终于通过了 UOJ 上的模板题。  这篇博客主要目的在于，梳理整个流程（包含代码实">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/oiwiki_match.png">
+<meta property="og:image" content="http://yoursite.com/images/uoj_submission.png">
+<meta property="og:image" content="http://yoursite.com/images/augment_path_bipartite.png">
+<meta property="og:image" content="http://yoursite.com/images/alternating_path_bipartite.png">
+<meta property="og:image" content="http://yoursite.com/images/augment_path_bipartite_2.png">
+<meta property="og:image" content="http://yoursite.com/images/augment_path_bipartite_3.png">
+<meta property="og:image" content="http://yoursite.com/images/alternating_tree_1.png">
+<meta property="og:image" content="http://yoursite.com/images/alternating_tree_2.png">
+<meta property="og:image" content="http://yoursite.com/images/general_matching_1.png">
+<meta property="og:image" content="http://yoursite.com/images/flowered_tree_1.png">
+<meta property="og:updated_time" content="2021-09-10T13:33:01.948Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从匈牙利算法到带权带花树——详解对偶问题在图匹配上的应用">
+<meta name="twitter:description" content="引入前些天看到了一个比较有趣的题目，需要用到一般图最大权匹配。可是我只会二分图最大匹配，甚至不会 KM 和带花树的原理，于是就进行了一个资料的搜，顺便增长一下板子库。然而—— 对一般图最大权匹配，网上现成高质量资料较少。  苦于资料杂乱、且无论正确性还是代码具体实现都没有一个清晰的全流程教程，在吸取众长、奋斗三天后，终于通过了 UOJ 上的模板题。  这篇博客主要目的在于，梳理整个流程（包含代码实">
+<meta name="twitter:image" content="http://yoursite.com/images/oiwiki_match.png">
+
+
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2021/09/10/from_hungary_to_blossom_tree/">
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>从匈牙利算法到带权带花树——详解对偶问题在图匹配上的应用 | Potassium's blog</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Potassium's blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br>关于</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-categories">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/categories/" rel="section"><i class="menu-item-icon fa fa-fw fa-th"></i> <br>分类</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-archives">
+
+    
+    
+    
+      
+    
+
+    
+
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-archive"></i> <br>归档</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+  
+  
+  
+  
+
+  
+
+  <a href="https://github.com/potassiumwings" class="github-corner" title="Follow me on GitHub" aria-label="Follow me on GitHub" rel="noopener" target="_blank"><svg width="80" height="80" viewbox="0 0 250 250" style="fill: #222; color: #fff; position: absolute; top: 0; border: 0; right: 0;" aria-hidden="true"><path d="M0,0 L115,115 L130,115 L142,142 L250,250 L250,0 Z"/><path d="M128.3,109.0 C113.8,99.7 119.0,89.6 119.0,89.6 C122.0,82.7 120.5,78.6 120.5,78.6 C119.2,72.0 123.4,76.3 123.4,76.3 C127.3,80.9 125.5,87.3 125.5,87.3 C122.9,97.6 130.6,101.9 134.4,103.2" fill="currentColor" style="transform-origin: 130px 106px;" class="octo-arm"/><path d="M115.0,115.0 C114.9,115.1 118.7,116.5 119.8,115.4 L133.7,101.6 C136.9,99.2 139.9,98.4 142.2,98.6 C133.8,88.0 127.5,74.4 143.8,58.0 C148.5,53.4 154.0,51.2 159.7,51.0 C160.3,49.4 163.2,43.6 171.4,40.1 C171.4,40.1 176.1,42.5 178.8,56.2 C183.1,58.6 187.2,61.8 190.9,65.4 C194.5,69.0 197.7,73.2 200.1,77.6 C213.8,80.2 216.3,84.9 216.3,84.9 C212.7,93.1 206.9,96.0 205.4,96.6 C205.1,102.4 203.0,107.8 198.3,112.5 C181.9,128.9 168.3,122.5 157.7,114.1 C157.9,116.9 156.7,120.9 152.7,124.9 L141.0,136.5 C139.8,137.7 141.6,141.9 141.8,141.8 Z" fill="currentColor" class="octo-body"/></svg></a>
+
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+            
+
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2021/09/10/from_hungary_to_blossom_tree/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Potassium">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/main.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Potassium's blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从匈牙利算法到带权带花树——详解对偶问题在图匹配上的应用
+
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+
+            
+            
+            
+
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2021-09-10 21:00:00 / 修改时间：21:33:01" itemprop="dateCreated datePublished" datetime="2021-09-10T21:00:00+08:00">2021-09-10</time>
+            
+
+            
+              
+
+              
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2021/09/10/from_hungary_to_blossom_tree/#comments" itemprop="discussionUrl">
+                  <span class="post-meta-item-text">评论数：</span> <span class="post-comments-count valine-comment-count" data-xid="/2021/09/10/from_hungary_to_blossom_tree/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="post-meta-item-icon">
+            <i class="fa fa-eye"></i>
+             阅读次数： 
+            <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="引入"><a href="#引入" class="headerlink" title="引入"></a>引入</h2><p>前些天看到了一个比较有趣的题目，需要用到一般图最大权匹配。可是我只会二分图最大匹配，甚至不会 KM 和带花树的原理，于是就进行了一个资料的搜，顺便增长一下板子库。然而——</p>
+<p>对一般图最大权匹配，网上现成高质量资料较少。</p>
+<p><img src="/images/oiwiki_match.png" alt="image-20210910094916403"></p>
+<p>苦于资料杂乱、且无论正确性还是代码具体实现都没有一个清晰的全流程教程，在吸取众长、奋斗三天后，终于通过了 UOJ 上的<a href="https://uoj.ac/problem/81" target="_blank" rel="noopener">模板题</a>。</p>
+<p><img src="/images/uoj_submission.png" alt="image-20210910095208484"></p>
+<p>这篇博客主要目的在于，梳理整个流程（包含代码实现）中应用的原理和使用的技巧。一般图最大权匹配主要通过下面四个问题逐步转化：</p>
+<ol>
+<li>二分图最大匹配</li>
+<li>一般图最大匹配</li>
+<li>二分图最大权匹配</li>
+<li>一般图最大权匹配</li>
+</ol>
+<p>本文主要描述，如何通过解决前三个问题的思路，解决第四个更为复杂的问题。<strong>本文的前置知识只有匈牙利算法</strong>。</p>
+<a id="more"></a>
+
+<h2 id="基本定义"><a href="#基本定义" class="headerlink" title="基本定义"></a>基本定义</h2><p>匹配：对于图 $G=(V,E)$ 的一个匹配 $M$ 是边集  $E$ 的子集，其中两两不共用顶点。</p>
+<p>最大匹配：边数最多的匹配。</p>
+<p>完美匹配：包含原图所有点的匹配。</p>
+<p>最大权匹配：对于图 $G(V,E)$，边 $e\in E$ 的权重为 $w(e)$，最大权匹配 $M=(V’,E’)$ 为 $\sum_e w(e)$ 最大的匹配。</p>
+<p>最大权最大匹配：最大权最大匹配 $M(V’,E’)$ 为 $\sum_e w(e)$ 最大的最大匹配。</p>
+<p>匹配点、未匹配点、匹配边、非匹配边：字面含义，对应于某个匹配的状态。</p>
+<p>交错路径：从一个未匹配点出发，<strong>依次交错经过</strong>非匹配边、匹配边形成的路径。</p>
+<p>增广路：一个末尾是未匹配点的交错路径。<strong>这样的路径可以通过翻转整条路上边的选择状态获得一个长度恰好增加 $1$ 的匹配</strong>。</p>
+<p>下列各图展示了一个无向二分图（箭头只是表示增广路的顺序）某时刻对增广路增广的情况。</p>
+<table style="border-collapse:collapse;empty-cell:show;">
+    <tr>
+        <td><center><img src="/images/augment_path_bipartite.png" style="zoom: 70%;"></center></td>
+        <td><center><img src="/images/alternating_path_bipartite.png" style="zoom: 70%;"></center></td>
+        <td><center><img src="/images/augment_path_bipartite_2.png" style="zoom: 70%;"></center></td>
+        <td><center><img src="/images/augment_path_bipartite_3.png" style="zoom: 70%;"></center></td>
+    </tr>
+    <tr>
+        <td><center>二分图</center></td>
+        <td><center>一条交错路</center></td>
+        <td><center>一条增广路</center></td>
+        <td><center>对增广路增广</center></td>
+    </tr>
+</table>
+
+<p>交错树：从未匹配点 $r$ 开始寻找增广路时，交错路径组成的树。其中，我们称<strong>向根方向匹配的点为 $S$ 点（黑点，偶点）</strong>，<strong>背向根方向匹配的点为 $T$ 点（白点，奇点）</strong>。</p>
+<table style="border-collapse:collapse;empty-cell:show;">
+    <tr>
+        <td><center><img src="/images/alternating_tree_1.png" style="zoom: 70%;"></center></td>
+        <td><center><img src="/images/alternating_tree_2.png" style="zoom: 70%;"></center></td>
+    </tr>
+    <tr>
+        <td><center>二分图</center></td>
+        <td><center>以 1 为根的交错树</center></td>
+    </tr>
+</table>
+
+<h2 id="二分图最大匹配"><a href="#二分图最大匹配" class="headerlink" title="二分图最大匹配"></a>二分图最大匹配</h2><p>二分图匹配可以用网络流做，Dinic 在二分图上的复杂度和 Hopcroft-Karp 相同，均为 $O(E\sqrt{V})$ ，不赘述。</p>
+<p>匈牙利算法流传较广的是 DFS 做法，即枚举左部每个未匹配点，记录右部节点匹配的左部标号 $match_q$，检查交错路是否为增广路，复杂度 $O(VE)$。正确性是通过 Berge’s Theorm （如果找不到某点为端点的增广路，则最大匹配可以不包括这个点）证明的，比较显然。</p>
+<div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> p,<span class="keyword">int</span> t)</span></span>&#123; <span class="comment">// p: 左半边编号 </span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> q:G[p])</span><br><span class="line">        <span class="keyword">if</span>(t!=vis[q])&#123;</span><br><span class="line">            vis[q]=t;</span><br><span class="line">            <span class="keyword">if</span>(match[q]==<span class="number">-1</span>||dfs(mt[q],t))</span><br><span class="line">                <span class="keyword">return</span> match[q]=p,<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxmatch</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="built_in">memset</span>(match,<span class="number">-1</span>,<span class="keyword">sizeof</span>(match));</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">if</span>(match[i]==<span class="number">-1</span>&amp;&amp;dfs(i,i))ans++;</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+
+<p>同样地，可以进行 BFS，即初始时所有点都未匹配，将未匹配点入队。逐个取出队首元素作为交错树的根，<strong>对交错树进行 BFS</strong> 匹配。可以看出，增广的本质是在<strong>以每个点为根的交错树上寻找增广路</strong>。而二分图左部永远是黑点，右部永远是白点，因此增广路的首末必<strong>分别在左部和右部</strong>。</p>
+<h2 id="一般图最大匹配"><a href="#一般图最大匹配" class="headerlink" title="一般图最大匹配"></a>一般图最大匹配</h2><p>对于一般图，就没有这么好的性质了。但唯一的不同是，一般图中可能有奇数长度的环，下简称奇环。在奇环上的<strong>每一个点</strong>连出去的非匹配边，都能够成为<strong>某个增广路</strong>上的边，这导致在增广的过程中难以判断如何翻转。</p>
+<table style="border-collapse:collapse;empty-cell:show;">
+    <tr>
+        <td><center><img src="/images/general_matching_1.png" style="zoom: 70%;"></center></td>
+    </tr>
+    <tr>
+        <td><center>增广路经过奇环的两种形式</center></td>
+    </tr>
+</table>
+我们发现，奇环具有了所有黑点需要具备的性质：任意点连出去的非匹配边都可以在从根开始的交错路上；奇环的根向根方向匹配。于是，将奇环缩成一个点，称为**花**。奇环的**根**，也就是整个环中唯一连了两个环内非匹配边的点，称为**花托**（上图中的 root）。
+
+<p>将花缩成一个点后，环上所有点变成黑点，并可以在交错树上向外延伸。</p>
+<p>具体实现中，不需要真正地记录花，只需要记录<strong>每个点对应花根位置 $fa$</strong>（本质是个并查集）；同时为了<strong>方便上述两种情况的判断</strong>，对于所有<strong>黑点</strong>，记录交错树上<strong>从根开始连向当前点的非匹配边</strong> $pre$（对于非花点 $i$，$pre_i$ 就是父节点）。</p>
+<p>每当找到黑-黑边（S-S 边）时进行缩花（<code>shrink</code>）操作，花托就是两点的 LCA ，可以暴力求出；将花内所有白点变黑入队，并更新这些点的 $pre$ 。由于实现比较容易，下面不解释地给出参考代码（<del>后来还是写了一些注释便于理解</del>）。</p>
+<div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> mat[N],color[N],n; <span class="comment">// color 1: black 2: white</span></span><br><span class="line"><span class="keyword">int</span> pre[N]; <span class="comment">// walk through a unmatched edge</span></span><br><span class="line"><span class="keyword">int</span> fa[N]; <span class="comment">// union-find set</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;G[N];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;Q; </span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">find</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;<span class="keyword">return</span> fa[x]==x?x:fa[x]=find(fa[x]);&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">rev</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123; <span class="comment">// reverse augment path from rt to p</span></span><br><span class="line">    <span class="comment">// !!!!!!!!!!!! graph needs to be [1,n]</span></span><br><span class="line">    <span class="keyword">if</span>(p)&#123;</span><br><span class="line">        rev(mat[pre[p]]);</span><br><span class="line">        mat[p]=pre[p];mat[pre[p]]=p;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shrink</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="comment">// shrink odd cycle into 1 point: color all along to black ([x])</span></span><br><span class="line">    <span class="comment">// pre: -&gt; [x] -&gt;</span></span><br><span class="line">    <span class="comment">//             &lt;- [y] &lt;-</span></span><br><span class="line">    <span class="keyword">while</span>(find(u)!=r)&#123;</span><br><span class="line">        <span class="comment">// [pre[mat[u]] &lt;- mat[u] -- [u] -- [v]</span></span><br><span class="line">        <span class="comment">// turn into (-&gt; stands for pre)</span></span><br><span class="line">        <span class="comment">//         [u]  &lt;- [v]    -- []  -&gt; []</span></span><br><span class="line">        pre[u]=v;</span><br><span class="line">        fa[mat[u]]=fa[u]=r;</span><br><span class="line">        <span class="keyword">if</span>(color[mat[u]]==<span class="number">2</span>)color[mat[u]]=<span class="number">1</span>,Q.push(mat[u]);</span><br><span class="line">        v=mat[u];u=pre[v];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">int</span> vis[N];</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">lca</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">    ++t;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[x=find(x)]==t)<span class="keyword">return</span> x;</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">if</span>(x)vis[x]=t;</span><br><span class="line">        x=pre[mat[x]];</span><br><span class="line">        swap(x,y);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">augment</span><span class="params">(<span class="keyword">int</span> rt)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)fa[i]=i,color[i]=pre[i]=<span class="number">0</span>;</span><br><span class="line">    color[rt]=<span class="number">1</span>;</span><br><span class="line">    Q=<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;(&#123;rt&#125;);</span><br><span class="line">    <span class="keyword">while</span>(!Q.empty())&#123;</span><br><span class="line">        p=Q.front();Q.pop();</span><br><span class="line">        assert(color[p]==<span class="number">1</span>); <span class="comment">// black</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> q:G[p])&#123;</span><br><span class="line">            <span class="keyword">if</span>(color[q]==<span class="number">1</span>)&#123;</span><br><span class="line">                <span class="keyword">int</span> r=lca(p,q); <span class="comment">// root of flower</span></span><br><span class="line">                shrink(p,q,r);</span><br><span class="line">                shrink(q,p,r);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(!color[q])&#123;</span><br><span class="line">                color[q]=<span class="number">2</span>; <span class="comment">// white</span></span><br><span class="line">                pre[q]=p;</span><br><span class="line">                <span class="keyword">if</span>(!mat[q])&#123;</span><br><span class="line">                    rev(q);</span><br><span class="line">                    <span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">                &#125;<span class="keyword">else</span>&#123;</span><br><span class="line">                    color[mat[q]]=<span class="number">1</span>;</span><br><span class="line">                    Q.push(mat[q]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">maxmatch</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,m;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">int</span> ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> x,y;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;x,&amp;y);</span><br><span class="line">        G[x].pb(y);G[y].pb(x);</span><br><span class="line">        <span class="keyword">if</span>(!mat[x]&amp;&amp;!mat[y])mat[x]=y,mat[y]=x,ans++;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(!mat[i])ans+=augment(i);</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+
+
+<h2 id="二分图最大权匹配"><a href="#二分图最大权匹配" class="headerlink" title="二分图最大权匹配"></a>二分图最大权匹配</h2><p>和二分图最大匹配一样，最大权匹配也可以通过网络流那一套求解：将每条边的边权看做一个费用，然后求一下最大费用最大流即可。但为了扩展到一般图，考虑 KM 算法。</p>
+<p>学之前，我对二分图最大权匹配的印象仅停留在 KM 算法的板子上，没有真正去理解 KM 算法。下面简单介绍一下 KM 算法（如果你是第一次学习 KM 算法，推荐一个比较有趣的引入：<a href="https://www.cnblogs.com/wenruo/p/5264235.html" target="_blank" rel="noopener">KM算法详解+模板</a>，仅看找对象部分大致了解一下即可）。</p>
+<h3 id="最大权完美匹配"><a href="#最大权完美匹配" class="headerlink" title="最大权完美匹配"></a>最大权完美匹配</h3><p>我们先考虑最大权<strong>完美</strong>匹配（最大权匹配可以通过增加零边变成完美匹配）。设对于边 $e$，选/不选该边表示为 $x_e=0$ 或 $x_e=1$；设 $\delta(v)$ 表示 $v$ 所连的边集，则我们要求的最大权匹配即为</p>
+<p> $\max\sum_{e\in E} w(e)x_e$，满足条件 $\left\{\begin{aligned}&amp;x(\delta(v))=1:\forall v\in V\\&amp;x_e\in{0, 1}:\forall e\in E\end{aligned}\right.$</p>
+<p>这是一个整数规划问题，通过原始对偶（Primal-Dual）思想转化为对偶问题：</p>
+<p>$\min \sum_{v\in V}z_v$，满足条件 $\left\{\begin{aligned}&amp;z_e=z_u+z_v-w(e)\ge 0:\forall e\in E\\&amp; z_u\ge 0:\forall v\in V\end{aligned}\right.$</p>
+<p>同时，根据互补松弛条件， $x_e&gt;0\Rightarrow z_e=0$。即，对于选中的边 $e$，必有 $z_e=0$。</p>
+<p>这里的 $z$ 就是 $KM$ 算法中的顶标（vertex labeling）。定义边 $e(u,v)$ 为”等边“当且仅当 $z_u+z_v=w(e)$，也即 $z_e=0$，根据上述互补松弛条件，<strong>匹配只能在等边构成的子图上建</strong>。初始时，左部（黑点）每个点的顶标均为其能够连到的最大边权，右部（白点）每个点的顶标均为 $0$。与匈牙利算法类似，每次增广先<strong>在“等边”构成的一张二分子图上</strong>进行尝试匹配，如果匹配不到，则<strong>松弛</strong>（将标准放低一些）后继续尝试；直至所有边都成为等边仍未找到增广，算法结束。</p>
+<p><strong>松弛</strong>的目的是<strong>使一些新边成为等边</strong>，加入二分子图，让左部点能尝试匹配的点更多；同时保证<strong>已有匹配边 $z_e=0$</strong> 。对于所有<strong>未匹配边</strong>，求出最小的 $delta=\min_e z_e=z_u+z_v-w(e)$，然后将<strong>交错树中</strong>黑点的顶标降低 $delta$，交错树中白点的顶标增加 $delta$。这样暴力做的复杂度是 $O(n^4)$，下面给出参考代码。</p>
+<h3 id="暴力实现"><a href="#暴力实现" class="headerlink" title="暴力实现"></a>暴力实现</h3><div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ll inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line">ll w[N][N],lx[N],ly[N];</span><br><span class="line"><span class="keyword">int</span> mat[N],visx[N],visy[N],n;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">dfs</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    visx[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)&#123;</span><br><span class="line">        <span class="keyword">if</span>(!visy[y]&amp;&amp;lx[x]+ly[y]==w[x][y])&#123;</span><br><span class="line">            visy[y]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(!mat[y]||dfs(mat[y]))<span class="keyword">return</span> mat[y]=x,<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">km</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,x,y;</span><br><span class="line">    <span class="built_in">memset</span>(lx,<span class="number">0</span>,<span class="keyword">sizeof</span>(lx));</span><br><span class="line">    <span class="built_in">memset</span>(ly,<span class="number">0</span>,<span class="keyword">sizeof</span>(ly));</span><br><span class="line">    <span class="built_in">memset</span>(mat,<span class="number">0</span>,<span class="keyword">sizeof</span>(mat));</span><br><span class="line">    <span class="keyword">for</span>(x=<span class="number">1</span>;x&lt;=n;x++)</span><br><span class="line">        <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)</span><br><span class="line">            lx[x]=max(lx[x],w[x][y]);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="built_in">memset</span>(visx,<span class="number">0</span>,<span class="keyword">sizeof</span>(visx));</span><br><span class="line">            <span class="built_in">memset</span>(visy,<span class="number">0</span>,<span class="keyword">sizeof</span>(visy)); </span><br><span class="line">            <span class="keyword">if</span>(dfs(i))<span class="keyword">break</span>;</span><br><span class="line">            ll d=inf;</span><br><span class="line">            <span class="keyword">for</span>(x=<span class="number">1</span>;x&lt;=n;x++)</span><br><span class="line">                <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)</span><br><span class="line">                    <span class="keyword">if</span>(visx[x]&amp;&amp;!visy[y])</span><br><span class="line">                        d=min(d,lx[x]+ly[y]-w[x][y]);</span><br><span class="line">            <span class="keyword">if</span>(d==inf)<span class="keyword">break</span>;</span><br><span class="line">            <span class="keyword">for</span>(x=<span class="number">1</span>;x&lt;=n;x++)<span class="keyword">if</span>(visx[x])lx[x]-=d;</span><br><span class="line">            <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)<span class="keyword">if</span>(visy[y])ly[y]+=d;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)ans+=w[mat[i]][i];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+
+<p>不太行，考虑优化。</p>
+<h3 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h3><p>一种可行的方案是，对于所有右部点 $y$，记录 $slv_y=\text{argmin}_{x\in T}(z_x+z_y-w(x,y))$ ，即固定了 $y$ 后， $z_e$ 最小值对应 $x$ ，其中 $T$ 为交错树。每次扩展的时候，都是取 $slv_y$ 计算出结果最小的 $y$ 进行扩展，这样就能够<strong>保留已有的交错树</strong>进而继续增广，每次增广的复杂度变成 $O(n^2)$，总复杂度 $O(n^3)$。下面给出示例代码，其中为方便增广，使用 $pre$ 记录黑点在交错上父亲的父亲（最近黑点祖先）。</p>
+<div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ll inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line">ll w[N][N],lx[N],ly[N];</span><br><span class="line"><span class="keyword">int</span> mx[N],my[N],visx[N],visy[N],n;</span><br><span class="line"><span class="keyword">int</span> slv[N],pre[N];</span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;Q;</span><br><span class="line"><span class="function">ll <span class="title">calc_slv</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;<span class="keyword">return</span> lx[u]+ly[v]-w[u][v];&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_to_tree</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123; <span class="comment">// add x to tree, update all slv[y]</span></span><br><span class="line">    Q.push(x);</span><br><span class="line">    visx[x]=<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">int</span> y;</span><br><span class="line">    <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)</span><br><span class="line">        <span class="keyword">if</span>(!slv[y]||calc_slv(x,y)&lt;calc_slv(slv[y],y))slv[y]=x;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">link</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> y)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> tx,ty;</span><br><span class="line">    <span class="keyword">while</span>(x)&#123;</span><br><span class="line">        tx=pre[x];ty=mx[x];</span><br><span class="line">        my[y]=x;mx[x]=y;</span><br><span class="line">        x=tx,y=ty;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">augment</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> x,y;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!Q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> x=Q.front();Q.pop();</span><br><span class="line">            <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)<span class="keyword">if</span>(!visy[y]&amp;&amp;!calc_slv(x,y))&#123;</span><br><span class="line">                visy[y]=<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">if</span>(!my[y])<span class="keyword">return</span> link(x,y),<span class="number">1</span>;</span><br><span class="line">                pre[my[y]]=x;</span><br><span class="line">                add_to_tree(my[y]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; </span><br><span class="line">        ll d=inf;</span><br><span class="line">        <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)</span><br><span class="line">            <span class="keyword">if</span>(!visy[y])</span><br><span class="line">                d=min(d,calc_slv(slv[y],y));</span><br><span class="line">        <span class="keyword">if</span>(d==inf)<span class="keyword">break</span>;</span><br><span class="line">        <span class="keyword">for</span>(x=<span class="number">1</span>;x&lt;=n;x++)<span class="keyword">if</span>(visx[x])lx[x]-=d;</span><br><span class="line">        <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)<span class="keyword">if</span>(visy[y])ly[y]+=d;</span><br><span class="line">        <span class="comment">// add new edges</span></span><br><span class="line">        <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)<span class="keyword">if</span>(!visy[y]&amp;&amp;!calc_slv(slv[y],y))&#123;</span><br><span class="line">            visy[y]=<span class="number">1</span>;</span><br><span class="line">            <span class="keyword">if</span>(!my[y])<span class="keyword">return</span> link(slv[y],y),<span class="number">1</span>;</span><br><span class="line">            pre[my[y]]=slv[y]; <span class="comment">// tree: slv -&gt; y == my[y], == stands for match</span></span><br><span class="line">            add_to_tree(my[y]);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">km</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,x,y;</span><br><span class="line">    <span class="built_in">memset</span>(lx,<span class="number">0</span>,<span class="keyword">sizeof</span>(lx));</span><br><span class="line">    <span class="built_in">memset</span>(ly,<span class="number">0</span>,<span class="keyword">sizeof</span>(ly));</span><br><span class="line">    <span class="built_in">memset</span>(mx,<span class="number">0</span>,<span class="keyword">sizeof</span>(mx));</span><br><span class="line">    <span class="built_in">memset</span>(my,<span class="number">0</span>,<span class="keyword">sizeof</span>(my));</span><br><span class="line">    <span class="keyword">for</span>(x=<span class="number">1</span>;x&lt;=n;x++)</span><br><span class="line">        <span class="keyword">for</span>(y=<span class="number">1</span>;y&lt;=n;y++)</span><br><span class="line">            lx[x]=max(lx[x],w[x][y]);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(visx,<span class="number">0</span>,<span class="keyword">sizeof</span>(visx));</span><br><span class="line">        <span class="built_in">memset</span>(visy,<span class="number">0</span>,<span class="keyword">sizeof</span>(visy)); </span><br><span class="line">        <span class="built_in">memset</span>(slv,<span class="number">0</span>,<span class="keyword">sizeof</span>(slv)); </span><br><span class="line">        Q=<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        add_to_tree(i);</span><br><span class="line">        augment(i);</span><br><span class="line">    &#125;</span><br><span class="line">    ll ans=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)ans+=w[my[i]][i];</span><br><span class="line">    <span class="keyword">return</span> ans;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+
+<h3 id="Bonus"><a href="#Bonus" class="headerlink" title="Bonus"></a>Bonus</h3><p>还有一种使用同样思想，利用<strong>局部最优</strong>获得全局最优的实现方式。对于每一个黑点 $x$，找到某个白点加入交错树，这个过程中始终是<strong>选择 $z_e$ 较小的边进行扩展</strong>的，直到找到 $x$ 所对应的增广路。</p>
+<p>假设当前已经处理到 $x$，$1\dots  x-1$ 都已经有对应的增广路了。设对于未匹配白点 $y$，与所有已匹配黑点 $x$ 中的 $z_e$ 最小值为 $slack_y$，有 $slack_y=\min_{i\in[1,x)}z_i+z_y-w_{i,y}$。那么加入交错树的 $yy=\text{argmin}<em>yslack_y$；同时，根据 $yy$ 的 $z</em>{(i,yy)}$ 去更新黑白<strong>已匹配点的顶标</strong>和<strong>下一轮的 $slack$</strong>，同时将 $mat_{yy}$ 这个黑点加入交错树（如果 $yy$ 没有匹配那就说明增广路找着了，退出循环）。</p>
+<p>这样的方法对于顶标的初始值没有要求（可以不初始化），每次得到的是 $x$ 的局部最优解，但由于可以进行增广，因此最后得到的也是全局最优解，非常巧妙。下面给出代码。其中 $pre$ 记录的是白点在交错树上父亲的父亲（最近白点祖先），$visy$ 记录白点 $i$ 是否在交错树中。这个实现常数略小一点。</p>
+<div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> ll inf=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line">ll a[N],p[N],b[N],c[N];</span><br><span class="line">ll w[N][N],slack[N],lx[N],ly[N];</span><br><span class="line"><span class="comment">// for right points</span></span><br><span class="line"><span class="comment">//   pre: last right point in augment path</span></span><br><span class="line"><span class="comment">//   visy: if i is in augment path</span></span><br><span class="line"><span class="comment">//   left: left match</span></span><br><span class="line"><span class="keyword">int</span> pre[N],visy[N],left[N]; </span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">augment</span><span class="params">(<span class="keyword">int</span> p)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,x=p,y=<span class="number">0</span>,yy;</span><br><span class="line">    <span class="built_in">memset</span>(pre,<span class="number">0</span>,<span class="keyword">sizeof</span>(pre));</span><br><span class="line">    <span class="built_in">memset</span>(slack,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(slack));</span><br><span class="line">    left[<span class="number">0</span>]=p;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        x=left[y],visy[y]=<span class="number">1</span>;</span><br><span class="line">        ll delta=inf;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(visy[i])<span class="keyword">continue</span>;</span><br><span class="line">            ll d=lx[x]+ly[i]-w[x][i];</span><br><span class="line">            <span class="keyword">if</span>(slack[i]&gt;d)slack[i]=d,pre[i]=y;</span><br><span class="line">            <span class="keyword">if</span>(slack[i]&lt;delta)delta=slack[i],yy=i;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(visy[i])lx[left[i]]-=delta,ly[i]+=delta;</span><br><span class="line">            <span class="keyword">else</span> slack[i]-=delta;</span><br><span class="line">        &#125;</span><br><span class="line">        y=yy;</span><br><span class="line">        <span class="keyword">if</span>(left[y]==<span class="number">-1</span>)<span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// reverse augment path</span></span><br><span class="line">    <span class="keyword">while</span>(y)left[y]=left[pre[y]],y=pre[y]; </span><br><span class="line">&#125;</span><br><span class="line"><span class="function">ll <span class="title">km</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,j;</span><br><span class="line">    <span class="built_in">memset</span>(left,<span class="number">-1</span>,<span class="keyword">sizeof</span>(left));</span><br><span class="line">    <span class="built_in">memset</span>(lx,<span class="number">0</span>,<span class="keyword">sizeof</span>(lx));</span><br><span class="line">    <span class="built_in">memset</span>(ly,<span class="number">0</span>,<span class="keyword">sizeof</span>(ly));</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">memset</span>(visy,<span class="number">0</span>,<span class="keyword">sizeof</span>(visy));</span><br><span class="line">        augment(i);</span><br><span class="line">    &#125;</span><br><span class="line">    ll res=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(left[i]&gt;<span class="number">0</span>)res+=w[left[i]][i];</span><br><span class="line">    <span class="keyword">return</span> res;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+
+<h3 id="其他匹配的形式"><a href="#其他匹配的形式" class="headerlink" title="其他匹配的形式"></a>其他匹配的形式</h3><p>上述讨论的都是<strong>左右部大小相等</strong>的<strong>完全二分图</strong>上的<strong>最大权完美匹配</strong>；对于 $n_1\neq n_2$ 的情况，可以补齐不足元素进行计算；对于不要求完美匹配的最大权匹配，可以直接应用本模板；对于非完全二分图，增广过程中对不存在的边进行特判即可。</p>
+<h2 id="一般图最大权匹配"><a href="#一般图最大权匹配" class="headerlink" title="一般图最大权匹配"></a>一般图最大权匹配</h2><p>仍然考虑 KM 算法在带花树上跑的过程。当进行松弛操作时，如果仍然按照上面的处理方式，白点 $+delta$，黑点 $-delta$，那么对于一个缩成点的花来说，其中有很多交错树上的边 $(u,v)$，$u$ 和 $v$ 的顶标都被加或者减掉了 $delta$，导致这条边不满足 $z_e\ge 0$ 的条件。于是需要对于整个花 $B$，设置额外的花标 $z_B$，在松弛时额外对所有黑花 $+2delta$，对白花 $-2delta$，才能保持平衡。</p>
+<h3 id="对偶问题"><a href="#对偶问题" class="headerlink" title="对偶问题"></a>对偶问题</h3><p>设 $O$ 为大小为 $\ge 3$ 奇数的集合的集合（包含所有花），$\gamma(S)$ 表示 $S$ 集合中的边，这个过程仍然可通过线性规划转化为对偶问题：</p>
+<p>$\max \sum_{e\in E}w(e)x_e$，满足条件 $\left\{\begin{aligned}&amp;x(\delta(v))=1:\forall v\in V\\&amp;x_e\in{0,1}:\forall e\in E\\&amp;x(\gamma(B))\le \lfloor\frac{|B|}{2}\rfloor:\forall B\in O\end{aligned}\right.$</p>
+<p>对偶问题</p>
+<p>$\min \sum_{v\in V}z_v+\sum_{B\in O}\lfloor\frac{|B|}{2}\rfloor z_B$，满足条件 $\left\{\begin{aligned}&amp;z_B\ge 0:\forall B\in O\\&amp;z_e=z_u+z_v-w(e)+\sum_{B\in O,(u,v)\in \gamma(B)} Z_B \ge 0:\forall e\in E\end{aligned}\right.$</p>
+<p>与二分图最大权匹配相同，根据互补松弛条件， $x_e&gt;0\Rightarrow z_e=0$。即，对于选中的边 $e$，必有 $z_e=0$；除此以外，还有 $z_B&gt;0\Rightarrow x(\gamma(B))=\lfloor\frac{|B|}2\rfloor$，即所有 $z_B&gt;0$ 的集合 $B$，都被选了集合大小一半的边，也即 $B$ 是一朵花。同时，我们加入一个条件： $z_B&gt;0\Rightarrow x(\delta(B))=1$，即只有花 $B$ 向外连了一条边的时候， $z_B&gt;0$ 才是有意义的。这很容易根据 $z_B$ 的用途理解。</p>
+<h3 id="具体实现"><a href="#具体实现" class="headerlink" title="具体实现"></a>具体实现</h3><p>因此，我们需要维护的就是：</p>
+<ol>
+<li>任意边 $z_e\ge 0$，取等时是交错树里（包括形成花的边）的边；</li>
+<li>$z_B\ge 0$。</li>
+</ol>
+<p>通过类似 KM 的办法，<del>我们就可以容易地维护带花树了！本文完</del></p>
+<p>难点就在它的实现步骤。这里我分享一下通过借鉴一派 UOJ 神仙提交代码，提纯结晶后得到的模板实现思路与细节。<del><a href="https://uoj.ac/submission/221981" target="_blank" rel="noopener">min25 的板子</a>真心看不懂</del>，有懂哥欢迎补充！</p>
+<p>先摆一下是如何存储这张带花树的：使用 $edge$ 类型存边，大有讲究！对于有花参与的连边，$edge$ 存储的 $u,v$ 不是花本身，而是花内<strong>真实节点</strong>的边。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N M*2+1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> u,v;T w;</span><br><span class="line">    edge()&#123;&#125;</span><br><span class="line">    edge(<span class="keyword">int</span> u,<span class="keyword">int</span> v,T w):u(u),v(v),w(w)&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// Graph</span></span><br><span class="line"><span class="keyword">int</span> n,n_x; <span class="comment">// [1, n]: point; [n+1, n_x]: flower</span></span><br><span class="line">edge g[N][N]; <span class="comment">// adjacent matrix</span></span><br><span class="line"><span class="comment">// flower</span></span><br><span class="line"><span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;flower[N]; <span class="comment">// nodes in flower i (outer flower)</span></span><br><span class="line"><span class="keyword">int</span> root[N]; <span class="comment">// flower root, root&lt;=n root=i: normal nodes</span></span><br><span class="line"><span class="keyword">int</span> flower_from[N][N]; <span class="comment">// flower_from[b][x]: outermost flower in b that contains x</span></span><br></pre></td></tr></table></figure>
+
+<p>其中，与普通带花树不同，这里的花是额外进行存储的（存储在 $n+1$ 到 $n_x$ 内），因此<strong>需要开两倍空间</strong>。花可以嵌套，而且花需要在某些时刻进行<strong>展开</strong>（后面会详细讲述），因此需要保存额外的信息。对于一个花 $B$，存储其根 $root$，对于花内任意点有 $root_{i\in B}=B$；存储花内所有节点 $flower_B$，是以<strong>花托为起始</strong>的环；同时，花内每一点 $i$ 保存“花内最大父花” $flower_from_{B,i}$ 表示最大的包含 $i$ 的 $B$ 的子花。</p>
+<table style="border-collapse:collapse;empty-cell:show;">
+    <tr>
+        <td><center><img src="/images\flowered_tree_1.png" style="zoom: 70%;"></center></td>
+    </tr>
+</table>
+
+<p>对于上面这朵嵌套花：${1,2,3}\in B1,{B1,4,5,6}\in B2$，存储为：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">flower[B1]=&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125; <span class="comment">// 1 是花托，按照某个顺序转圈，也可能是 &#123;1,3,2&#125;</span></span><br><span class="line">flower[B2]=&#123;<span class="number">6</span>,B1,<span class="number">4</span>,<span class="number">5</span>&#125; <span class="comment">// 6 是花托，按照某个顺序转圈，也可能是 &#123;6,5,4,B1&#125;</span></span><br><span class="line">root[<span class="number">1</span>]=root[<span class="number">6</span>]=root[B1]=root[B2]=B2 <span class="comment">// i 最外层的花托</span></span><br><span class="line">flower_from[B2][B1]=B1</span><br><span class="line">flower_from[B2][<span class="number">1</span>]=B1</span><br><span class="line">flower_from[B2][<span class="number">4</span>]=<span class="number">4</span></span><br><span class="line">flower_from[B1][<span class="number">1</span>]=<span class="number">1</span></span><br><span class="line">root[<span class="number">7</span>]=<span class="number">7</span> <span class="comment">// 非花点 root 为自身</span></span><br></pre></td></tr></table></figure>
+
+<p>然后是 $slack$ 和匹配相关：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// slack</span></span><br><span class="line">T label[N]; <span class="comment">// node label, [1, n] point label, [n+1, n_x] flower label</span></span><br><span class="line"><span class="keyword">int</span> col[N]; <span class="comment">// color saved at flower root</span></span><br><span class="line"><span class="keyword">int</span> slv[N]; <span class="comment">// slack node of NON LEAF NODES, slv[y]=x z(x,y) min_x</span></span><br><span class="line"><span class="comment">// match</span></span><br><span class="line"><span class="keyword">int</span> mat[N]; <span class="comment">// match, mat[x]=y (x,y)\in E</span></span><br><span class="line"><span class="keyword">int</span> fa[N]; <span class="comment">// fa in cross tree</span></span><br><span class="line"><span class="keyword">int</span> vis[N]; <span class="comment">// if in path</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;Q; <span class="comment">// bfs queue</span></span><br></pre></td></tr></table></figure>
+
+<p>$label$ 也就是对偶问题里的 $z$。$col$ 是节点颜色，为黑色或白色。$slv_y$ 表示与 $y$ 邻接且不在一朵花的、 $z(x,y)$ 最小的 $x$，<strong>因为仅会在 $x,y$ 不在一朵花中的时候用到</strong>，计算时可以直接 $z_x+z_y-w(x,y)$。 $slv$ 的目的是计算松弛：每次松弛时，找到的边<strong>只有两种</strong>，即未访问点 $y$ 和某个黑点 $x$ 之间的边；已访问的黑点 $y$ 和某个已访问且不同花黑点之间的边。因此通过 $slv$ 可以方便地进行计算，总复杂度 $O(n^3)$。</p>
+<p>$mat$ 可能是花之间的匹配，即 $mat_x=y$ 中 $x&gt;n,y&gt;n$ 均是被允许的。$vis$ 只用来计算 $LCA$ ，可以暂时忽略。$fa$ 表示某白点在交错树上的父节点。注意到黑点交错树上的父节点是 $mat_i$，<strong>利用这两个东西就可以在交错树上追溯到根了</strong>。</p>
+<p>接下来是对 $slv$ 的更新和计算：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// calculate slv</span></span><br><span class="line"><span class="function"><span class="keyword">inline</span> T <span class="title">calc_slv</span><span class="params">(edge e)</span></span>&#123;<span class="keyword">return</span> label[e.u]+label[e.v]-e.w;&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update_slv</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(!slv[v]||calc_slv(g[u][v])&lt;calc_slv(g[slv[v]][v]))slv[v]=u;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">recalc_slv</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">    slv[u]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)</span><br><span class="line">        <span class="keyword">if</span>(g[i][u].w&gt;<span class="number">0</span>&amp;&amp;root[i]!=u&amp;&amp;col[root[i]]==<span class="number">1</span>)</span><br><span class="line">            update_slv(i,u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>对于 BFS 队列，在将花加入队列时需要将花中所有点都加入队列；设置最外层花时，对于花中所有点都要进行设置。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// only push nodes, not flowers</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">q_push</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(x&lt;=n)Q.push(x);</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[x])q_push(p);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// set root of all nodes in x to r</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_root</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    root[x]=r;</span><br><span class="line">    <span class="keyword">if</span>(x&gt;n)<span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[x])set_root(p,r);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>获取某朵花 $b$ 中，从花托到 $x$ 一条交错路径：对花连出去边的两种情况分别处理，返回一个指针。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// return a (+-)^k path in flower b from root[b] to x</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_even_path_in_flower</span><span class="params">(<span class="keyword">int</span> b,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> pr=find(flower[b].begin(),flower[b].end(),x)-flower[b].begin();</span><br><span class="line">    assert(b&gt;n&amp;&amp;b&lt;=n_x&amp;&amp;pr&lt;flower[b].size()); <span class="comment">// b is flower, x in b</span></span><br><span class="line">    <span class="keyword">if</span>(pr%<span class="number">2</span>==<span class="number">0</span>)<span class="keyword">return</span> pr;</span><br><span class="line">    reverse(flower[b].begin()+<span class="number">1</span>,flower[b].end());</span><br><span class="line">    <span class="keyword">return</span> flower[b].size()-pr;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>某次增广使得需要设置 $u$ 匹配 $v$，$u$ 可能是花（$v$ 不管）：对于 $u$ 为花的情况，从花托到真实 $u$ 的边都进行翻转匹配，最后花托移位，旋转花到正确位置。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// set (u-&gt;v) match, can be flower</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">set_match</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    mat[u]=g[u][v].v;</span><br><span class="line">    <span class="keyword">if</span>(u&gt;n)&#123;</span><br><span class="line">        edge e=g[u][v];</span><br><span class="line">        <span class="keyword">int</span> xr=flower_from[u][e.u];</span><br><span class="line">        <span class="keyword">int</span> pr=get_even_path_in_flower(u,xr);</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;pr;i++)set_match(flower[u][i],flower[u][i^<span class="number">1</span>]);</span><br><span class="line">        set_match(xr,v);</span><br><span class="line">        rotate(flower[u].begin(),flower[u].begin()+pr,flower[u].end()); <span class="comment">// change receptacle</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>连接两个<strong>不在同一个花里</strong>的 S 点（黑点）：两个点到根的路径，加上两点之间的边，能构成一条增广路。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// link 2 S points</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">side_augment</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> nv=root[mat[u]],nu=root[fa[nv]];</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        set_match(u,v);</span><br><span class="line">        u=nu,v=nv;</span><br><span class="line">        <span class="keyword">if</span>(!nv)<span class="keyword">break</span>;</span><br><span class="line">        set_match(nv,nu);</span><br><span class="line">        nv=root[mat[u]],nu=root[fa[nv]];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">linkSS</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    side_augment(u,v); </span><br><span class="line">    side_augment(v,u);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>暴力查询两点 LCA：直接跳父链打标记。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">    <span class="keyword">static</span> <span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">    ++t; <span class="comment">// to avoid clearing vis</span></span><br><span class="line">    <span class="keyword">while</span>(u||v)&#123;</span><br><span class="line">        <span class="keyword">if</span>(vis[u]==t)<span class="keyword">return</span> u;</span><br><span class="line">        vis[u]=t;</span><br><span class="line">        u=root[mat[u]];</span><br><span class="line">        <span class="keyword">if</span>(u)u=root[fa[u]];</span><br><span class="line">        <span class="keyword">if</span>(!u)swap(u,v);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>增加一朵奇花：需要申请一个 $id$ 设为 $b$，清空所有数据，并重构。需要重构的部分有：颜色；匹配（继承花托的匹配）；花内节点；花内节点的 <code>root</code>、<code>flower_from</code>；邻接矩阵；<code>slv</code> 值。其中，邻接矩阵取的是 $z_e$ 最小的值，这可以保证正确性。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">add_blossom</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,b=n+<span class="number">1</span>;</span><br><span class="line">    <span class="keyword">while</span>(b&lt;=n_x&amp;&amp;root[b])b++;</span><br><span class="line">    <span class="keyword">if</span>(b&gt;n_x)++n_x;</span><br><span class="line">    <span class="comment">// clear</span></span><br><span class="line">    col[b]=<span class="number">1</span>;label[b]=<span class="number">0</span>;mat[b]=mat[r];flower[b].clear();</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)g[i][b].w=g[b][i].w=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)flower_from[b][i]=<span class="number">0</span>;</span><br><span class="line">    <span class="comment">// construct flower</span></span><br><span class="line">    <span class="keyword">while</span>(u!=r)&#123;</span><br><span class="line">        flower[b].pb(u);u=root[mat[u]];q_push(u);</span><br><span class="line">        flower[b].pb(u);u=root[fa[u]];</span><br><span class="line">    &#125;</span><br><span class="line">    flower[b].pb(r);</span><br><span class="line">    reverse(flower[b].begin(),flower[b].end());</span><br><span class="line">    <span class="keyword">while</span>(v!=r)&#123;</span><br><span class="line">        flower[b].pb(v);v=root[mat[v]];q_push(v);</span><br><span class="line">        flower[b].pb(v);v=root[fa[v]];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// set as outermost flower</span></span><br><span class="line">    set_root(b,b);</span><br><span class="line">    <span class="comment">// calculate slack</span></span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[b])&#123;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">            <span class="comment">// set to min slave</span></span><br><span class="line">            <span class="keyword">if</span>(!g[b][i].w||calc_slv(g[p][i])&lt;calc_slv(g[b][i]))&#123;</span><br><span class="line">                g[b][i]=g[p][i];</span><br><span class="line">                g[i][b]=g[i][p];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(flower_from[p][i])flower_from[b][i]=p;</span><br><span class="line">    &#125;</span><br><span class="line">    recalc_slv(b);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>尝试增广一条等边：如果对点未染过色，则必然已经有匹配，将其匹配染色后丢入队列；如果对点是黑点，分两种情况，如果 $LCA=0$ 即不在同一花内，则 <code>linkSS</code>，否则添加花。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// found_edge</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">augment_path</span><span class="params">(edge e)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> u=root[e.u],v=root[e.v];</span><br><span class="line">    <span class="keyword">if</span>(!col[v])&#123;</span><br><span class="line">        assert(mat[v]);</span><br><span class="line">        fa[v]=e.u;</span><br><span class="line">        col[v]=<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">int</span> nu=root[mat[v]];</span><br><span class="line">        slv[nu]=slv[v]=<span class="number">0</span>;</span><br><span class="line">        col[nu]=<span class="number">1</span>;</span><br><span class="line">        q_push(nu);</span><br><span class="line">    &#125;<span class="keyword">else</span> <span class="keyword">if</span>(col[v]==<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">int</span> r=get_lca(u,v);</span><br><span class="line">        <span class="keyword">if</span>(r)add_blossom(u,v,r);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">return</span> linkSS(u,v),<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>一次增广：将所有未匹配点入队进行 BFS。先尝试使用当前 $label$ 下的等边构成的子图跑增广，如果增广成功直接返回。如果无法成功，则需要计算出松弛的大小，并将 $z_u,z_B$ 分别进行更新。更新后，如果某点 $(i,slv_i)$ 路径被加入等边子图中，则进行尝试增广。如果没有，则进行新的一轮增广。</p>
+<p>有几个细节需要注意：</p>
+<ol>
+<li>白花 $z_B$ 会减掉一个正数，但要求保证 $z_B\ge 0$。</li>
+<li>如何计算松弛的大小</li>
+</ol>
+<p>由于有 $z_B\ge 0$ 这样的特殊约束，当一朵白花 $z_B=0$ 时，需要对其进行开花操作 <code>expand_blossom</code>，即将花展开，将花中在交错树上的部分链加入交错树中，并将其他节点设置为“没有听说过”，即 $col_i=0$。</p>
+<p>上面也提到过，每次松弛需要考虑的只有下列情况：</p>
+<ol>
+<li>某个黑点 $u$ 和某个未匹配点 $v$ 之间的边</li>
+<li>某两个不在同一个花内的黑点 $u,v$ 之间的连边</li>
+</ol>
+<p>加上 $z_B\ge 0,z_u\ge 0$ 两个条件，总共需要找的是四种情况，<strong>其中要用到 $\frac{z_B}2$、$\frac{z_e}{2}$ 的形式，因此边权整体乘二</strong>；但 $z_B$ 要小于零了可以拆花，$z_u$ 要小于零可就真的找不到匹配路径了，因此如果某次结束后 $z_u=0$，直接返回增广失败。</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">augment</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i;</span><br><span class="line">    <span class="built_in">memset</span>(col,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(n_x+<span class="number">1</span>));</span><br><span class="line">    <span class="built_in">memset</span>(slv,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(n_x+<span class="number">1</span>));</span><br><span class="line">    <span class="built_in">memset</span>(fa,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(n_x+<span class="number">1</span>));</span><br><span class="line">    Q=<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)</span><br><span class="line">        <span class="keyword">if</span>(root[i]==i&amp;&amp;!mat[i])&#123;</span><br><span class="line">            <span class="comment">// add all unmatched points</span></span><br><span class="line">            col[i]=<span class="number">1</span>;</span><br><span class="line">            q_push(i);</span><br><span class="line">        &#125;</span><br><span class="line">    <span class="keyword">if</span>(Q.empty())<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">        <span class="keyword">while</span>(!Q.empty())&#123;</span><br><span class="line">            <span class="keyword">int</span> p=Q.front();Q.pop();</span><br><span class="line">            assert(col[root[p]]==<span class="number">1</span>);</span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(g[p][i].w==<span class="number">0</span>||root[i]==root[p])<span class="keyword">continue</span>;</span><br><span class="line">                <span class="comment">// not in same flower</span></span><br><span class="line">                T d=calc_slv(g[p][i]);</span><br><span class="line">                <span class="keyword">if</span>(!d)&#123;<span class="keyword">if</span>(augment_path(g[p][i]))<span class="keyword">return</span> <span class="number">1</span>;&#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(col[root[i]]!=<span class="number">2</span>)update_slv(p,root[i]);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        T delta=INF;</span><br><span class="line">        <span class="comment">// calc delta</span></span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(col[root[i]]==<span class="number">1</span>)delta=min(delta,label[i]);</span><br><span class="line">        <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=n_x;i++)<span class="keyword">if</span>(root[i]==i&amp;&amp;col[i]==<span class="number">2</span>)delta=min(delta,label[i]/<span class="number">2</span>);</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(root[i]!=i||!slv[i])<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(!col[i])delta=min(delta,calc_slv(g[slv[i]][i]));</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(col[i]==<span class="number">1</span>)delta=min(delta,calc_slv(g[slv[i]][i])/<span class="number">2</span>);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// update label</span></span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(col[root[i]]==<span class="number">1</span>)label[i]-=delta;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(col[root[i]]==<span class="number">2</span>)label[i]+=delta;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(root[i]!=i)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(col[i]==<span class="number">1</span>)label[i]+=<span class="number">2</span>*delta;</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">if</span>(col[i]==<span class="number">2</span>)label[i]-=<span class="number">2</span>*delta;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(label[i]&lt;=<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(root[i]!=i||!slv[i]||root[slv[i]]==i)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">if</span>(calc_slv(g[slv[i]][i])==<span class="number">0</span>&amp;&amp;augment_path(g[slv[i]][i]))<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// expand</span></span><br><span class="line">        <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=n_x;i++)</span><br><span class="line">            <span class="keyword">if</span>(root[i]==i&amp;&amp;col[i]==<span class="number">2</span>&amp;&amp;label[i]==<span class="number">0</span>)</span><br><span class="line">                expand_blossom(i);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><del>两</del>开花的具体实现：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// only expand outermost blossom b, b is T(white) blossom</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">expand_blossom</span><span class="params">(<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,x;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[b])set_root(p,p);</span><br><span class="line">    x=flower_from[b][g[b][fa[b]].u];</span><br><span class="line">    <span class="comment">// [0,pr]: (+-)^k, insert into tree, add black to queue</span></span><br><span class="line">    <span class="keyword">int</span> pr=get_even_path_in_flower(b,x);</span><br><span class="line">    col[x]=<span class="number">2</span>;fa[x]=fa[b];</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;pr;i+=<span class="number">2</span>)&#123;</span><br><span class="line">        <span class="comment">// from bottom to upper layer in tree</span></span><br><span class="line">        <span class="keyword">int</span> white=flower[b][i];</span><br><span class="line">        <span class="keyword">int</span> black=flower[b][i+<span class="number">1</span>];</span><br><span class="line">        col[black]=<span class="number">1</span>;col[white]=<span class="number">2</span>;</span><br><span class="line">        fa[white]=g[black][white].u;</span><br><span class="line">        slv[black]=slv[white]=<span class="number">0</span>;</span><br><span class="line">        q_push(black);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// others: color=0</span></span><br><span class="line">    <span class="keyword">for</span>(i=pr+<span class="number">1</span>;i&lt;flower[b].size();i++)&#123;</span><br><span class="line">        col[flower[b][i]]=<span class="number">0</span>;</span><br><span class="line">        recalc_slv(flower[b][i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// delete b</span></span><br><span class="line">    root[b]=<span class="number">0</span>;</span><br><span class="line">    flower[b].clear();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="参考代码"><a href="#参考代码" class="headerlink" title="参考代码"></a>参考代码</h3><p>加上主函数，下面放一下完整的模板实现（题目是 UOJ #81）：</p>
+<div><div class="fold_hider"><div class="close hider_title">点击</div></div><div class="fold">
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br><span class="line">198</span><br><span class="line">199</span><br><span class="line">200</span><br><span class="line">201</span><br><span class="line">202</span><br><span class="line">203</span><br><span class="line">204</span><br><span class="line">205</span><br><span class="line">206</span><br><span class="line">207</span><br><span class="line">208</span><br><span class="line">209</span><br><span class="line">210</span><br><span class="line">211</span><br><span class="line">212</span><br><span class="line">213</span><br><span class="line">214</span><br><span class="line">215</span><br><span class="line">216</span><br><span class="line">217</span><br><span class="line">218</span><br><span class="line">219</span><br><span class="line">220</span><br><span class="line">221</span><br><span class="line">222</span><br><span class="line">223</span><br><span class="line">224</span><br><span class="line">225</span><br><span class="line">226</span><br><span class="line">227</span><br><span class="line">228</span><br><span class="line">229</span><br><span class="line">230</span><br><span class="line">231</span><br><span class="line">232</span><br><span class="line">233</span><br><span class="line">234</span><br><span class="line">235</span><br><span class="line">236</span><br><span class="line">237</span><br><span class="line">238</span><br><span class="line">239</span><br><span class="line">240</span><br><span class="line">241</span><br><span class="line">242</span><br><span class="line">243</span><br><span class="line">244</span><br><span class="line">245</span><br><span class="line">246</span><br><span class="line">247</span><br><span class="line">248</span><br><span class="line">249</span><br><span class="line">250</span><br><span class="line">251</span><br><span class="line">252</span><br><span class="line">253</span><br><span class="line">254</span><br><span class="line">255</span><br><span class="line">256</span><br><span class="line">257</span><br><span class="line">258</span><br><span class="line">259</span><br><span class="line">260</span><br><span class="line">261</span><br><span class="line">262</span><br><span class="line">263</span><br><span class="line">264</span><br><span class="line">265</span><br><span class="line">266</span><br><span class="line">267</span><br><span class="line">268</span><br><span class="line">269</span><br><span class="line">270</span><br><span class="line">271</span><br><span class="line">272</span><br><span class="line">273</span><br><span class="line">274</span><br><span class="line">275</span><br><span class="line">276</span><br><span class="line">277</span><br><span class="line">278</span><br><span class="line">279</span><br><span class="line">280</span><br><span class="line">281</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">define</span> M 403</span></span><br><span class="line"><span class="keyword">using</span> T=ll;</span><br><span class="line"><span class="keyword">const</span> T INF=<span class="number">0x3f3f3f3f3f3f3f3f</span>;</span><br><span class="line"><span class="keyword">namespace</span> my_flower_tree&#123;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">define</span> N M*2+1</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">edge</span>&#123;</span></span><br><span class="line">        <span class="keyword">int</span> u,v;T w;</span><br><span class="line">        edge()&#123;&#125;</span><br><span class="line">        edge(<span class="keyword">int</span> u,<span class="keyword">int</span> v,T w):u(u),v(v),w(w)&#123;&#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    <span class="comment">// Graph</span></span><br><span class="line">    <span class="keyword">int</span> n,n_x; <span class="comment">// [1, n]: point; [n+1, n_x]: flower</span></span><br><span class="line">    edge g[N][N]; <span class="comment">// adjacent matrix</span></span><br><span class="line">    <span class="comment">// flower</span></span><br><span class="line">    <span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;flower[N]; <span class="comment">// nodes in flower i (outer flower)</span></span><br><span class="line">    <span class="keyword">int</span> root[N]; <span class="comment">// flower root, root&lt;=n root=i: normal nodes</span></span><br><span class="line">    <span class="keyword">int</span> flower_from[N][N]; <span class="comment">// flower_from[b][x]: outermost flower in b that contains x</span></span><br><span class="line">    <span class="comment">// slack</span></span><br><span class="line">    T label[N]; <span class="comment">// node label, [1, n] point label, [n+1, n_x] flower label</span></span><br><span class="line">    <span class="keyword">int</span> col[N]; <span class="comment">// color saved at flower root</span></span><br><span class="line">    <span class="keyword">int</span> slv[N]; <span class="comment">// slack node of NON LEAF NODES, slv[y]=x z(x,y) min_x</span></span><br><span class="line">    <span class="comment">// match</span></span><br><span class="line">    <span class="keyword">int</span> mat[N]; <span class="comment">// match, mat[x]=y (x,y)\in E</span></span><br><span class="line">    <span class="keyword">int</span> fa[N]; <span class="comment">// fa in cross tree</span></span><br><span class="line">    <span class="keyword">int</span> vis[N]; <span class="comment">// if in path</span></span><br><span class="line">    </span><br><span class="line">    <span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;Q; <span class="comment">// bfs queue</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// calculate slv</span></span><br><span class="line">    <span class="function"><span class="keyword">inline</span> T <span class="title">calc_slv</span><span class="params">(edge e)</span></span>&#123;<span class="keyword">return</span> label[e.u]+label[e.v]-e.w;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">update_slv</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;<span class="keyword">if</span>(!slv[v]||calc_slv(g[u][v])&lt;calc_slv(g[slv[v]][v]))slv[v]=u;&#125;</span><br><span class="line">    <span class="function"><span class="keyword">inline</span> <span class="keyword">void</span> <span class="title">recalc_slv</span><span class="params">(<span class="keyword">int</span> u)</span></span>&#123;</span><br><span class="line">        slv[u]=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(g[i][u].w&gt;<span class="number">0</span>&amp;&amp;root[i]!=u&amp;&amp;col[root[i]]==<span class="number">1</span>)update_slv(i,u);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// only push nodes, not flowers</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">q_push</span><span class="params">(<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(x&lt;=n)Q.push(x);</span><br><span class="line">        <span class="keyword">else</span> <span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[x])q_push(p);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// set root of all nodes in x to r</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set_root</span><span class="params">(<span class="keyword">int</span> x,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        root[x]=r;</span><br><span class="line">        <span class="keyword">if</span>(x&gt;n)<span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[x])set_root(p,r);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// return a (+-)^k path in flower b from root[b] to x</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_even_path_in_flower</span><span class="params">(<span class="keyword">int</span> b,<span class="keyword">int</span> x)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> pr=find(flower[b].begin(),flower[b].end(),x)-flower[b].begin();</span><br><span class="line">        assert(b&gt;n&amp;&amp;b&lt;=n_x&amp;&amp;pr&lt;flower[b].size()); <span class="comment">// b is flower, x in b</span></span><br><span class="line">        <span class="keyword">if</span>(pr%<span class="number">2</span>==<span class="number">0</span>)<span class="keyword">return</span> pr;</span><br><span class="line">        reverse(flower[b].begin()+<span class="number">1</span>,flower[b].end());</span><br><span class="line">        <span class="keyword">return</span> flower[b].size()-pr;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// set (u,v) match, can be flower</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">set_match</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        mat[u]=g[u][v].v;</span><br><span class="line">        <span class="keyword">if</span>(u&gt;n)&#123;</span><br><span class="line">            edge e=g[u][v];</span><br><span class="line">            <span class="keyword">int</span> xr=flower_from[u][e.u];</span><br><span class="line">            <span class="keyword">int</span> pr=get_even_path_in_flower(u,xr);</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;pr;i++)set_match(flower[u][i],flower[u][i^<span class="number">1</span>]);</span><br><span class="line">            set_match(xr,v);</span><br><span class="line">            rotate(flower[u].begin(),flower[u].begin()+pr,flower[u].end()); <span class="comment">// change receptacle</span></span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// link 2 S points</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">side_augment</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> nv=root[mat[u]],nu=root[fa[nv]];</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            set_match(u,v);</span><br><span class="line">            u=nu,v=nv;</span><br><span class="line">            <span class="keyword">if</span>(!nv)<span class="keyword">break</span>;</span><br><span class="line">            set_match(nv,nu);</span><br><span class="line">            nv=root[mat[u]],nu=root[fa[nv]];</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">linkSS</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        side_augment(u,v); </span><br><span class="line">        side_augment(v,u);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">get_lca</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v)</span></span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">int</span> t=<span class="number">0</span>;</span><br><span class="line">        ++t; <span class="comment">// to avoid clearing vis</span></span><br><span class="line">        <span class="keyword">while</span>(u||v)&#123;</span><br><span class="line">            <span class="keyword">if</span>(vis[u]==t)<span class="keyword">return</span> u;</span><br><span class="line">            vis[u]=t;</span><br><span class="line">            u=root[mat[u]];</span><br><span class="line">            <span class="keyword">if</span>(u)u=root[fa[u]];</span><br><span class="line">            <span class="keyword">if</span>(!u)swap(u,v);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">add_blossom</span><span class="params">(<span class="keyword">int</span> u,<span class="keyword">int</span> v,<span class="keyword">int</span> r)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i,b=n+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">while</span>(b&lt;=n_x&amp;&amp;root[b])b++;</span><br><span class="line">        <span class="keyword">if</span>(b&gt;n_x)++n_x;</span><br><span class="line">        <span class="comment">// clear</span></span><br><span class="line">        col[b]=<span class="number">1</span>;label[b]=<span class="number">0</span>;mat[b]=mat[r];flower[b].clear();</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)g[i][b].w=g[b][i].w=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)flower_from[b][i]=<span class="number">0</span>;</span><br><span class="line">        <span class="comment">// construct flower</span></span><br><span class="line">        <span class="keyword">while</span>(u!=r)&#123;</span><br><span class="line">            flower[b].pb(u);u=root[mat[u]];q_push(u);</span><br><span class="line">            flower[b].pb(u);u=root[fa[u]];</span><br><span class="line">        &#125;</span><br><span class="line">        flower[b].pb(r);</span><br><span class="line">        reverse(flower[b].begin(),flower[b].end());</span><br><span class="line">        <span class="keyword">while</span>(v!=r)&#123;</span><br><span class="line">            flower[b].pb(v);v=root[mat[v]];q_push(v);</span><br><span class="line">            flower[b].pb(v);v=root[fa[v]];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// set as outermost flower</span></span><br><span class="line">        set_root(b,b);</span><br><span class="line">        <span class="comment">// calculate slack</span></span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[b])&#123;</span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">                <span class="comment">// set to min slave</span></span><br><span class="line">                <span class="keyword">if</span>(!g[b][i].w||calc_slv(g[p][i])&lt;calc_slv(g[b][i]))&#123;</span><br><span class="line">                    g[b][i]=g[p][i];</span><br><span class="line">                    g[i][b]=g[i][p];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(flower_from[p][i])flower_from[b][i]=p;</span><br><span class="line">        &#125;</span><br><span class="line"><span class="comment">//		recalc_slv(b);</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// only expand outermost blossom b, b is T(white) blossom</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">expand_blossom</span><span class="params">(<span class="keyword">int</span> b)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i,x;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> p:flower[b])set_root(p,p);</span><br><span class="line">        x=flower_from[b][g[b][fa[b]].u];</span><br><span class="line">        <span class="comment">// [0,pr]: (+-)^k, insert into tree, add black to queue</span></span><br><span class="line">        <span class="keyword">int</span> pr=get_even_path_in_flower(b,x);</span><br><span class="line">        col[x]=<span class="number">2</span>;fa[x]=fa[b];</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;pr;i+=<span class="number">2</span>)&#123;</span><br><span class="line">            <span class="comment">// from bottom to upper layer in tree</span></span><br><span class="line">            <span class="keyword">int</span> white=flower[b][i];</span><br><span class="line">            <span class="keyword">int</span> black=flower[b][i+<span class="number">1</span>];</span><br><span class="line">            col[black]=<span class="number">1</span>;col[white]=<span class="number">2</span>;</span><br><span class="line">            fa[white]=g[black][white].u;</span><br><span class="line">            slv[black]=slv[white]=<span class="number">0</span>;</span><br><span class="line">            q_push(black);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// others: color=0</span></span><br><span class="line">        <span class="keyword">for</span>(i=pr+<span class="number">1</span>;i&lt;flower[b].size();i++)&#123;</span><br><span class="line">            col[flower[b][i]]=<span class="number">0</span>;</span><br><span class="line">            recalc_slv(flower[b][i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// delete b</span></span><br><span class="line">        root[b]=<span class="number">0</span>;</span><br><span class="line">        flower[b].clear();</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// found_edge</span></span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">augment_path</span><span class="params">(edge e)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> u=root[e.u],v=root[e.v];</span><br><span class="line">        <span class="keyword">if</span>(!col[v])&#123;</span><br><span class="line">            assert(mat[v]);</span><br><span class="line">            fa[v]=e.u;</span><br><span class="line">            col[v]=<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> nu=root[mat[v]];</span><br><span class="line">            slv[nu]=slv[v]=<span class="number">0</span>;</span><br><span class="line">            col[nu]=<span class="number">1</span>;</span><br><span class="line">            q_push(nu);</span><br><span class="line">        &#125;<span class="keyword">else</span> <span class="keyword">if</span>(col[v]==<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">int</span> r=get_lca(u,v);</span><br><span class="line">            <span class="keyword">if</span>(r)add_blossom(u,v,r);</span><br><span class="line">            <span class="keyword">else</span> <span class="keyword">return</span> linkSS(u,v),<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">augment</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i;</span><br><span class="line">        <span class="built_in">memset</span>(col,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(n_x+<span class="number">1</span>));</span><br><span class="line">        <span class="built_in">memset</span>(slv,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(n_x+<span class="number">1</span>));</span><br><span class="line">        <span class="built_in">memset</span>(fa,<span class="number">0</span>,<span class="keyword">sizeof</span>(<span class="keyword">int</span>)*(n_x+<span class="number">1</span>));</span><br><span class="line">        Q=<span class="built_in">queue</span>&lt;<span class="keyword">int</span>&gt;();</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)</span><br><span class="line">            <span class="keyword">if</span>(root[i]==i&amp;&amp;!mat[i])&#123;</span><br><span class="line">                <span class="comment">// add all unmatched points</span></span><br><span class="line">                col[i]=<span class="number">1</span>;</span><br><span class="line">                q_push(i);</span><br><span class="line">            &#125;</span><br><span class="line">        <span class="keyword">if</span>(Q.empty())<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(<span class="number">1</span>)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!Q.empty())&#123;</span><br><span class="line">                <span class="keyword">int</span> p=Q.front();Q.pop();</span><br><span class="line">                assert(col[root[p]]==<span class="number">1</span>);</span><br><span class="line">                <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                    <span class="keyword">if</span>(g[p][i].w==<span class="number">0</span>||root[i]==root[p])<span class="keyword">continue</span>;</span><br><span class="line">                    <span class="comment">// not in same flower</span></span><br><span class="line">                    T d=calc_slv(g[p][i]);</span><br><span class="line">                    <span class="keyword">if</span>(!d)&#123;<span class="keyword">if</span>(augment_path(g[p][i]))<span class="keyword">return</span> <span class="number">1</span>;&#125;</span><br><span class="line">                    <span class="keyword">else</span> <span class="keyword">if</span>(col[root[i]]!=<span class="number">2</span>)update_slv(p,root[i]);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            T delta=INF;</span><br><span class="line">            <span class="comment">// calc delta</span></span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(col[root[i]]==<span class="number">1</span>)delta=min(delta,label[i]);</span><br><span class="line">            <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=n_x;i++)<span class="keyword">if</span>(root[i]==i&amp;&amp;col[i]==<span class="number">2</span>)delta=min(delta,label[i]/<span class="number">2</span>);</span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(root[i]!=i||!slv[i])<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(!col[i])delta=min(delta,calc_slv(g[slv[i]][i]));</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(col[i]==<span class="number">1</span>)delta=min(delta,calc_slv(g[slv[i]][i])/<span class="number">2</span>);</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// update label</span></span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(col[root[i]]==<span class="number">1</span>)label[i]-=delta;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(col[root[i]]==<span class="number">2</span>)label[i]+=delta;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(root[i]!=i)<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(col[i]==<span class="number">1</span>)label[i]+=<span class="number">2</span>*delta;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(col[i]==<span class="number">2</span>)label[i]-=<span class="number">2</span>*delta;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(label[i]&lt;=<span class="number">0</span>)<span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n_x;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(root[i]!=i||!slv[i]||root[slv[i]]==i)<span class="keyword">continue</span>;</span><br><span class="line">                <span class="keyword">if</span>(calc_slv(g[slv[i]][i])==<span class="number">0</span>&amp;&amp;augment_path(g[slv[i]][i]))<span class="keyword">return</span> <span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// expand</span></span><br><span class="line">            <span class="keyword">for</span>(i=n+<span class="number">1</span>;i&lt;=n_x;i++)</span><br><span class="line">                <span class="keyword">if</span>(root[i]==i&amp;&amp;col[i]==<span class="number">2</span>&amp;&amp;label[i]==<span class="number">0</span>)</span><br><span class="line">                    expand_blossom(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">init</span><span class="params">(<span class="keyword">int</span> _n,<span class="built_in">vector</span>&lt;pair&lt;T,pii&gt;&gt;edges)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> i,j;</span><br><span class="line">        n=n_x=_n;</span><br><span class="line">        <span class="built_in">memset</span>(mat,<span class="number">0</span>,<span class="keyword">sizeof</span>(mat));</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            root[i]=i;</span><br><span class="line">            flower[i].clear();</span><br><span class="line">            <span class="keyword">for</span>(j=<span class="number">0</span>;j&lt;=n;j++)&#123;</span><br><span class="line">                flower_from[i][j]=(i==j)?i:<span class="number">0</span>;</span><br><span class="line">                g[i][j]=edge(i,j,<span class="number">0</span>);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        T w_max=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">auto</span> pr:edges)&#123;</span><br><span class="line">            <span class="keyword">int</span> u=pr.se.fi,v=pr.se.se;</span><br><span class="line">            T w=pr.fi;</span><br><span class="line">            g[u][v]=edge(u,v,w*<span class="number">2</span>);</span><br><span class="line">            g[v][u]=edge(v,u,w*<span class="number">2</span>);</span><br><span class="line">            w_max=max(w_max,w);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)label[i]=w_max;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    pair&lt;<span class="keyword">int</span>,T&gt;calc()&#123;</span><br><span class="line">        <span class="keyword">int</span> i,cnt=<span class="number">0</span>;T s=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(augment())++cnt;</span><br><span class="line">        <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="keyword">if</span>(mat[i]&gt;i)s+=g[i][mat[i]].w/<span class="number">2</span>;</span><br><span class="line">        <span class="keyword">return</span> mp(cnt,s);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> i,n,m;</span><br><span class="line">    <span class="built_in">vector</span>&lt;pair&lt;T,pii&gt;&gt;edges;</span><br><span class="line">    <span class="built_in">scanf</span>(<span class="string">"%d%d"</span>,&amp;n,&amp;m);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">0</span>;i&lt;m;i++)&#123;</span><br><span class="line">        <span class="keyword">int</span> u,v;T w;</span><br><span class="line">        <span class="built_in">scanf</span>(<span class="string">"%d%d%lld"</span>,&amp;u,&amp;v,&amp;w);</span><br><span class="line">        edges.pb(mp(w,mp(u,v)));</span><br><span class="line">    &#125;</span><br><span class="line">    my_flower_tree::init(n,edges);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"%lld\n"</span>,my_flower_tree::calc().se);</span><br><span class="line">    <span class="keyword">for</span>(i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">printf</span>(<span class="string">"%d "</span>,my_flower_tree::mat[i]);</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+</div></div>
+
+<h2 id="参考资料与工具"><a href="#参考资料与工具" class="headerlink" title="参考资料与工具"></a>参考资料与工具</h2><ol>
+<li>OI-wiki，<a href="https://oi-wiki.org/graph/graph-matching/general-match/" target="_blank" rel="noopener">一般图最大匹配</a></li>
+<li>Fuyuki，<a href="https://www.luogu.com.cn/blog/Fuyuki/solution-p6113" target="_blank" rel="noopener">题解 P6113 【模板】一般图最大匹配</a></li>
+<li>胡拉哥，<a href="https://blog.csdn.net/qx3501332/article/details/105546208/" target="_blank" rel="noopener">算法设计技巧：Primal-Dual</a></li>
+<li>wenruo，<a href="https://www.cnblogs.com/wenruo/p/5264235.html" target="_blank" rel="noopener">KM算法详解+模板</a></li>
+<li>Shawn-Yang，<a href="https://blog.csdn.net/yangss123/article/details/88716680" target="_blank" rel="noopener">KM算法–学习笔记</a></li>
+<li>陈胤伯，2015 年国家集训队论文《浅谈图的匹配算法及其应用》</li>
+<li>jacky860226，<a href="https://github.com/jacky860226/general-graph-weighted-match-slides" target="_blank" rel="noopener">general-graph-weighted-match-slides</a></li>
+<li>vfleaking，<a href="https://vfleaking.blog.uoj.ac/blog/339" target="_blank" rel="noopener">妈妈我终于会一般图最大权匹配了！</a></li>
+<li>Joris_VR，<a href="http://jorisvr.nl/article/maximum-matching" target="_blank" rel="noopener">Maximum Weighted Matching</a></li>
+<li>zhongzihao，<a href="https://wiki.buaaacm.com/doku.php?id=technique:general_matching_weighted" target="_blank" rel="noopener">一般图最大权（最大）匹配</a></li>
+<li>Kurt Mehlhorn et al.，<a href="https://dl.acm.org/doi/pdf/10.1145/944618.944622" target="_blank" rel="noopener">Implementation of O(nmlogn) weighted matchings in general graphs: the power of data structures</a></li>
+<li><a href="https://algorithms.discrete.ma.tum.de/" target="_blank" rel="noopener">Visualizations of Graph Algorithms</a></li>
+<li><a href="https://csacademy.com/app/graph_editor/" target="_blank" rel="noopener">Graph Editor</a></li>
+<li><a href="https://networkx.org/" target="_blank" rel="noopener">NetworkX</a></li>
+</ol>
+<h2 id="提交通道"><a href="#提交通道" class="headerlink" title="提交通道"></a>提交通道</h2><ol>
+<li><a href="https://www.luogu.com.cn/problem/P6699" target="_blank" rel="noopener">洛谷</a></li>
+<li><a href="https://uoj.ac/problem/81" target="_blank" rel="noopener">UOJ</a></li>
+<li><a href="https://judge.yosupo.jp/problem/general_weighted_matching" target="_blank" rel="noopener">Library checker</a></li>
+</ol>
+<h2 id="结语"><a href="#结语" class="headerlink" title="结语"></a>结语</h2><p>欢迎纠错与讨论。感谢阅读！</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/notes/" rel="tag"># notes</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2021/09/08/cfgym102156/" rel="next" title="2019 Petrozavodsk Winter Camp, Yandex Cup 题解">
+                <i class="fa fa-chevron-left"></i> 2019 Petrozavodsk Winter Camp, Yandex Cup 题解
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image" src="/images/main.png" alt="Potassium">
+            
+              <p class="site-author-name" itemprop="name">Potassium</p>
+              <p class="site-description motion-element" itemprop="description"></p>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives/">
+                
+                    <span class="site-state-item-count">82</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-categories">
+                  <a href="/categories/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">7</span>
+                    <span class="site-state-item-name">分类</span>
+                  </a>
+                </div>
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  <a href="/tags/index.html">
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">5</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/potassiumwings" title="GitHub &rarr; https://github.com/potassiumwings" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="mailto:mumuyuyululu@126.com" title="E-Mail &rarr; mailto:mumuyuyululu@126.com" rel="noopener" target="_blank"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://m.mugzone.net/accounts/user/57439" title="Malody &rarr; http://m.mugzone.net/accounts/user/57439" rel="noopener" target="_blank"><i class="fa fa-fw fa-gamepad"></i>Malody</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://space.bilibili.com/11227808?from=search&seid=1471932430476256344" title="Bilibili &rarr; https://space.bilibili.com/11227808?from=search&seid=1471932430476256344" rel="noopener" target="_blank"><i class="fa fa-fw fa-tv"></i>Bilibili</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.zhihu.com/people/potassium-31" title="Zhihu &rarr; http://www.zhihu.com/people/potassium-31" rel="noopener" target="_blank"><i class="fa fa-fw fa-bitbucket"></i>Zhihu</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://music.163.com/#/user/home?id=266891778" title="Music163 &rarr; https://music.163.com/#/user/home?id=266891778" rel="noopener" target="_blank"><i class="fa fa-fw fa-music"></i>Music163</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+             </div>
+          
+
+          
+          
+            <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+              <div class="links-of-blogroll-title">
+                <i class="fa  fa-fw fa-link"></i>
+                友情链接
+              </div>
+              <ul class="links-of-blogroll-list">
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cnblogs.com/potassium" title="https://cnblogs.com/potassium" rel="noopener" target="_blank">My cnblog</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://nikkukun.github.io" title="https://nikkukun.github.io" rel="noopener" target="_blank">Nikkukun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://cnblogs.com/hugegun" title="https://cnblogs.com/hugegun" rel="noopener" target="_blank">HugeGun</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://member.bitcron.com/" title="http://member.bitcron.com/" rel="noopener" target="_blank">Member</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://kevin00.ac.cn" title="http://kevin00.ac.cn" rel="noopener" target="_blank">Kevin</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="http://alchemist.clatisus.com/" title="http://alchemist.clatisus.com/" rel="noopener" target="_blank">Alchemist</a>
+                  </li>
+                
+                  <li class="links-of-blogroll-item">
+                    <a href="https://www.cnblogs.com/MountVoom/" title="https://www.cnblogs.com/MountVoom/" rel="noopener" target="_blank">MountVoom</a>
+                  </li>
+                
+              </ul>
+            </div>
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#引入"><span class="nav-number">1.</span> <span class="nav-text">引入</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#基本定义"><span class="nav-number">2.</span> <span class="nav-text">基本定义</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分图最大匹配"><span class="nav-number">3.</span> <span class="nav-text">二分图最大匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一般图最大匹配"><span class="nav-number">4.</span> <span class="nav-text">一般图最大匹配</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#二分图最大权匹配"><span class="nav-number">5.</span> <span class="nav-text">二分图最大权匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#最大权完美匹配"><span class="nav-number">5.1.</span> <span class="nav-text">最大权完美匹配</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#暴力实现"><span class="nav-number">5.2.</span> <span class="nav-text">暴力实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优化方案"><span class="nav-number">5.3.</span> <span class="nav-text">优化方案</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Bonus"><span class="nav-number">5.4.</span> <span class="nav-text">Bonus</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#其他匹配的形式"><span class="nav-number">5.5.</span> <span class="nav-text">其他匹配的形式</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#一般图最大权匹配"><span class="nav-number">6.</span> <span class="nav-text">一般图最大权匹配</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#对偶问题"><span class="nav-number">6.1.</span> <span class="nav-text">对偶问题</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体实现"><span class="nav-number">6.2.</span> <span class="nav-text">具体实现</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#参考代码"><span class="nav-number">6.3.</span> <span class="nav-text">参考代码</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料与工具"><span class="nav-number">7.</span> <span class="nav-text">参考资料与工具</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#提交通道"><span class="nav-number">8.</span> <span class="nav-text">提交通道</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#结语"><span class="nav-number">9.</span> <span class="nav-text">结语</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+        <div class="back-to-top">
+          <i class="fa fa-arrow-up"></i>
+          
+            <span id="scrollpercent"><span>0</span>%</span>
+          
+        </div>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">&copy; <span itemprop="copyrightYear">2021</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Potassium</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv" title="总访客量">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="site-pv" title="总访问量">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/src/utils.js?v=6.7.0"></script>
+
+  <script src="/js/src/motion.js?v=6.7.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/src/affix.js?v=6.7.0"></script>
+
+  <script src="/js/src/schemes/pisces.js?v=6.7.0"></script>
+
+
+
+  
+  <script src="/js/src/scrollspy.js?v=6.7.0"></script>
+<script src="/js/src/post-details.js?v=6.7.0"></script>
+
+
+
+  
+
+
+  <script src="/js/src/bootstrap.js?v=6.7.0"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+  
+  
+  
+  
+  <script src="//cdn1.lncld.net/static/js/3.11.1/av-min.js"></script>
+  <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+  <script>
+    var GUEST = ['nick','mail','link'];
+    var guest = 'nick,mail,link';
+    guest = guest.split(',').filter(function (item) {
+      return GUEST.indexOf(item) > -1;
+    });
+    new Valine({
+      el: '#comments' ,
+      verify: false,
+      notify: false,
+      appId: 'KlBLsl9J7kKp0F0333XoU0Nm-gzGzoHsz',
+      appKey: 'fICBqCeUocC3l7Lu7ym4tD90',
+      placeholder: '有什么话想和Potassium说呢？ヾﾉ≧∀≦)o',
+      avatar: 'mm',
+      meta:guest,
+      pageSize: '10' || 10,
+      visitor: false
+    });
+  </script>
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+  
+
+  
+  
+
+  
+    
+      <script type="text/x-mathjax-config">
+  
+
+  MathJax.Hub.Config({
+    tex2jax: {
+      inlineMath: [ ['$','$'], ["\\(","\\)"] ],
+      processEscapes: true,
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    }
+  });
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+      for (i = 0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+  });
+</script>
+<script src="//cdn.jsdelivr.net/npm/mathjax@2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<style>
+.MathJax_Display {
+  overflow: auto hidden;
+}
+</style>
+
+    
+  
+
+
+  
+
+  
+
+  
+
+  
+  <script src="/js/src/js.cookie.js?v=6.7.0"></script>
+  <script src="/js/src/scroll-cookie.js?v=6.7.0"></script>
+
+
+  
+
+  
+
+  
+  <style>
+    .copy-btn {
+      display: inline-block;
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 20px;
+      color: #333;
+      white-space: nowrap;
+      vertical-align: middle;
+      cursor: pointer;
+      background-color: #eee;
+      background-image: linear-gradient(#fcfcfc, #eee);
+      border: 1px solid #d5d5d5;
+      border-radius: 3px;
+      user-select: none;
+      outline: 0;
+    }
+
+    .highlight-wrap .copy-btn {
+      transition: opacity .3s ease-in-out;
+      opacity: 0;
+      padding: 2px 6px;
+      position: absolute;
+      right: 4px;
+      top: 8px;
+    }
+
+    .highlight-wrap:hover .copy-btn,
+    .highlight-wrap .copy-btn:focus {
+      opacity: 1
+    }
+
+    .highlight-wrap {
+      position: relative;
+    }
+  </style>
+  <script>
+    $('.highlight').each(function (i, e) {
+      var $wrap = $('<div>').addClass('highlight-wrap');
+      $(e).after($wrap);
+      $wrap.append($('<button>').addClass('copy-btn').append('复制').on('click', function (e) {
+        var code = $(this).parent().find('.code').find('.line').map(function (i, e) {
+          return $(e).text();
+        }).toArray().join('\n');
+        var ta = document.createElement('textarea');
+        var range = document.createRange(); //For Chrome
+        var sel = window.getSelection(); //For Chrome
+        var yPosition = window.pageYOffset || document.documentElement.scrollTop;
+        ta.style.top = yPosition + 'px'; //Prevent page scroll
+        ta.style.position = 'absolute';
+        ta.style.opacity = '0';
+        ta.value = code;
+        ta.textContent = code; //For FireFox
+        ta.contentEditable = true;
+        ta.readOnly = false;
+        document.body.appendChild(ta);
+        range.selectNode(ta);
+        sel.removeAllRanges();
+        sel.addRange(range);
+        ta.setSelectionRange(0, code.length);
+        var result = document.execCommand('copy');
+        
+          if (result) $(this).text('复制成功');
+          else $(this).text('复制失败');
+        
+        ta.blur(); //For iOS
+        $(this).blur();
+      })).on('mouseleave', function (e) {
+        var $b = $(this).find('.copy-btn');
+        setTimeout(function () {
+          $b.text('复制');
+        }, 300);
+      }).append(e);
+    })
+  </script>
+
+
+  
+
+</body>
+</html>
